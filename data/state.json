@@ -1,0 +1,1893 @@
+{
+  "currentName": "Brentwood Appliances, Inc.",
+  "progress": 14,
+  "total": 922,
+  "results": {
+    "1 ST LH SUNGLASSES WHOLESALE INC.": {
+      "name": "1 ST LH SUNGLASSES WHOLESALE INC.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "http://www.glhsunglasses.com/"
+    },
+    "22 Tote": {
+      "name": "22 Tote",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5312,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://22totewholesale.com/"
+    },
+    "26 California Wholesale": {
+      "name": "26 California Wholesale",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "http://www.26californiawholesale.com/"
+    },
+    "29Tonight": {
+      "name": "29Tonight",
+      "socials": {
+        "instagram": "https://www.instagram.com/29tonight_inc/",
+        "twitter": "https://twitter.com/29tonight"
+      },
+      "branding": {
+        "score": 30,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4546,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.29tonight.com/"
+    },
+    "365 Fashions Inc.": {
+      "name": "365 Fashions Inc.",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6196,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://365fashions.com/"
+    },
+    "3gogo intl inc": {
+      "name": "3gogo intl inc",
+      "socials": {
+        "instagram": "https://www.instagram.com/3gogo.store/"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9264,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://3gogo.com/"
+    },
+    "6Blu Inc": {
+      "name": "6Blu Inc",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/company/showerlabsdk?trk=similar-pages"
+      },
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5314,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.linkedin.com/company/6blu-inc"
+    },
+    "7 Carats": {
+      "name": "7 Carats",
+      "socials": {
+        "facebook": "https://www.facebook.com/seven7carat",
+        "instagram": "https://www.instagram.com/sevencaratshop/"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5182,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.sevencarat.com/"
+    },
+    "7 Star Savings": {
+      "name": "7 Star Savings",
+      "socials": {},
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7381,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.7starsavings.com/"
+    },
+    "79 South China Import": {
+      "name": "79 South China Import",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7367,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://79scii.com/shop"
+    },
+    "8A Inc": {
+      "name": "8A Inc",
+      "socials": {
+        "facebook": "https://facebook.com/sbagov",
+        "twitter": "https://twitter.com/sbagov",
+        "linkedin": "https://linkedin.com/company/us-small-business-administration",
+        "instagram": "https://instagram.com/sbagov"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 3913,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.sba.gov/federal-contracting/contracting-assistance-programs/8a-business-development-program"
+    },
+    "99 displays inc": {
+      "name": "99 displays inc",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 3501,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://99displays.com/"
+    },
+    "A Good Gift LLC": {
+      "name": "A Good Gift LLC",
+      "socials": {},
+      "branding": {
+        "score": 30,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 995,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.dnb.com/business-directory/company-profiles.a_good_gift_llc.46fd4dc919dfad5ce54ad1d203fb90ef.html"
+    },
+    "A-LINE GREETINGS": {
+      "name": "A-LINE GREETINGS",
+      "socials": {
+        "facebook": "https://www.facebook.com/groups/313162445751816"
+      },
+      "branding": {
+        "score": 50,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 16320,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "http://www.aline.ca/"
+    },
+    "A & M Wholesale Group, LLC": {
+      "name": "A & M Wholesale Group, LLC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "http://www.aandmwholesalegroup.com/"
+    },
+    "ABC 123 Accessories": {
+      "name": "ABC 123 Accessories",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8840,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://abc123accessories.com/"
+    },
+    "ABC Trading": {
+      "name": "ABC Trading",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5549,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.abctradinginc.com/"
+    },
+    "Acigi Relaxation/Dr. Fuji": {
+      "name": "Acigi Relaxation/Dr. Fuji",
+      "socials": {
+        "instagram": "https://www.instagram.com/drfuji_fitness/"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 13658,
+        "summary": "Potential reviews found at www.yelp.com"
+      },
+      "website": "http://www.drfuji.com/"
+    },
+    "Active International": {
+      "name": "Active International",
+      "socials": {
+        "facebook": "https://www.facebook.com/activeinternational/",
+        "twitter": "https://twitter.com/activeintl",
+        "instagram": "https://www.instagram.com/activecares/",
+        "linkedin": "https://www.linkedin.com/company/11472/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6425,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://activeinternational.com/"
+    },
+    "Adorable Pillows Mfg. Inc.": {
+      "name": "Adorable Pillows Mfg. Inc.",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 10529,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.adorablepillows.com/"
+    },
+    "Advance Apparels Inc.": {
+      "name": "Advance Apparels Inc.",
+      "socials": {
+        "facebook": "https://www.facebook.com/pages/category/clothing-company/advance-apparels-2163864416985922/",
+        "instagram": "https://www.instagram.com/advanceapparels/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5335,
+        "summary": "Potential reviews found at reviews.birdeye.com"
+      },
+      "website": "https://www.advanceapparels.com/"
+    },
+    "Advanced Graphics": {
+      "name": "Advanced Graphics",
+      "socials": {
+        "twitter": "https://twitter.com/cardboardpeople",
+        "facebook": "https://www.facebook.com/cardboardpeople/",
+        "instagram": "https://www.instagram.com/cardboardpeople/"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8628,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://advancedgraphics.com/"
+    },
+    "Advanced Labeling Products Inc.": {
+      "name": "Advanced Labeling Products Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "http://advancedlabelingproducts.com/"
+    },
+    "Afnan Perfumes USA": {
+      "name": "Afnan Perfumes USA",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/company/afnan-perfumes-official/",
+        "facebook": "https://www.facebook.com/afnanperfumesofficial",
+        "instagram": "https://www.instagram.com/afnanperfumes/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 22952,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://us.afnan.com/"
+    },
+    "African American Expressions": {
+      "name": "African American Expressions",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Agilawood Inc.": {
+      "name": "Agilawood Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Airsoft America Inc.": {
+      "name": "Airsoft America Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "AJ Fashion Group Inc": {
+      "name": "AJ Fashion Group Inc",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Ajmal Perfumes": {
+      "name": "Ajmal Perfumes",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Akzanwholesale.com": {
+      "name": "Akzanwholesale.com",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Al Haramain Perfumes": {
+      "name": "Al Haramain Perfumes",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Al Rasasi Trading Co. LLC": {
+      "name": "Al Rasasi Trading Co. LLC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Alchemy Global/Callisto": {
+      "name": "Alchemy Global/Callisto",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Alef Standard Packaging Co": {
+      "name": "Alef Standard Packaging Co",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "ALI FAMILY GROUP INC": {
+      "name": "ALI FAMILY GROUP INC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Ali Trading LP": {
+      "name": "Ali Trading LP",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://us29205085802ubth.trustpass.alibaba.com/"
+    },
+    "All That Glitterz": {
+      "name": "All That Glitterz",
+      "socials": {
+        "facebook": "https://www.facebook.com/volusion",
+        "twitter": "https://twitter.com/volusion"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9276,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.allthatglitterz.store/"
+    },
+    "Alliance Entertainment": {
+      "name": "Alliance Entertainment",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Alliance Trading Co": {
+      "name": "Alliance Trading Co",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Allo Co.,Ltd": {
+      "name": "Allo Co.,Ltd",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://allo.com/company.html"
+    },
+    "Almar Sales Company": {
+      "name": "Almar Sales Company",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Aloha Art Collective": {
+      "name": "Aloha Art Collective",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.alohaartcollective.com/"
+    },
+    "ALREHAB PERFUMES": {
+      "name": "ALREHAB PERFUMES",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 3461,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.alrehab.com/"
+    },
+    "Always Bargain": {
+      "name": "Always Bargain",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 17215
+      },
+      "website": "https://alwaysbargain.com/"
+    },
+    "AM Sales Inc.": {
+      "name": "AM Sales Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Amana Trading Co./Flags International": {
+      "name": "Amana Trading Co./Flags International",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4982,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://amanatrading.us/"
+    },
+    "Amberman": {
+      "name": "Amberman",
+      "socials": {
+        "instagram": "https://www.instagram.com/amberman.jewelry/",
+        "facebook": "https://www.facebook.com/ambermanwholesale/"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 22179,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://amberman.com/"
+    },
+    "Ameri-China Int'l Inc": {
+      "name": "Ameri-China Int'l Inc",
+      "socials": {
+        "facebook": "https://www.facebook.com/americhina/",
+        "instagram": "http://instagram.com/americhina_group"
+      },
+      "branding": {
+        "score": 50,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 10070
+      },
+      "website": "https://www.americhinagroup.com/"
+    },
+    "American Cover Design/Persian Weavers": {
+      "name": "American Cover Design/Persian Weavers",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "American Dream Home Goods, Inc.": {
+      "name": "American Dream Home Goods, Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "American Dreamers": {
+      "name": "American Dreamers",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "American Gift Corporation": {
+      "name": "American Gift Corporation",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "American Legacy Products": {
+      "name": "American Legacy Products",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "American Linen / Prosperity Products": {
+      "name": "American Linen / Prosperity Products",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "American Rug Supply": {
+      "name": "American Rug Supply",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "American Weigh Wholesales": {
+      "name": "American Weigh Wholesales",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Amorus USA": {
+      "name": "Amorus USA",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Amuse Cosmetics Inc": {
+      "name": "Amuse Cosmetics Inc",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Andersen's Crazy Candy": {
+      "name": "Andersen's Crazy Candy",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://crazycandy.com/"
+    },
+    "Angels Craft USA Inc.": {
+      "name": "Angels Craft USA Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Angie": {
+      "name": "Angie",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Animativa": {
+      "name": "Animativa",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "AP&P/USASIA EXCHANGE, INC.": {
+      "name": "AP&P/USASIA EXCHANGE, INC.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Apollo Eyewear": {
+      "name": "Apollo Eyewear",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "AppSalute": {
+      "name": "AppSalute",
+      "socials": {
+        "facebook": "https://www.facebook.com/people/appsalute/100057382820700/",
+        "twitter": "https://twitter.com/ppsalute?",
+        "instagram": "https://www.instagram.com/app.salute",
+        "linkedin": "https://www.linkedin.com/company/appsalute/"
+      },
+      "branding": {
+        "score": 50,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 14233,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.appsalute.com/"
+    },
+    "Aramco Imports Inc": {
+      "name": "Aramco Imports Inc",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.aramcoimports.com/"
+    },
+    "Arbel Group Inc": {
+      "name": "Arbel Group Inc",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "ARHAN GRUP TALASLI IML. SAN. VE TIC. A. S. ( ORGAZ, ORCAMP)": {
+      "name": "ARHAN GRUP TALASLI IML. SAN. VE TIC. A. S. ( ORGAZ, ORCAMP)",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://arhangrup.com.tr/"
+    },
+    "Ark Shipping Inc.": {
+      "name": "Ark Shipping Inc.",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 13150,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://arkaxis.com/"
+    },
+    "Arkwright Home": {
+      "name": "Arkwright Home",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 10548
+      },
+      "website": "https://www.arkwrighthome.com/"
+    },
+    "Arma Metal Dis Tic San Ltd Sti.": {
+      "name": "Arma Metal Dis Tic San Ltd Sti.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.armametal.com.tr/"
+    },
+    "Aroma Globa": {
+      "name": "Aroma Globa",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://aroma-globa.com/"
+    },
+    "Aromar": {
+      "name": "Aromar",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "ARTEXT WHOLESALE": {
+      "name": "ARTEXT WHOLESALE",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Artoy Trading LLC": {
+      "name": "Artoy Trading LLC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Atlas World USA": {
+      "name": "Atlas World USA",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "y": {
+      "name": "y",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "AUTO-BEAUTY GROUP": {
+      "name": "AUTO-BEAUTY GROUP",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Avanti": {
+      "name": "Avanti",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Azha Fragrances": {
+      "name": "Azha Fragrances",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "AZZ TRADING": {
+      "name": "AZZ TRADING",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "B & G Sales, Inc.": {
+      "name": "B & G Sales, Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "B&R Accessories Inc": {
+      "name": "B&R Accessories Inc",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "B-Stock": {
+      "name": "B-Stock",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "B. Tiff New York": {
+      "name": "B. Tiff New York",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "BABALOON": {
+      "name": "BABALOON",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Babyking/Regent Baby Products": {
+      "name": "Babyking/Regent Baby Products",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Baifu Intl Trading Co": {
+      "name": "Baifu Intl Trading Co",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "BAJEN SHEA BUTTER INC.": {
+      "name": "BAJEN SHEA BUTTER INC.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Barry-Owen Co., Inc.": {
+      "name": "Barry-Owen Co., Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Bay Sales": {
+      "name": "Bay Sales",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Bazaar Inc.": {
+      "name": "Bazaar Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "BAZIC Products": {
+      "name": "BAZIC Products",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "BBC INC": {
+      "name": "BBC INC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "BDK USA INC.": {
+      "name": "BDK USA INC.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "BE JEWEL ACCESSORIES INC": {
+      "name": "BE JEWEL ACCESSORIES INC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Be La Boum & Rough Sketch": {
+      "name": "Be La Boum & Rough Sketch",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Beauty & Cosmetic USA": {
+      "name": "Beauty & Cosmetic USA",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Beauty Treats": {
+      "name": "Beauty Treats",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Becker Glove": {
+      "name": "Becker Glove",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Belvedere Marketing": {
+      "name": "Belvedere Marketing",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Benjamin International": {
+      "name": "Benjamin International",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "BEPA": {
+      "name": "BEPA",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Berbic Group": {
+      "name": "Berbic Group",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Berj Kouyoumjian Jewelry": {
+      "name": "Berj Kouyoumjian Jewelry",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "BEST VALUE PRODUCTS": {
+      "name": "BEST VALUE PRODUCTS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Best Wholesale Net LLC": {
+      "name": "Best Wholesale Net LLC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Beyond Borders Inc.": {
+      "name": "Beyond Borders Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Bhalla & Associates": {
+      "name": "Bhalla & Associates",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Big Bright Trading": {
+      "name": "Big Bright Trading",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Big Eye Glass Inc.": {
+      "name": "Big Eye Glass Inc.",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Bilco & Associates Inc": {
+      "name": "Bilco & Associates Inc",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Bio Creative Labs": {
+      "name": "Bio Creative Labs",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "BJ's Business": {
+      "name": "BJ's Business",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Blitzstock": {
+      "name": "Blitzstock",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Blu energy drink": {
+      "name": "Blu energy drink",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Blue Sky Clayworks": {
+      "name": "Blue Sky Clayworks",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Bluemango Brand LLC": {
+      "name": "Bluemango Brand LLC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Bodega Liquidation": {
+      "name": "Bodega Liquidation",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Bogue Chitto Creek Seasoning": {
+      "name": "Bogue Chitto Creek Seasoning",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Borun America Jewelry": {
+      "name": "Borun America Jewelry",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Botanica Supply Inc": {
+      "name": "Botanica Supply Inc",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Brainbean Technolabs": {
+      "name": "Brainbean Technolabs",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://brainbean.us/"
+    },
+    "Brand Name Distributors": {
+      "name": "Brand Name Distributors",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 11630,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://brandnamedistributors.com/"
+    }
+  },
+  "isProcessing": true
+}
