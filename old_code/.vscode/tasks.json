@@ -1,0 +1,10 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Flask App",
+			"type": "shell",
+			"command": "c:/hacker/Search/.venv/Scripts/python.exe app.py"
+		}
+	]
+}

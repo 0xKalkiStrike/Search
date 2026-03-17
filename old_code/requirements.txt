@@ -1,0 +1,6 @@
+Flask==2.3.3
+selenium==4.15.2
+openpyxl==3.1.2
+beautifulsoup4==4.12.2
+requests==2.31.0
+webdriver-manager==4.0.1

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search & Scrape | Data Extraction Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            background: var(--glass);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 2rem 0;
+        }
+        .upload-zone:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 600px; margin: 5rem auto; padding: 0 1rem;">
+        <div class="glass-card" style="text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+            <h1 style="margin: 0; font-size: 2rem;">Data Scraper Pro</h1>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Upload an Excel file with names to extract contact details in bulk. Now 5x faster with parallel processing.</p>
+
+            <% if (typeof error !== 'undefined') { %>
+                <div style="background: rgba(248, 113, 113, 0.1); color: #f87171; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(248, 113, 113, 0.2);">
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <form action="/upload" method="post" enctype="multipart/form-data" id="upload-form">
+                <input type="file" id="file" name="file" accept=".xlsx" style="display: none" required onchange="this.form.submit()">
+                <div class="upload-zone" onclick="document.getElementById('file').click()">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📁</div>
+                    <div style="font-weight: 600;">Click to select Excel file</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">.xlsx or .csv (Column A: Names)</div>
+                </div>
+                
+                <button type="submit" class="btn-premium" style="width: 100%">Process File</button>
+            </form>
+
+            <div style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-muted);">
+                Supported sources: DuckDuckGo, Official Websites, Contact Pages
+            </div>
+        </div>
+    </div>
+</body>
+</html>
