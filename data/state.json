@@ -1,186 +1,10 @@
 {
-  "currentName": "Brentwood Appliances, Inc.",
-  "progress": 14,
-  "total": 922,
+  "currentName": "SUGARMATTYS",
+  "progress": 83,
+  "total": 241,
   "results": {
-    "1 ST LH SUNGLASSES WHOLESALE INC.": {
-      "name": "1 ST LH SUNGLASSES WHOLESALE INC.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      },
-      "website": "http://www.glhsunglasses.com/"
-    },
-    "22 Tote": {
-      "name": "22 Tote",
-      "socials": {},
-      "branding": {
-        "score": 70,
-        "description": "Professional branding present.",
-        "isModern": false,
-        "hasLogo": true,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 5312,
-        "summary": "Potential reviews found at www.glassdoor.com"
-      },
-      "website": "https://22totewholesale.com/"
-    },
-    "26 California Wholesale": {
-      "name": "26 California Wholesale",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      },
-      "website": "http://www.26californiawholesale.com/"
-    },
-    "29Tonight": {
-      "name": "29Tonight",
-      "socials": {
-        "instagram": "https://www.instagram.com/29tonight_inc/",
-        "twitter": "https://twitter.com/29tonight"
-      },
-      "branding": {
-        "score": 30,
-        "description": "Missing clear brand identification.",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Poor"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 4546,
-        "summary": "Potential reviews found at www.glassdoor.com"
-      },
-      "website": "https://www.29tonight.com/"
-    },
-    "365 Fashions Inc.": {
-      "name": "365 Fashions Inc.",
-      "socials": {},
-      "branding": {
-        "score": 60,
-        "description": "Professional branding present.",
-        "isModern": false,
-        "hasLogo": true,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 6196,
-        "summary": "Potential reviews found at www.trustpilot.com"
-      },
-      "website": "https://365fashions.com/"
-    },
-    "3gogo intl inc": {
-      "name": "3gogo intl inc",
-      "socials": {
-        "instagram": "https://www.instagram.com/3gogo.store/"
-      },
-      "branding": {
-        "score": 100,
-        "description": "Modern tech stack detected. Professional branding present.",
-        "isModern": true,
-        "hasLogo": true,
-        "attractiveness": "Stunning"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 9264,
-        "summary": "Potential reviews found at www.glassdoor.com"
-      },
-      "website": "https://3gogo.com/"
-    },
-    "6Blu Inc": {
-      "name": "6Blu Inc",
-      "socials": {
-        "linkedin": "https://www.linkedin.com/company/showerlabsdk?trk=similar-pages"
-      },
-      "branding": {
-        "score": 60,
-        "description": "Professional branding present.",
-        "isModern": false,
-        "hasLogo": true,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 5314,
-        "summary": "Potential reviews found at www.glassdoor.com"
-      },
-      "website": "https://www.linkedin.com/company/6blu-inc"
-    },
-    "7 Carats": {
-      "name": "7 Carats",
-      "socials": {
-        "facebook": "https://www.facebook.com/seven7carat",
-        "instagram": "https://www.instagram.com/sevencaratshop/"
-      },
-      "branding": {
-        "score": 100,
-        "description": "Modern tech stack detected. Professional branding present.",
-        "isModern": true,
-        "hasLogo": true,
-        "attractiveness": "Stunning"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 5182,
-        "summary": "Potential reviews found at www.trustpilot.com"
-      },
-      "website": "https://www.sevencarat.com/"
-    },
-    "7 Star Savings": {
-      "name": "7 Star Savings",
-      "socials": {},
-      "branding": {
-        "score": 90,
-        "description": "Modern tech stack detected. Professional branding present.",
-        "isModern": true,
-        "hasLogo": true,
-        "attractiveness": "Stunning"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 7381,
-        "summary": "Potential reviews found at www.trustpilot.com"
-      },
-      "website": "https://www.7starsavings.com/"
-    },
-    "79 South China Import": {
-      "name": "79 South China Import",
-      "socials": {},
-      "branding": {
-        "score": 60,
-        "description": "Missing clear brand identification.",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 7367,
-        "summary": "Potential reviews found at www.trustpilot.com"
-      },
-      "website": "https://79scii.com/shop"
-    },
-    "8A Inc": {
-      "name": "8A Inc",
+    "Company Name": {
+      "name": "Company Name",
       "socials": {
         "facebook": "https://facebook.com/sbagov",
         "twitter": "https://twitter.com/sbagov",
@@ -196,81 +20,33 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 3913,
-        "summary": "Potential reviews found at www.trustpilot.com"
-      },
-      "website": "https://www.sba.gov/federal-contracting/contracting-assistance-programs/8a-business-development-program"
-    },
-    "99 displays inc": {
-      "name": "99 displays inc",
-      "socials": {},
-      "branding": {
-        "score": 40,
-        "description": "Missing clear brand identification.",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Poor"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 3501,
+        "loadTime": 4746,
         "summary": "Potential reviews found at www.glassdoor.com"
       },
-      "website": "https://99displays.com/"
+      "website": "https://www.sba.gov/business-guide/launch-your-business/choose-your-business-name"
     },
-    "A Good Gift LLC": {
-      "name": "A Good Gift LLC",
-      "socials": {},
-      "branding": {
-        "score": 30,
-        "description": "Missing clear brand identification.",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Poor"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 995,
-        "summary": "Potential reviews found at www.glassdoor.com"
-      },
-      "website": "https://www.dnb.com/business-directory/company-profiles.a_good_gift_llc.46fd4dc919dfad5ce54ad1d203fb90ef.html"
-    },
-    "A-LINE GREETINGS": {
-      "name": "A-LINE GREETINGS",
+    "BAKLAVA DUBAI CRISPY BLUNTS EDIBLES": {
+      "name": "BAKLAVA DUBAI CRISPY BLUNTS EDIBLES",
       "socials": {
-        "facebook": "https://www.facebook.com/groups/313162445751816"
+        "facebook": "https://www.facebook.com/crispyblunts",
+        "instagram": "https://www.instagram.com/crispy_blunts/"
       },
       "branding": {
-        "score": 50,
-        "description": "Missing clear brand identification.",
+        "score": 80,
+        "description": "Professional branding present.",
         "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Poor"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 16320,
-        "summary": "Potential reviews found at www.glassdoor.com"
-      },
-      "website": "http://www.aline.ca/"
-    },
-    "A & M Wholesale Group, LLC": {
-      "name": "A & M Wholesale Group, LLC",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
+        "hasLogo": true,
         "attractiveness": "Average"
       },
       "screening": {
-        "status": "Offline"
+        "status": "Online",
+        "loadTime": 4404,
+        "summary": "Potential reviews found at crispyblunts.com"
       },
-      "website": "http://www.aandmwholesalegroup.com/"
+      "website": "https://crispyblunts.com/"
     },
-    "ABC 123 Accessories": {
-      "name": "ABC 123 Accessories",
+    "420 SWITCHBLADE": {
+      "name": "420 SWITCHBLADE",
       "socials": {},
       "branding": {
         "score": 70,
@@ -281,13 +57,208 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 8840,
+        "loadTime": 10337,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.420switchblade.com/"
+    },
+    "7 OMEGAZ INC": {
+      "name": "7 OMEGAZ INC",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8336,
         "summary": "Potential reviews found at www.trustpilot.com"
       },
-      "website": "https://abc123accessories.com/"
+      "website": "https://7omegaz.com/"
     },
-    "ABC Trading": {
-      "name": "ABC Trading",
+    "7 Seas": {
+      "name": "7 Seas",
+      "socials": {
+        "twitter": "https://x.com/regentcruises",
+        "facebook": "https://www.facebook.com/regentsevenseascruises/",
+        "instagram": "https://www.instagram.com/regentcruises"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 13917,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.rssc.com/"
+    },
+    "A & K DISTRIBUTOR IMPORTS INC": {
+      "name": "A & K DISTRIBUTOR IMPORTS INC",
+      "socials": {},
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7320,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://akdistributorimports.com/"
+    },
+    "A GIFT FROM NATURE": {
+      "name": "A GIFT FROM NATURE",
+      "socials": {
+        "instagram": "https://www.instagram.com/agiftfromnatureco/",
+        "facebook": "https://www.facebook.com/agiftfromnaturecbd/"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 15226,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://agiftfromnaturecbd.com/"
+    },
+    "A51": {
+      "name": "A51",
+      "socials": {
+        "facebook": "https://www.facebook.com/samsungus",
+        "twitter": "https://twitter.com/samsungus",
+        "instagram": "https://www.instagram.com/samsungmobileusa/"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8511,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.samsung.com/us/smartphones/galaxy-a-series/"
+    },
+    "ABR IMAGERY": {
+      "name": "ABR IMAGERY",
+      "socials": {
+        "instagram": "https://www.instagram.com/abrimagery/",
+        "facebook": "https://www.facebook.com/abrimagery"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5583,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://abrimagery.com/"
+    },
+    "ADDICTION NYC / ALPHA GLASS": {
+      "name": "ADDICTION NYC / ALPHA GLASS",
+      "socials": {
+        "facebook": "https://www.facebook.com/recover/initiate?ars=royal_blue_bar"
+      },
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 3347,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.facebook.com/AddictionNYC/"
+    },
+    "ADVANCED MYCOLOGY INC": {
+      "name": "ADVANCED MYCOLOGY INC",
+      "socials": {
+        "facebook": "https://www.facebook.com/advancedmyco",
+        "twitter": "https://twitter.com/advancedmyco",
+        "instagram": "https://instagram.com/advancedmyco"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7531,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://advancedmyco.com/about/"
+    },
+    "ADYAH WHOLESALE": {
+      "name": "ADYAH WHOLESALE",
+      "socials": {
+        "instagram": "https://www.instagram.com/adyahwholesale/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 10754,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://adyahwholesale.com/login.php"
+    },
+    "ALPHA1 SALES": {
+      "name": "ALPHA1 SALES",
+      "socials": {
+        "instagram": "https://www.instagram.com/alpha1salesmi/?igshid=ngexmmi2ytkyzg%3d%3d",
+        "facebook": "https://www.facebook.com/people/alpha-1-sales/100086285756268/?mibextid=zbwkwl"
+      },
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 3694,
+        "summary": "Potential reviews found at www.chamberofcommerce.com"
+      },
+      "website": "https://www.alpha1sales.com/about-us"
+    },
+    "ASHNCLOUD": {
+      "name": "ASHNCLOUD",
       "socials": {},
       "branding": {
         "score": 60,
@@ -298,15 +269,91 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 5549,
+        "loadTime": 19173,
         "summary": "Potential reviews found at www.glassdoor.com"
       },
-      "website": "https://www.abctradinginc.com/"
+      "website": "https://ashncloud.com/"
     },
-    "Acigi Relaxation/Dr. Fuji": {
-      "name": "Acigi Relaxation/Dr. Fuji",
+    "B2B WHOLESALER MAGAZINE / MGT MEDIA": {
+      "name": "B2B WHOLESALER MAGAZINE / MGT MEDIA",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 10848,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "http://b2bwholesalermag.com/"
+    },
+    "BAD DAYS": {
+      "name": "BAD DAYS",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Modern tech stack detected. Missing clear brand identification.",
+        "isModern": true,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 15037,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.youtube.com/@BadDays_official/videos"
+    },
+    "BAJIE TRADING CO. LTD": {
+      "name": "BAJIE TRADING CO. LTD",
       "socials": {
-        "instagram": "https://www.instagram.com/drfuji_fitness/"
+        "facebook": "https://www.facebook.com/bizapedia",
+        "twitter": "https://x.com/bizapedia"
+      },
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 2285,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.bizapedia.com/ca/bajie-trading-co-ltd.html"
+    },
+    "BIC USA": {
+      "name": "BIC USA",
+      "socials": {
+        "instagram": "https://www.instagram.com/bic_group/",
+        "twitter": "https://twitter.com/bicgroup?lang=fr"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9688,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://us.bic.com/en_us"
+    },
+    "BLACK BALL CORP": {
+      "name": "BLACK BALL CORP",
+      "socials": {
+        "twitter": "https://www.twitter.com/blackballcorp",
+        "facebook": "https://www.facebook.com/blackballcorp",
+        "instagram": "https://www.instagram.com/blackballcorpproducts"
       },
       "branding": {
         "score": 70,
@@ -317,18 +364,1608 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 13658,
+        "loadTime": 15446,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.blackballcorp.com/"
+    },
+    "BLISS DISTRIBUTION": {
+      "name": "BLISS DISTRIBUTION",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4408,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.blissdistribution.com/"
+    },
+    "BONA FIDE FLOWER": {
+      "name": "BONA FIDE FLOWER",
+      "socials": {
+        "instagram": "https://instagram.com/gimmejoyride"
+      },
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5938,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://bonafideflower.com/"
+    },
+    "BONG PAY": {
+      "name": "BONG PAY",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7751,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://bongpay.com/"
+    },
+    "BOULDER INTERNATIONAL": {
+      "name": "BOULDER INTERNATIONAL",
+      "socials": {
+        "facebook": "https://www.facebook.com/bb10k/",
+        "twitter": "https://twitter.com/bolderboulder",
+        "instagram": "https://www.instagram.com/bolderboulder/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5895,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.bolderboulder.com/"
+    },
+    "CALI COAST BOTANICALS": {
+      "name": "CALI COAST BOTANICALS",
+      "socials": {},
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7609,
+        "summary": "Potential reviews found at uk.trustpilot.com"
+      },
+      "website": "https://calicoastbotanicals.com/"
+    },
+    "CALI KULTURE": {
+      "name": "CALI KULTURE",
+      "socials": {},
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 2907,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.calikulture.com/"
+    },
+    "CALI PODS": {
+      "name": "CALI PODS",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8948,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.calivapepods.com/"
+    },
+    "CANNAAID": {
+      "name": "CANNAAID",
+      "socials": {
+        "facebook": "https://www.facebook.com/profile.php?id=100063473292643",
+        "instagram": "https://www.instagram.com/cannaaid.shop/",
+        "twitter": "https://auth.govx.com/shopify/verify?shop=cannaaid.myshopify.com&utm_source=shopify&utm_medium=govxid&utm_campaign=govxid_button_app_block"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 10104,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://cannaaid.com/"
+    },
+    "Cannanums": {
+      "name": "Cannanums",
+      "socials": {
+        "facebook": "https://www.facebook.com/profile.php?id=100063693204451",
+        "twitter": "https://x.com/cannanums",
+        "instagram": "https://www.instagram.com/cannanums/"
+      },
+      "branding": {
+        "score": 60,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4181,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.cannanums.com/"
+    },
+    "CAPTAIN SHROOMZ": {
+      "name": "CAPTAIN SHROOMZ",
+      "socials": {
+        "facebook": "https://www.facebook.com/profile.php?id=61574398313000",
+        "instagram": "https://www.instagram.com/captshroomz/?hl=af"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Modern tech stack detected. Missing clear brand identification.",
+        "isModern": true,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 10806,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://captainshroomz.com/"
+    },
+    "CATCH A FIRE ARTS": {
+      "name": "CATCH A FIRE ARTS",
+      "socials": {
+        "facebook": "https://www.facebook.com/recover/initiate?ars=royal_blue_bar"
+      },
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7731,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.facebook.com/Catchafirearts/"
+    },
+    "CBD LIVING": {
+      "name": "CBD LIVING",
+      "socials": {
+        "instagram": "https://www.instagram.com/cbdlivingwater/?hl=en",
+        "twitter": "https://x.com/cbdliving/",
+        "facebook": "https://www.facebook.com/cbdlivingofficial/"
+      },
+      "branding": {
+        "score": 60,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 25446,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://cbdliving.com/"
+    },
+    "CELESTIAL DREAMS": {
+      "name": "CELESTIAL DREAMS",
+      "socials": {
+        "facebook": "https://www.facebook.com/celestialdreams/",
+        "instagram": "https://www.instagram.com/celestialdreamsscents/"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9914,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://shop.celestialdreams.com/"
+    },
+    "CENTER POINT DISTRIBUTION": {
+      "name": "CENTER POINT DISTRIBUTION",
+      "socials": {
+        "facebook": "https://www.facebook.com/centerpointenergy",
+        "twitter": "https://twitter.com/centerpoint"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 17751,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.centerpointenergy.com/en-us/"
+    },
+    "Chaotik Universe by ZAM": {
+      "name": "Chaotik Universe by ZAM",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5157,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.etsy.com/shop/ChaotikUniverse"
+    },
+    "CHARISMA": {
+      "name": "CHARISMA",
+      "socials": {
+        "facebook": "https://www.facebook.com/charisma",
+        "instagram": "https://www.instagram.com/charismahome/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8381,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://charismaathome.com/"
+    },
+    "CHILL CHEFS LLC": {
+      "name": "CHILL CHEFS LLC",
+      "socials": {
+        "facebook": "https://www.facebook.com/profile.php?id=61586268908961",
+        "instagram": "https://www.instagram.com/chill_chefs/"
+      },
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 23547,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://chillchefs.net/"
+    },
+    "CHOICE BOTANICALS": {
+      "name": "CHOICE BOTANICALS",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4660,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://choicekratom.com/"
+    },
+    "CHRONIC CANDY": {
+      "name": "CHRONIC CANDY",
+      "socials": {
+        "facebook": "https://www.facebook.com/chroniccandy?mibextid=wwxifr",
+        "instagram": "https://www.instagram.com/chroniccandy/?igsh=ntc4mtiwnjq2yq%3d%3d#",
+        "twitter": "https://x.com/chroniccandy"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6695,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.chroniccandy.com/"
+    },
+    "CLICKIT": {
+      "name": "CLICKIT",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4411,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.clickitinc.com/"
+    },
+    "CLOUDZ SMOKE": {
+      "name": "CLOUDZ SMOKE",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 11395,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://cloudzsmoke.shop/"
+    },
+    "CLUB13": {
+      "name": "CLUB13",
+      "socials": {},
+      "branding": {
+        "score": 80,
+        "description": "Modern tech stack detected. Missing clear brand identification.",
+        "isModern": true,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9589,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://club13.com/"
+    },
+    "COAST TO COAST CONNECTION": {
+      "name": "COAST TO COAST CONNECTION",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/company/seronda-network?trk=similar-pages"
+      },
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6542,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.linkedin.com/company/ctcconnections"
+    },
+    "COCO DISTRO": {
+      "name": "COCO DISTRO",
+      "socials": {
+        "facebook": "https://www.facebook.com/recover/initiate?ars=royal_blue_bar"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Modern tech stack detected. Missing clear brand identification.",
+        "isModern": true,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7001,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.facebook.com/61553907305014/"
+    },
+    "CODE RED DROPS": {
+      "name": "CODE RED DROPS",
+      "socials": {
+        "instagram": "https://www.instagram.com/code_red_drops/"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 21545,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://codereddrops.com/"
+    },
+    "CONE BOSS": {
+      "name": "CONE BOSS",
+      "socials": {
+        "instagram": "https://www.instagram.com/theconeboss",
+        "twitter": "https://x.com/theconeboss?s=21"
+      },
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4637,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://theconeboss.com/"
+    },
+    "CYCLE STICKERS": {
+      "name": "CYCLE STICKERS",
+      "socials": {
+        "instagram": "https://www.instagram.com/bicycledecals/"
+      },
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9911,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://bicycledecals.net/"
+    },
+    "CYCLONE PODS": {
+      "name": "CYCLONE PODS",
+      "socials": {
+        "twitter": "https://twitter.com/cyclonepods",
+        "instagram": "https://www.instagram.com/cyclonepods/"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 16865,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://cyclonepods.com/"
+    },
+    "DABSMARTS": {
+      "name": "DABSMARTS",
+      "socials": {
+        "facebook": "http://facebook.com/dabsmarts",
+        "instagram": "https://www.instagram.com/dabsmarts"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8784,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://dabsmarts.com/"
+    },
+    "DEMAND VAPE": {
+      "name": "DEMAND VAPE",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 2607,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.demandvape.com/"
+    },
+    "DEP KINGS": {
+      "name": "DEP KINGS",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8083,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://depkings.com/"
+    },
+    "DFW DISPLAY & FIXTURE": {
+      "name": "DFW DISPLAY & FIXTURE",
+      "socials": {
+        "facebook": "https://www.facebook.com/profile.php?id=61556928647756",
+        "instagram": "https://www.instagram.com/dfwfixturedallas/"
+      },
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9425,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://storedisplayfixture.com/"
+    },
+    "DNS/ GREEN SHORES NUTRA": {
+      "name": "DNS/ GREEN SHORES NUTRA",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4420,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.gsnutra.com/"
+    },
+    "DOPIUM": {
+      "name": "DOPIUM",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6068,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://dopium7hydroxy.com/collections/all"
+    },
+    "DOZO": {
+      "name": "DOZO",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://puredozo.com/"
+    },
+    "Dr Church / SWEETLEAF GRINDERS": {
+      "name": "Dr Church / SWEETLEAF GRINDERS",
+      "socials": {
+        "facebook": "https://www.facebook.com/sweetleaf-grinder-407376759875289/",
+        "twitter": "//twitter.com/share?text=wood%20cylindrical%20grinder&url=https://www.sweetleafgrinder.com/products/wood-cylindrical-grinder",
+        "instagram": "https://www.instagram.com/sweetleafgrinders/"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Modern tech stack detected. Missing clear brand identification.",
+        "isModern": true,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7249,
+        "summary": "Potential reviews found at judge.me"
+      },
+      "website": "https://www.sweetleafgrinder.com/products/wood-cylindrical-grinder"
+    },
+    "DR DABBER": {
+      "name": "DR DABBER",
+      "socials": {
+        "instagram": "https://www.instagram.com/drdabber/",
+        "linkedin": "https://www.linkedin.com/company/dr.-dabber/",
+        "facebook": "https://www.facebook.com/drdabber/",
+        "twitter": "https://twitter.com/drdabber"
+      },
+      "branding": {
+        "score": 60,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 24435,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.drdabber.com/"
+    },
+    "DREAMZ": {
+      "name": "DREAMZ",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4503,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://dreamz-art.pixels.com/"
+    },
+    "DRIPLOCK": {
+      "name": "DRIPLOCK",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.driploc.com/"
+    },
+    "DURITY DISTRIBUTION": {
+      "name": "DURITY DISTRIBUTION",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.duritydistribution.com/"
+    },
+    "EARTHS MEDICINALS INC": {
+      "name": "EARTHS MEDICINALS INC",
+      "socials": {
+        "facebook": "https://www.facebook.com/100089067349218",
+        "instagram": "https://www.instagram.com/earthsmedicinals"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 14900,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.earthsmedicinals.com/"
+    },
+    "EID LLC": {
+      "name": "EID LLC",
+      "socials": {
+        "instagram": "https://www.instagram.com/eid_group_?igsh=c2vvd3zkcda3adi3",
+        "linkedin": "https://www.linkedin.com/company/eidgroupllc"
+      },
+      "branding": {
+        "score": 50,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9278,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://eidgroupllc.com/"
+    },
+    "ELEVATED ENTERPRISES": {
+      "name": "ELEVATED ENTERPRISES",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6405,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.elevatedentreprises.com/"
+    },
+    "EZ CARD": {
+      "name": "EZ CARD",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 15515,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.ezcardinfo.com/"
+    },
+    "FAST TRACK PACKAGING": {
+      "name": "FAST TRACK PACKAGING",
+      "socials": {
+        "facebook": "https://www.facebook.com/fasttrackpack/",
+        "instagram": "https://www.instagram.com/fasttrackpackaging/",
+        "linkedin": "https://www.linkedin.com/company/fast-track-packaging/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 13006,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://ftpackaging.ca/"
+    },
+    "FASTRAX SOLUTIONS": {
+      "name": "FASTRAX SOLUTIONS",
+      "socials": {
+        "twitter": "https://goftx.com/",
+        "facebook": "https://www.facebook.com/pages/category/computer-company/fastraxpos-427684147275919/\n",
+        "linkedin": "https://www.linkedin.com/company/fastraxpos/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7153,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://fastraxpos.com/"
+    },
+    "FCTS GROUP INC": {
+      "name": "FCTS GROUP INC",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 12298,
+        "summary": "Potential reviews found at www.glassdoor.ca"
+      },
+      "website": "https://fctsgroup.com/"
+    },
+    "FIRE BAR LABS": {
+      "name": "FIRE BAR LABS",
+      "socials": {
+        "twitter": "https://x.com/firebarlabs",
+        "instagram": "http://instagram.com/firebarlabs",
+        "facebook": "//www.facebook.com/sharer.php?u=https%3a%2f%2ffirebarlabs.com%2fproducts%2fsmell-proof-mini-duffle-bag-lockable-firebar-smell-proof-fashion"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 22264,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://firebarlabs.com/"
+    },
+    "FLYING BRANDS": {
+      "name": "FLYING BRANDS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://flyingbrands.com/"
+    },
+    "FORT WORTH WHOLESALE": {
+      "name": "FORT WORTH WHOLESALE",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 13855,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.fortworth-wholesale.com/index.php"
+    },
+    "FORTUNE WORLDWIDE DISTRIBUTION": {
+      "name": "FORTUNE WORLDWIDE DISTRIBUTION",
+      "socials": {
+        "instagram": "https://www.instagram.com/fortune_wwd/"
+      },
+      "branding": {
+        "score": 50,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4840,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://fortuneworldwide.co/"
+    },
+    "FOUR SQUARE DISTRIBUTORS": {
+      "name": "FOUR SQUARE DISTRIBUTORS",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4526,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://foursquaredistributors.com/"
+    },
+    "FRESH FRESHENERS": {
+      "name": "FRESH FRESHENERS",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5516,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://freshfresheners.com/"
+    },
+    "FRESHWOODS": {
+      "name": "FRESHWOODS",
+      "socials": {
+        "instagram": "https://www.instagram.com/freshwoods_/",
+        "facebook": "https://www.facebook.com/people/fresh-woods-usa/61586719460657/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6608,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.freshwoodsusa.com/"
+    },
+    "FRUITIA/ HALF BAK'D": {
+      "name": "FRUITIA/ HALF BAK'D",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://half-bakd.com/"
+    },
+    "G&S WHOLESALE DISTRIBUTION COMPANY": {
+      "name": "G&S WHOLESALE DISTRIBUTION COMPANY",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://gsdistributor.com/"
+    },
+    "GATOR BUDZ": {
+      "name": "GATOR BUDZ",
+      "socials": {},
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 19876,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.gatorbudz.com/"
+    },
+    "GENERAL MERCHANDISE WHOLESALE": {
+      "name": "GENERAL MERCHANDISE WHOLESALE",
+      "socials": {
+        "facebook": "https://www.facebook.com/4sgmwholesale",
+        "twitter": "https://twitter.com/4sgm",
+        "linkedin": "https://www.linkedin.com/company/four-seasons-general-merchandise"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 18479,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.4sgm.com/"
+    },
+    "GENUINE THCA": {
+      "name": "GENUINE THCA",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5679,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://genuinethca.com/shop/"
+    },
+    "GET LOST": {
+      "name": "GET LOST",
+      "socials": {
+        "facebook": "https://www.facebook.com/getlostadventuring/",
+        "instagram": "https://www.instagram.com/getlostadventuring/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5580,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://getlost.com/"
+    },
+    "GLASS LAB 303": {
+      "name": "GLASS LAB 303",
+      "socials": {
+        "facebook": "https://www.facebook.com/glasslab303/",
+        "instagram": "https://www.instagram.com/glasslab303/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7046,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.glasslab303.com/"
+    },
+    "GLOB MOPS": {
+      "name": "GLOB MOPS",
+      "socials": {
+        "instagram": "https://www.instagram.com/globmops/"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 13210,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://globmops.com/"
+    },
+    "GO WITH THE Flow Adaptogens": {
+      "name": "GO WITH THE Flow Adaptogens",
+      "socials": {},
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8178,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://gowithadaptogens.com/shop/"
+    },
+    "GOAT GRINDER": {
+      "name": "GOAT GRINDER",
+      "socials": {
+        "facebook": "https://www.facebook.com/profile.php?id=100090136794949",
+        "instagram": "https://www.instagram.com/thegoatgrinder/"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8590,
+        "summary": "Potential reviews found at judge.me"
+      },
+      "website": "https://goatgrinder.com/"
+    },
+    "GOLD SPECTRUM CBD": {
+      "name": "GOLD SPECTRUM CBD",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4179,
+        "summary": "Potential reviews found at www.indeed.com"
+      },
+      "website": "https://gold-spectrum.com/"
+    },
+    "GOLDEN STAR ENTERPRISE INC": {
+      "name": "GOLDEN STAR ENTERPRISE INC",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5745,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://goldenstarenterprise.com/"
+    },
+    "GOT VAPE": {
+      "name": "GOT VAPE",
+      "socials": {
+        "facebook": "https://www.facebook.com/gotvape01",
+        "instagram": "https://www.instagram.com/gotvape_official"
+      },
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 13364,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.gotvape.com/"
+    },
+    "GREEN DIAMOND": {
+      "name": "GREEN DIAMOND",
+      "socials": {
+        "facebook": "https://www.facebook.com/greendiamondrc/",
+        "linkedin": "https://www.linkedin.com/company/green-diamond-resource-company",
+        "instagram": "https://www.instagram.com/greendiamondrc/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6390,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.greendiamond.com/"
+    },
+    "GREEN LEAF DISTRO": {
+      "name": "GREEN LEAF DISTRO",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 13855,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://greenleafdistro.com/"
+    },
+    "HABIT": {
+      "name": "HABIT",
+      "socials": {
+        "facebook": "https://www.facebook.com/habitburgerandgrill",
+        "instagram": "https://www.instagram.com/habitburgerandgrill/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 10437,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.habitburger.com/"
+    },
+    "HAU PROCESSING": {
+      "name": "HAU PROCESSING",
+      "socials": {
+        "facebook": "https://www.facebook.com/hauprocessing/",
+        "instagram": "https://instagram.com/hauprocessing"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4408,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://hauprocessing.com/"
+    },
+    "HAVANA LEAF": {
+      "name": "HAVANA LEAF",
+      "socials": {
+        "twitter": "http://twitter.com/havanaleaf",
+        "instagram": "http://instagram.com/havanaleaf"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 12046,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://havanaleaf.com/"
+    },
+    "HEALING HERBALS / ROOTS KAVA BAR": {
+      "name": "HEALING HERBALS / ROOTS KAVA BAR",
+      "socials": {
+        "instagram": "https://www.instagram.com/rootslongisland/?hl=en"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9926,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.rootskavabarny.com/"
+    },
+    "HEMPER": {
+      "name": "HEMPER",
+      "socials": {
+        "facebook": "https://www.facebook.com/hemperco",
+        "instagram": "https://www.instagram.com/hemperco",
+        "twitter": "https://x.com/hemperco"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 19710,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.hemper.co/"
+    },
+    "HEMPIRE": {
+      "name": "HEMPIRE",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 10001,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://hempire.com/"
+    },
+    "HI5 DISPOSABLES": {
+      "name": "HI5 DISPOSABLES",
+      "socials": {
+        "facebook": "https://www.facebook.com/instabarvape.official/",
+        "instagram": "https://www.instagram.com/instabar_official_/"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Modern tech stack detected. Missing clear brand identification.",
+        "isModern": true,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9490,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://hi5vape.com/collections/all"
+    },
+    "High Point Cash & Carry": {
+      "name": "High Point Cash & Carry",
+      "socials": {
+        "instagram": "https://www.instagram.com/usfchefstore/",
+        "facebook": "https://www.facebook.com/usfchefstore/",
+        "twitter": "https://twitter.com/usfchefstore/",
+        "linkedin": "https://linkedin.com/company/usfchefstore/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 11863,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.chefstore.com/locations/"
+    },
+    "HIMALAYAN GROUP INC / K & P CRAFT USA": {
+      "name": "HIMALAYAN GROUP INC / K & P CRAFT USA",
+      "socials": {
+        "instagram": "https://www.instagram.com/himalayan_group_inc/",
+        "facebook": "http://www.facebook.com/pages/k-p-craft/1674613776101985"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 15132,
         "summary": "Potential reviews found at www.yelp.com"
       },
-      "website": "http://www.drfuji.com/"
+      "website": "https://www.himalayanglass.com/about-us/"
     },
-    "Active International": {
-      "name": "Active International",
+    "HOLLYWEED": {
+      "name": "HOLLYWEED",
       "socials": {
-        "facebook": "https://www.facebook.com/activeinternational/",
-        "twitter": "https://twitter.com/activeintl",
-        "instagram": "https://www.instagram.com/activecares/",
-        "linkedin": "https://www.linkedin.com/company/11472/"
+        "facebook": "https://www.facebook.com/people/hollyweed/61581942418040/",
+        "instagram": "https://www.instagram.com/hollyweed.la"
+      },
+      "branding": {
+        "score": 60,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 15536,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://hollyweed.com/"
+    },
+    "HONEYBEE HERB": {
+      "name": "HONEYBEE HERB",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://honeybeeherb.com/"
+    },
+    "HONEYSTICK": {
+      "name": "HONEYSTICK",
+      "socials": {},
+      "branding": {
+        "score": 50,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 3204,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://honeystick.us/"
+    },
+    "HU7K": {
+      "name": "HU7K",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://huk.com/"
+    },
+    "HUMBOLDT STUDIOS": {
+      "name": "HUMBOLDT STUDIOS",
+      "socials": {},
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 13181,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://shop.mocahumboldt.com/shop/brands/humboldt-studios-476239/"
+    },
+    "HUSTLEVAN": {
+      "name": "HUSTLEVAN",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4821,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.hustlevan.com/"
+    },
+    "IC GLASS": {
+      "name": "IC GLASS",
+      "socials": {
+        "facebook": "https://www.facebook.com/geticglass1/",
+        "twitter": "https://x.com/geticglass",
+        "instagram": "https://www.instagram.com/ic_glass/",
+        "linkedin": "https://www.linkedin.com/company/ic-glass/"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 24831,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.geticglass.com/"
+    },
+    "ILLUMINATI GROUP": {
+      "name": "ILLUMINATI GROUP",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 9708,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://illuminatihood.org/"
+    },
+    "ISLAND STOCK": {
+      "name": "ISLAND STOCK",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/company/island-io/"
       },
       "branding": {
         "score": 80,
@@ -339,16 +1976,52 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 6425,
+        "loadTime": 13938,
         "summary": "Potential reviews found at www.glassdoor.com"
       },
-      "website": "https://activeinternational.com/"
+      "website": "https://www.island.io/"
     },
-    "Adorable Pillows Mfg. Inc.": {
-      "name": "Adorable Pillows Mfg. Inc.",
+    "J BRANDS DISTRIBUTION": {
+      "name": "J BRANDS DISTRIBUTION",
+      "socials": {
+        "instagram": "https://www.instagram.com/jbrandsllc"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4913,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://jbrands1.myshopify.com/pages/about-us"
+    },
+    "JAM": {
+      "name": "JAM",
       "socials": {},
       "branding": {
-        "score": 40,
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 17057,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.thejamofficial.com/"
+    },
+    "JAY JAY DISTRIBUTORS INC": {
+      "name": "JAY JAY DISTRIBUTORS INC",
+      "socials": {},
+      "branding": {
+        "score": 50,
         "description": "Missing clear brand identification.",
         "isModern": false,
         "hasLogo": false,
@@ -356,16 +2029,88 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 10529,
+        "loadTime": 5676,
+        "summary": "Potential reviews found at www.glassdoor.co.in"
+      },
+      "website": "https://jayjaydistributorsinc.com/"
+    },
+    "JOLLY": {
+      "name": "JOLLY",
+      "socials": {},
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 7749,
         "summary": "Potential reviews found at www.glassdoor.com"
       },
-      "website": "https://www.adorablepillows.com/"
+      "website": "https://jollylearning.com/"
     },
-    "Advance Apparels Inc.": {
-      "name": "Advance Apparels Inc.",
+    "JUST ORGANICS ENTERPRISES LLC": {
+      "name": "JUST ORGANICS ENTERPRISES LLC",
+      "socials": {},
+      "branding": {
+        "score": 50,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 8833,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://justorganics.us/"
+    },
+    "KETORET BIO": {
+      "name": "KETORET BIO",
+      "socials": {},
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6649,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://ketoretbio.com/"
+    },
+    "KEVIN BEECHER": {
+      "name": "KEVIN BEECHER",
       "socials": {
-        "facebook": "https://www.facebook.com/pages/category/clothing-company/advance-apparels-2163864416985922/",
-        "instagram": "https://www.instagram.com/advanceapparels/"
+        "facebook": "https://www.facebook.com/recover/initiate?ars=royal_blue_bar"
+      },
+      "branding": {
+        "score": 90,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5993,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://www.facebook.com/kevin.beecher1/"
+    },
+    "KING DISTRIBUTION/ LAVA VAPE USA": {
+      "name": "KING DISTRIBUTION/ LAVA VAPE USA",
+      "socials": {
+        "facebook": "https://www.facebook.com/fda",
+        "twitter": "https://x.com/us_fda",
+        "instagram": "https://instagram.com/fda",
+        "linkedin": "https://www.linkedin.com/company/fda/"
       },
       "branding": {
         "score": 80,
@@ -376,20 +2121,465 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 5335,
-        "summary": "Potential reviews found at reviews.birdeye.com"
+        "loadTime": 7969,
+        "summary": "Potential reviews found at www.yelp.com"
       },
-      "website": "https://www.advanceapparels.com/"
+      "website": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/king-distribution-llc-dba-lava-vape-usa-667203-09142023"
     },
-    "Advanced Graphics": {
-      "name": "Advanced Graphics",
-      "socials": {
-        "twitter": "https://twitter.com/cardboardpeople",
-        "facebook": "https://www.facebook.com/cardboardpeople/",
-        "instagram": "https://www.instagram.com/cardboardpeople/"
-      },
+    "KLOUD KING DISTRIBUTOR INC": {
+      "name": "KLOUD KING DISTRIBUTOR INC",
+      "socials": {},
       "branding": {
-        "score": 70,
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.kksmoke.com/"
+    },
+    "K-MINT / DR. ISO": {
+      "name": "K-MINT / DR. ISO",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "KOMBO - APEXIA": {
+      "name": "KOMBO - APEXIA",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LA TRADE CENTER INC": {
+      "name": "LA TRADE CENTER INC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LEISURE PAY": {
+      "name": "LEISURE PAY",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LIFELONG MERCHANT SERVICES": {
+      "name": "LIFELONG MERCHANT SERVICES",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LIQUID LAVA": {
+      "name": "LIQUID LAVA",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LODO BRANDS": {
+      "name": "LODO BRANDS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LONE STAR APOTHECANNA": {
+      "name": "LONE STAR APOTHECANNA",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LOST THC": {
+      "name": "LOST THC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LUCID": {
+      "name": "LUCID",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Lucileaf": {
+      "name": "Lucileaf",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LUCKY CIGAR": {
+      "name": "LUCKY CIGAR",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LUCKY SALES": {
+      "name": "LUCKY SALES",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "LYVWEL LLC": {
+      "name": "LYVWEL LLC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MAGIC MEDICINAL": {
+      "name": "MAGIC MEDICINAL",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MAGIC TRIP": {
+      "name": "MAGIC TRIP",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Matt Eskuche @kuchekup": {
+      "name": "Matt Eskuche @kuchekup",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MAYZEN": {
+      "name": "MAYZEN",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MELLOW FELLOW": {
+      "name": "MELLOW FELLOW",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "METATABZ": {
+      "name": "METATABZ",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MID ATLANTIC DISTRIBUTION": {
+      "name": "MID ATLANTIC DISTRIBUTION",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MIGUEL Y COSTAS": {
+      "name": "MIGUEL Y COSTAS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MINTZ": {
+      "name": "MINTZ",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MITWELLNESS": {
+      "name": "MITWELLNESS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MMS DISTRIBUTION": {
+      "name": "MMS DISTRIBUTION",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MNG BRANDS": {
+      "name": "MNG BRANDS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MOODBAR AIR": {
+      "name": "MOODBAR AIR",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "Muha Meds": {
+      "name": "Muha Meds",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "MUNCHIES X IMPERIAL": {
+      "name": "MUNCHIES X IMPERIAL",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "NATIONAL RETAIL SOLUTIONS": {
+      "name": "NATIONAL RETAIL SOLUTIONS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "NATURES BOTANICALS": {
+      "name": "NATURES BOTANICALS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "NEPAL BAZAAR": {
+      "name": "NEPAL BAZAAR",
+      "socials": {},
+      "branding": {
+        "score": 60,
         "description": "Professional branding present.",
         "isModern": false,
         "hasLogo": true,
@@ -397,397 +2587,33 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 8628,
+        "loadTime": 11084,
         "summary": "Potential reviews found at www.glassdoor.com"
       },
-      "website": "https://advancedgraphics.com/"
+      "website": "https://nepalbazaartrade.com/"
     },
-    "Advanced Labeling Products Inc.": {
-      "name": "Advanced Labeling Products Inc.",
+    "NHX": {
+      "name": "NHX",
       "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      },
-      "website": "http://advancedlabelingproducts.com/"
-    },
-    "Afnan Perfumes USA": {
-      "name": "Afnan Perfumes USA",
-      "socials": {
-        "linkedin": "https://www.linkedin.com/company/afnan-perfumes-official/",
-        "facebook": "https://www.facebook.com/afnanperfumesofficial",
-        "instagram": "https://www.instagram.com/afnanperfumes/"
-      },
-      "branding": {
-        "score": 80,
-        "description": "Professional branding present.",
-        "isModern": false,
-        "hasLogo": true,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 22952,
-        "summary": "Potential reviews found at www.trustpilot.com"
-      },
-      "website": "https://us.afnan.com/"
-    },
-    "African American Expressions": {
-      "name": "African American Expressions",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Agilawood Inc.": {
-      "name": "Agilawood Inc.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Airsoft America Inc.": {
-      "name": "Airsoft America Inc.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "AJ Fashion Group Inc": {
-      "name": "AJ Fashion Group Inc",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Ajmal Perfumes": {
-      "name": "Ajmal Perfumes",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Akzanwholesale.com": {
-      "name": "Akzanwholesale.com",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Al Haramain Perfumes": {
-      "name": "Al Haramain Perfumes",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Al Rasasi Trading Co. LLC": {
-      "name": "Al Rasasi Trading Co. LLC",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Alchemy Global/Callisto": {
-      "name": "Alchemy Global/Callisto",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Alef Standard Packaging Co": {
-      "name": "Alef Standard Packaging Co",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "ALI FAMILY GROUP INC": {
-      "name": "ALI FAMILY GROUP INC",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Ali Trading LP": {
-      "name": "Ali Trading LP",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      },
-      "website": "https://us29205085802ubth.trustpass.alibaba.com/"
-    },
-    "All That Glitterz": {
-      "name": "All That Glitterz",
-      "socials": {
-        "facebook": "https://www.facebook.com/volusion",
-        "twitter": "https://twitter.com/volusion"
-      },
       "branding": {
         "score": 70,
-        "description": "Professional branding present.",
-        "isModern": false,
-        "hasLogo": true,
+        "description": "Modern tech stack detected. Missing clear brand identification.",
+        "isModern": true,
+        "hasLogo": false,
         "attractiveness": "Average"
       },
       "screening": {
         "status": "Online",
-        "loadTime": 9276,
-        "summary": "Potential reviews found at www.trustpilot.com"
-      },
-      "website": "https://www.allthatglitterz.store/"
-    },
-    "Alliance Entertainment": {
-      "name": "Alliance Entertainment",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Alliance Trading Co": {
-      "name": "Alliance Trading Co",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Allo Co.,Ltd": {
-      "name": "Allo Co.,Ltd",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      },
-      "website": "https://allo.com/company.html"
-    },
-    "Almar Sales Company": {
-      "name": "Almar Sales Company",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Aloha Art Collective": {
-      "name": "Aloha Art Collective",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      },
-      "website": "https://www.alohaartcollective.com/"
-    },
-    "ALREHAB PERFUMES": {
-      "name": "ALREHAB PERFUMES",
-      "socials": {},
-      "branding": {
-        "score": 40,
-        "description": "Missing clear brand identification.",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Poor"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 3461,
-        "summary": "Potential reviews found at www.trustpilot.com"
-      },
-      "website": "https://www.alrehab.com/"
-    },
-    "Always Bargain": {
-      "name": "Always Bargain",
-      "socials": {},
-      "branding": {
-        "score": 40,
-        "description": "Missing clear brand identification.",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Poor"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 17215
-      },
-      "website": "https://alwaysbargain.com/"
-    },
-    "AM Sales Inc.": {
-      "name": "AM Sales Inc.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Amana Trading Co./Flags International": {
-      "name": "Amana Trading Co./Flags International",
-      "socials": {},
-      "branding": {
-        "score": 40,
-        "description": "Missing clear brand identification.",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Poor"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 4982,
-        "summary": "Potential reviews found at www.trustpilot.com"
-      },
-      "website": "https://amanatrading.us/"
-    },
-    "Amberman": {
-      "name": "Amberman",
-      "socials": {
-        "instagram": "https://www.instagram.com/amberman.jewelry/",
-        "facebook": "https://www.facebook.com/ambermanwholesale/"
-      },
-      "branding": {
-        "score": 70,
-        "description": "Professional branding present.",
-        "isModern": false,
-        "hasLogo": true,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 22179,
+        "loadTime": 14089,
         "summary": "Potential reviews found at www.glassdoor.com"
       },
-      "website": "https://amberman.com/"
+      "website": "https://www.youtube.com/@NHXOFICIAL"
     },
-    "Ameri-China Int'l Inc": {
-      "name": "Ameri-China Int'l Inc",
+    "NOVO WHOLESALE": {
+      "name": "NOVO WHOLESALE",
       "socials": {
-        "facebook": "https://www.facebook.com/americhina/",
-        "instagram": "http://instagram.com/americhina_group"
+        "instagram": "https://www.instagram.com/novowholesale/",
+        "facebook": "https://www.facebook.com/novowholesale/"
       },
       "branding": {
         "score": 50,
@@ -798,242 +2624,183 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 10070
+        "loadTime": 10609,
+        "summary": "Potential reviews found at www.glassdoor.com"
       },
-      "website": "https://www.americhinagroup.com/"
+      "website": "https://novowholesale.com/"
     },
-    "American Cover Design/Persian Weavers": {
-      "name": "American Cover Design/Persian Weavers",
+    "OB TRADING GROUP / PIPE GALAXY": {
+      "name": "OB TRADING GROUP / PIPE GALAXY",
       "socials": {},
       "branding": {
-        "score": 0,
-        "description": "Pending analysis",
+        "score": 70,
+        "description": "Professional branding present.",
         "isModern": false,
-        "hasLogo": false,
+        "hasLogo": true,
         "attractiveness": "Average"
       },
       "screening": {
-        "status": "Offline"
-      }
+        "status": "Online",
+        "loadTime": 5466,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.obtrading.org/"
     },
-    "American Dream Home Goods, Inc.": {
-      "name": "American Dream Home Goods, Inc.",
+    "OHMEGA BRAND LLC": {
+      "name": "OHMEGA BRAND LLC",
       "socials": {},
       "branding": {
-        "score": 0,
-        "description": "Pending analysis",
+        "score": 60,
+        "description": "Professional branding present.",
         "isModern": false,
-        "hasLogo": false,
+        "hasLogo": true,
         "attractiveness": "Average"
       },
       "screening": {
-        "status": "Offline"
-      }
-    },
-    "American Dreamers": {
-      "name": "American Dreamers",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
+        "status": "Online",
+        "loadTime": 4774,
+        "summary": "Potential reviews found at www.glassdoor.com"
       },
-      "screening": {
-        "status": "Offline"
-      }
+      "website": "https://ohmegabrand.com/"
     },
-    "American Gift Corporation": {
-      "name": "American Gift Corporation",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "American Legacy Products": {
-      "name": "American Legacy Products",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "American Linen / Prosperity Products": {
-      "name": "American Linen / Prosperity Products",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "American Rug Supply": {
-      "name": "American Rug Supply",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "American Weigh Wholesales": {
-      "name": "American Weigh Wholesales",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Amorus USA": {
-      "name": "Amorus USA",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Amuse Cosmetics Inc": {
-      "name": "Amuse Cosmetics Inc",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Andersen's Crazy Candy": {
-      "name": "Andersen's Crazy Candy",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      },
-      "website": "https://crazycandy.com/"
-    },
-    "Angels Craft USA Inc.": {
-      "name": "Angels Craft USA Inc.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Angie": {
-      "name": "Angie",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Animativa": {
-      "name": "Animativa",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "AP&P/USASIA EXCHANGE, INC.": {
-      "name": "AP&P/USASIA EXCHANGE, INC.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Apollo Eyewear": {
-      "name": "Apollo Eyewear",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "AppSalute": {
-      "name": "AppSalute",
+    "OLIT INC.": {
+      "name": "OLIT INC.",
       "socials": {
-        "facebook": "https://www.facebook.com/people/appsalute/100057382820700/",
-        "twitter": "https://twitter.com/ppsalute?",
-        "instagram": "https://www.instagram.com/app.salute",
-        "linkedin": "https://www.linkedin.com/company/appsalute/"
+        "facebook": "https://www.facebook.com/olitofficial/",
+        "twitter": "https://twitter.com/olitvape",
+        "instagram": "https://www.instagram.com/olitvape_official/"
+      },
+      "branding": {
+        "score": 70,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 5554,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.olitvape.com/brand/index.html"
+    },
+    "OVC DISTRIBUTION INC": {
+      "name": "OVC DISTRIBUTION INC",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 4463,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.nycompanyregistry.com/companies/ovc-distributors-inc/"
+    },
+    "PARTYNUTS": {
+      "name": "PARTYNUTS",
+      "socials": {},
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6376,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.partynuts.com/"
+    },
+    "PAYFLEX TERMINAL": {
+      "name": "PAYFLEX TERMINAL",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://payflexterminal.com/"
+    },
+    "PETRO": {
+      "name": "PETRO",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.petro.com/"
+    },
+    "PREMIUM KRATOM": {
+      "name": "PREMIUM KRATOM",
+      "socials": {
+        "instagram": "https://www.instagram.com/royal_kratom/"
+      },
+      "branding": {
+        "score": 80,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6310,
+        "summary": "Potential reviews found at kratomexperts.org"
+      },
+      "website": "https://royalkratom.com/"
+    },
+    "PRESSURE LA": {
+      "name": "PRESSURE LA",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://pressurela.com/"
+    },
+    "PRINT247.US": {
+      "name": "PRINT247.US",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://print247.us/"
+    },
+    "PROXIE": {
+      "name": "PROXIE",
+      "socials": {
+        "twitter": "https://twitter.com/proxie_app"
       },
       "branding": {
         "score": 50,
@@ -1044,28 +2811,13 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 14233,
+        "loadTime": 11125,
         "summary": "Potential reviews found at www.glassdoor.com"
       },
-      "website": "https://www.appsalute.com/"
+      "website": "https://proxie.app/"
     },
-    "Aramco Imports Inc": {
-      "name": "Aramco Imports Inc",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      },
-      "website": "https://www.aramcoimports.com/"
-    },
-    "Arbel Group Inc": {
-      "name": "Arbel Group Inc",
+    "PUFFCO": {
+      "name": "PUFFCO",
       "socials": {},
       "branding": {
         "score": 0,
@@ -1078,8 +2830,120 @@
         "status": "Offline"
       }
     },
-    "ARHAN GRUP TALASLI IML. SAN. VE TIC. A. S. ( ORGAZ, ORCAMP)": {
-      "name": "ARHAN GRUP TALASLI IML. SAN. VE TIC. A. S. ( ORGAZ, ORCAMP)",
+    "PURE CBD": {
+      "name": "PURE CBD",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "PURE INFINITY BOTANICALS": {
+      "name": "PURE INFINITY BOTANICALS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "QSCI": {
+      "name": "QSCI",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "RA ROYAL CBD": {
+      "name": "RA ROYAL CBD",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "REAL BOTANICALS": {
+      "name": "REAL BOTANICALS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "REALIZE HEMP": {
+      "name": "REALIZE HEMP",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "RED DRAGON": {
+      "name": "RED DRAGON",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "RI DOTS": {
+      "name": "RI DOTS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "RNZ Imports LLC": {
+      "name": "RNZ Imports LLC",
       "socials": {},
       "branding": {
         "score": 0,
@@ -1091,10 +2955,113 @@
       "screening": {
         "status": "Offline"
       },
-      "website": "https://arhangrup.com.tr/"
+      "website": "https://seebizz.com/vendor/rnz-imports-llc/"
     },
-    "Ark Shipping Inc.": {
-      "name": "Ark Shipping Inc.",
+    "ROOR": {
+      "name": "ROOR",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "RRR TRADING LLC": {
+      "name": "RRR TRADING LLC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://rrrcapital.com/"
+    },
+    "SAMS INTERNATIONAL GROUP": {
+      "name": "SAMS INTERNATIONAL GROUP",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://samsinternational.com/"
+    },
+    "SERENITY AND SOL": {
+      "name": "SERENITY AND SOL",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.vagaro.com/serenityandsol"
+    },
+    "SHOPLINE": {
+      "name": "SHOPLINE",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SHOW ME GOODS": {
+      "name": "SHOW ME GOODS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.homegoods.com/"
+    },
+    "SIVAN REMEDIES": {
+      "name": "SIVAN REMEDIES",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://sivanremedies.com/"
+    },
+    "SK DISTRIBUTORS USA LLC": {
+      "name": "SK DISTRIBUTORS USA LLC",
       "socials": {},
       "branding": {
         "score": 70,
@@ -1105,14 +3072,272 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 13150,
+        "loadTime": 9403,
         "summary": "Potential reviews found at www.glassdoor.com"
       },
-      "website": "https://arkaxis.com/"
+      "website": "https://sk-distributorsllc.com/about-us"
     },
-    "Arkwright Home": {
-      "name": "Arkwright Home",
+    "SKM INDUSTRIES INC": {
+      "name": "SKM INDUSTRIES INC",
       "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SKYCO DISTRO": {
+      "name": "SKYCO DISTRO",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SMOKE NATION LLC": {
+      "name": "SMOKE NATION LLC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SMOKE ODOR CANDLES / TOBACCO OUTLET PRODUCTS": {
+      "name": "SMOKE ODOR CANDLES / TOBACCO OUTLET PRODUCTS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SMOKE TECH ONE LLC": {
+      "name": "SMOKE TECH ONE LLC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SMOKEDASH": {
+      "name": "SMOKEDASH",
+      "socials": {},
+      "branding": {
+        "score": 50,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 1682,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://smokendash.com/"
+    },
+    "SMOKERZ GLASS/ PREMIUM SEED CO": {
+      "name": "SMOKERZ GLASS/ PREMIUM SEED CO",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 2163,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://premiumseed.co/website/"
+    },
+    "SMURPHS": {
+      "name": "SMURPHS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SNS TRADING INC": {
+      "name": "SNS TRADING INC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SO DISTRO": {
+      "name": "SO DISTRO",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SOHI Brands": {
+      "name": "SOHI Brands",
+      "socials": {},
+      "branding": {
+        "score": 80,
+        "description": "Modern tech stack detected. Missing clear brand identification.",
+        "isModern": true,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6518
+      },
+      "website": "https://sohibrands.co/?section=about-us"
+    },
+    "SOL TRADING": {
+      "name": "SOL TRADING",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SPECTRUM LABS": {
+      "name": "SPECTRUM LABS",
+      "socials": {},
+      "branding": {
+        "score": 40,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 2828
+      },
+      "website": "https://urineluck.com/"
+    },
+    "SPRINGFIELD SIGN": {
+      "name": "SPRINGFIELD SIGN",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.springfieldsign.com/"
+    },
+    "STACHE PRODUCTS": {
+      "name": "STACHE PRODUCTS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "STARGLOW USA": {
+      "name": "STARGLOW USA",
+      "socials": {
+        "facebook": "https://www.facebook.com/share/1ezg6ekah3/",
+        "instagram": "https://www.instagram.com/starglow_usa_official"
+      },
+      "branding": {
+        "score": 100,
+        "description": "Modern tech stack detected. Professional branding present.",
+        "isModern": true,
+        "hasLogo": true,
+        "attractiveness": "Stunning"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 24596
+      },
+      "website": "https://www.starglowus.com/"
+    },
+    "STEAM ENGINE FACTORY INC": {
+      "name": "STEAM ENGINE FACTORY INC",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://steamenginemfg.com/index.php?route=information/information&information_id=81"
+    },
+    "STICKMAN BODYCARE": {
+      "name": "STICKMAN BODYCARE",
+      "socials": {
+        "facebook": "http://www.facebook.com/stickmanbodycare",
+        "instagram": "http://www.instagram.com/stickmanbodycare"
+      },
       "branding": {
         "score": 70,
         "description": "Professional branding present.",
@@ -1122,12 +3347,12 @@
       },
       "screening": {
         "status": "Online",
-        "loadTime": 10548
+        "loadTime": 25788
       },
-      "website": "https://www.arkwrighthome.com/"
+      "website": "https://www.stickmanbodycare.com/"
     },
-    "Arma Metal Dis Tic San Ltd Sti.": {
-      "name": "Arma Metal Dis Tic San Ltd Sti.",
+    "SUE ELLEN FOWLER": {
+      "name": "SUE ELLEN FOWLER",
       "socials": {},
       "branding": {
         "score": 0,
@@ -1139,754 +3364,7 @@
       "screening": {
         "status": "Offline"
       },
-      "website": "https://www.armametal.com.tr/"
-    },
-    "Aroma Globa": {
-      "name": "Aroma Globa",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      },
-      "website": "https://aroma-globa.com/"
-    },
-    "Aromar": {
-      "name": "Aromar",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "ARTEXT WHOLESALE": {
-      "name": "ARTEXT WHOLESALE",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Artoy Trading LLC": {
-      "name": "Artoy Trading LLC",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Atlas World USA": {
-      "name": "Atlas World USA",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "y": {
-      "name": "y",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "AUTO-BEAUTY GROUP": {
-      "name": "AUTO-BEAUTY GROUP",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Avanti": {
-      "name": "Avanti",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Azha Fragrances": {
-      "name": "Azha Fragrances",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "AZZ TRADING": {
-      "name": "AZZ TRADING",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "B & G Sales, Inc.": {
-      "name": "B & G Sales, Inc.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "B&R Accessories Inc": {
-      "name": "B&R Accessories Inc",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "B-Stock": {
-      "name": "B-Stock",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "B. Tiff New York": {
-      "name": "B. Tiff New York",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "BABALOON": {
-      "name": "BABALOON",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Babyking/Regent Baby Products": {
-      "name": "Babyking/Regent Baby Products",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Baifu Intl Trading Co": {
-      "name": "Baifu Intl Trading Co",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "BAJEN SHEA BUTTER INC.": {
-      "name": "BAJEN SHEA BUTTER INC.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Barry-Owen Co., Inc.": {
-      "name": "Barry-Owen Co., Inc.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Bay Sales": {
-      "name": "Bay Sales",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Bazaar Inc.": {
-      "name": "Bazaar Inc.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "BAZIC Products": {
-      "name": "BAZIC Products",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "BBC INC": {
-      "name": "BBC INC",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "BDK USA INC.": {
-      "name": "BDK USA INC.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "BE JEWEL ACCESSORIES INC": {
-      "name": "BE JEWEL ACCESSORIES INC",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Be La Boum & Rough Sketch": {
-      "name": "Be La Boum & Rough Sketch",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Beauty & Cosmetic USA": {
-      "name": "Beauty & Cosmetic USA",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Beauty Treats": {
-      "name": "Beauty Treats",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Becker Glove": {
-      "name": "Becker Glove",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Belvedere Marketing": {
-      "name": "Belvedere Marketing",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Benjamin International": {
-      "name": "Benjamin International",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "BEPA": {
-      "name": "BEPA",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Berbic Group": {
-      "name": "Berbic Group",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Berj Kouyoumjian Jewelry": {
-      "name": "Berj Kouyoumjian Jewelry",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "BEST VALUE PRODUCTS": {
-      "name": "BEST VALUE PRODUCTS",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Best Wholesale Net LLC": {
-      "name": "Best Wholesale Net LLC",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Beyond Borders Inc.": {
-      "name": "Beyond Borders Inc.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Bhalla & Associates": {
-      "name": "Bhalla & Associates",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Big Bright Trading": {
-      "name": "Big Bright Trading",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Big Eye Glass Inc.": {
-      "name": "Big Eye Glass Inc.",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Bilco & Associates Inc": {
-      "name": "Bilco & Associates Inc",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Bio Creative Labs": {
-      "name": "Bio Creative Labs",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "BJ's Business": {
-      "name": "BJ's Business",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Blitzstock": {
-      "name": "Blitzstock",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Blu energy drink": {
-      "name": "Blu energy drink",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Blue Sky Clayworks": {
-      "name": "Blue Sky Clayworks",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Bluemango Brand LLC": {
-      "name": "Bluemango Brand LLC",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Bodega Liquidation": {
-      "name": "Bodega Liquidation",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Bogue Chitto Creek Seasoning": {
-      "name": "Bogue Chitto Creek Seasoning",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Borun America Jewelry": {
-      "name": "Borun America Jewelry",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Botanica Supply Inc": {
-      "name": "Botanica Supply Inc",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      }
-    },
-    "Brainbean Technolabs": {
-      "name": "Brainbean Technolabs",
-      "socials": {},
-      "branding": {
-        "score": 0,
-        "description": "Pending analysis",
-        "isModern": false,
-        "hasLogo": false,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Offline"
-      },
-      "website": "https://brainbean.us/"
-    },
-    "Brand Name Distributors": {
-      "name": "Brand Name Distributors",
-      "socials": {},
-      "branding": {
-        "score": 70,
-        "description": "Professional branding present.",
-        "isModern": false,
-        "hasLogo": true,
-        "attractiveness": "Average"
-      },
-      "screening": {
-        "status": "Online",
-        "loadTime": 11630,
-        "summary": "Potential reviews found at www.trustpilot.com"
-      },
-      "website": "https://brandnamedistributors.com/"
+      "website": "https://www.hardingfamilygroup.com/obituaries/Sue-Ellen-Fowler?obId=25779113"
     }
   },
   "isProcessing": true
