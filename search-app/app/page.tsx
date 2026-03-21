@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Upload, Search, Globe, Shield, Star, BarChart3, CheckCircle2, AlertCircle, ExternalLink, Linkedin, Twitter, Facebook, Instagram, FileDown, RefreshCw } from 'lucide-react';
+import { Upload, Search, Globe, Shield, Star, BarChart3, CheckCircle2, AlertCircle, ExternalLink, Linkedin, Twitter, Facebook, Instagram } from 'lucide-react';
 import { CompanyMetadata, ProcessingState } from '@/lib/types';
 
 export default function ScreeningDashboard() {
@@ -52,39 +52,6 @@ export default function ScreeningDashboard() {
     } catch (err) {
       setError('Failed to upload file');
     }
-  };
-
-  const handleReset = async () => {
-    try {
-      await fetch('/api/reset', { method: 'POST' });
-      setState(prev => ({ ...prev, isProcessing: false }));
-    } catch (e) {
-      console.error('Failed to reset state', e);
-    }
-  };
-
-  const exportToExcel = async () => {
-    const data = Object.values(state.results).reverse().map(company => ({
-      'Company Name': company.name,
-      'Website': company.website || 'N/A',
-      'Status': company.screening?.status || 'N/A',
-      'Load Time (s)': company.screening?.loadTime ? (company.screening.loadTime / 1000).toFixed(2) : 'N/A',
-      'Brand Score': company.branding?.score || 0,
-      'Brand Attractiveness': company.branding?.attractiveness || 'N/A',
-      'Is Modern Stack': company.branding?.isModern ? 'Yes' : 'No',
-      'Has Logo': company.branding?.hasLogo ? 'Yes' : 'No',
-      'Description': company.branding?.description || '',
-      'LinkedIn': company.socials?.linkedin || '',
-      'Twitter': company.socials?.twitter || '',
-      'Facebook': company.socials?.facebook || '',
-      'Instagram': company.socials?.instagram || '',
-    }));
-
-    const xlsx = await import('xlsx');
-    const worksheet = xlsx.utils.json_to_sheet(data);
-    const workbook = xlsx.utils.book_new();
-    xlsx.utils.book_append_sheet(workbook, worksheet, "Results");
-    xlsx.writeFile(workbook, "Screening_Results.xlsx");
   };
 
   const resultsArray = Object.values(state.results).reverse();
@@ -146,15 +113,6 @@ export default function ScreeningDashboard() {
               >
                 {state.isProcessing ? 'Analyzing...' : 'Start Screening'}
               </button>
-              {state.isProcessing && (
-                <button
-                  type="button"
-                  onClick={handleReset}
-                  className="w-full bg-rose-500/10 text-rose-500 font-bold py-3 rounded-xl hover:bg-rose-500/20 transition-all flex items-center justify-center gap-2"
-                >
-                  <RefreshCw size={16} /> Force Stop / Reset
-                </button>
-              )}
               {error && <p className="text-red-400 text-xs mt-2 flex items-center gap-1"><AlertCircle size={12}/> {error}</p>}
             </form>
           </div>
@@ -178,15 +136,6 @@ export default function ScreeningDashboard() {
                 {resultsArray.length} results
               </span>
             </h2>
-            {resultsArray.length > 0 && (
-              <button
-                onClick={exportToExcel}
-                className="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-xl flex items-center gap-2 transition-colors text-sm font-semibold"
-              >
-                <FileDown size={16} />
-                Export to Excel
-              </button>
-            )}
           </div>
 
           <div className="grid gap-6">
