@@ -1,6 +1,6 @@
 {
-  "currentName": "SUGARMATTYS",
-  "progress": 83,
+  "currentName": "THREE NS DEEP",
+  "progress": 87,
   "total": 241,
   "results": {
     "Company Name": {
@@ -3365,6 +3365,161 @@
         "status": "Offline"
       },
       "website": "https://www.hardingfamilygroup.com/obituaries/Sue-Ellen-Fowler?obId=25779113"
+    },
+    "SUGARMATTYS": {
+      "name": "SUGARMATTYS",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SUPER C&C TRADING INC": {
+      "name": "SUPER C&C TRADING INC",
+      "socials": {
+        "facebook": "https://www.facebook.com/bizapedia",
+        "twitter": "https://x.com/bizapedia"
+      },
+      "branding": {
+        "score": 60,
+        "description": "Professional branding present.",
+        "isModern": false,
+        "hasLogo": true,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 11189,
+        "summary": "Potential reviews found at www.bbb.org"
+      },
+      "website": "https://www.bizapedia.com/nj/super-candc-trading-inc.html"
+    },
+    "SUPER WHIP": {
+      "name": "SUPER WHIP",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://theescapists.fandom.com/wiki/Super_Whip"
+    },
+    "SUPERCHILL": {
+      "name": "SUPERCHILL",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "SUPPLEMENT CENTER": {
+      "name": "SUPPLEMENT CENTER",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "TED MILLER INNOVATION": {
+      "name": "TED MILLER INNOVATION",
+      "socials": {},
+      "branding": {
+        "score": 50,
+        "description": "Missing clear brand identification.",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Poor"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6138,
+        "summary": "Potential reviews found at www.trustpilot.com"
+      },
+      "website": "https://tedmillerinnovation.com/"
+    },
+    "THE CLOUD SUPPLY": {
+      "name": "THE CLOUD SUPPLY",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      }
+    },
+    "THE KRATOM COMPANY": {
+      "name": "THE KRATOM COMPANY",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.thekratomco.com/"
+    },
+    "THE MODEST CO": {
+      "name": "THE MODEST CO",
+      "socials": {},
+      "branding": {
+        "score": 0,
+        "description": "Pending analysis",
+        "isModern": false,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Offline"
+      },
+      "website": "https://www.modestandco.com/"
+    },
+    "THICKET": {
+      "name": "THICKET",
+      "socials": {},
+      "branding": {
+        "score": 70,
+        "description": "Modern tech stack detected. Missing clear brand identification.",
+        "isModern": true,
+        "hasLogo": false,
+        "attractiveness": "Average"
+      },
+      "screening": {
+        "status": "Online",
+        "loadTime": 6442,
+        "summary": "Potential reviews found at www.glassdoor.com"
+      },
+      "website": "https://www.thickethq.com/"
     }
   },
   "isProcessing": true
