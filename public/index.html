@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Intelligence Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2103/2103633.png">
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="app-layout">
+        <aside class="app-sidebar">
+            <div class="sidebar-top">
+                <div class="brand">
+                    <div class="logo-orb"></div>
+                    <h1>Infinity <span class="gradient-text">AI</span></h1>
+                </div>
+                <p class="tagline">Enterprise Intelligence System</p>
+            </div>
+
+            <nav class="nav-links">
+                <div class="nav-item active">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    <span>Dashboard</span>
+                </div>
+            </nav>
+
+            <div class="card glass entry-card">
+                <div class="upload-area" id="drop-zone">
+                    <div class="upload-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                    </div>
+                    <p id="file-status">Select Excel Data</p>
+                    <input type="file" id="file-input" accept=".xlsx" hidden>
+                </div>
+                <button id="start-btn" class="primary-btn">Begin Analysis</button>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="global-stat">
+                    <label>Network Performance</label>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 94%"></div></div>
+                </div>
+                <button id="clear-btn" class="ghost-btn">Clear History</button>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            <header class="main-top">
+                <div class="header-left">
+                    <h2 class="section-title">Analysis Workspace</h2>
+                    <span class="badge" id="results-count">0 items found</span>
+                </div>
+                
+                <div class="progress-module" id="progress-monitor">
+                    <div class="progress-info">
+                        <span id="processor-name">System Idle</span>
+                        <span id="completion-stats">0%</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-glow" id="progress-bar"></div>
+                    </div>
+                </div>
+
+                <button id="download-btn" class="action-btn hidden">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5-5 5 5M12 15V5"/></svg>
+                    Export Report
+                </button>
+            </header>
+
+            <div class="workspace-viewport">
+                <div class="analysis-grid" id="results-container"></div>
+                
+                <div id="results-placeholder" class="welcome-screen">
+                    <div class="hero-icon">💎</div>
+                    <h2>Welcome to Infinity AI</h2>
+                    <p>Load your business dataset to begin high-speed screening and brand analysis.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="log-panel">
+        <div class="log-header">
+            <span class="live-dot"></span>
+            <span class="log-title">TEAMTRACE LIVE WORK LOG</span>
+        </div>
+        <div class="log-container" id="engine-log">
+            <div class="log-entry">> System online. Awaiting data transmission.</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

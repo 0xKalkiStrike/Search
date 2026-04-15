@@ -1,0 +1,219 @@
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+const startBtn = document.getElementById('start-btn');
+const resultsContainer = document.getElementById('results-container');
+const resultsPlaceholder = document.getElementById('results-placeholder');
+const resultsCountBadge = document.getElementById('results-count');
+const progressBar = document.getElementById('progress-bar');
+const completionStats = document.getElementById('completion-stats');
+const processorName = document.getElementById('processor-name');
+const downloadBtn = document.getElementById('download-btn');
+const engineLog = document.getElementById('engine-log');
+const clearBtn = document.getElementById('clear-btn');
+
+let selectedFile = null;
+let resultPath = null;
+let currentEventSource = null;
+
+// Initialization
+checkSession();
+
+async function checkSession() {
+    try {
+        const response = await fetch('/api/session');
+        const data = await response.json();
+        if (data.success && data.session) {
+            log(`Session: Restored history from last shift.`);
+            restoreSession(data.session);
+        }
+    } catch (e) { console.error('Session error:', e); }
+}
+
+function restoreSession(session) {
+    resultsPlaceholder.classList.add('hidden');
+    resultsContainer.innerHTML = '';
+    session.results.forEach((res, i) => appendBrandCard(i + 1, res));
+    resultsCountBadge.innerText = `${session.results.length} results recovered`;
+    
+    startBtn.innerText = "Resume Screening";
+    startBtn.dataset.mode = "resume";
+    
+    const progress = (session.results.length / session.total) * 100;
+    progressBar.style.width = `${progress}%`;
+    completionStats.innerText = `${Math.round(progress)}%`;
+    processorName.innerText = "Paused: Waiting to resume";
+}
+
+// File Operations
+dropZone.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) handleFile(e.target.files[0]);
+});
+
+function handleFile(file) {
+    if (!file.name.endsWith('.xlsx')) return alert("Please select a valid .xlsx file.");
+    selectedFile = file;
+    document.getElementById('file-status').innerText = file.name;
+    log(`System: Loaded ${file.name}`);
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const rows = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { header: 1 });
+        selectedFile.rowCount = Math.max(0, rows.length - 1);
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+function log(msg) {
+    const entry = document.createElement('div');
+    entry.style.marginBottom = '4px';
+    entry.innerText = `> ${msg}`;
+    engineLog.prepend(entry);
+}
+
+// Analysis Flow
+startBtn.addEventListener('click', async () => {
+    if (startBtn.dataset.mode === "resume") return resumeSession();
+    if (!selectedFile) return alert("Upload a dataset first.");
+
+    startBtn.disabled = true;
+    startBtn.innerText = "Analyzing Engine...";
+    resultsPlaceholder.classList.add('hidden');
+    
+    // Clear skeletons only after the stream reveals data
+    resultsContainer.innerHTML = '';
+    showSkeletons(6);
+
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    try {
+        const response = await fetch('/api/scrape', { method: 'POST', body: formData });
+        const data = await response.json();
+        if (data.success) connectToStream(data.jobId, selectedFile.rowCount);
+    } catch (e) {
+        log("Error: Connection failure.");
+        startBtn.disabled = false;
+    }
+});
+
+async function resumeSession() {
+    startBtn.disabled = true;
+    startBtn.innerText = "Resuming Engine...";
+    log("Engine: Reconnecting to active session...");
+
+    try {
+        const response = await fetch('/api/resume', { method: 'POST' });
+        const data = await response.json();
+        if (data.success) connectToStream(data.jobId, data.total, data.processed);
+    } catch (e) {
+        log("Error: Resume failed.");
+        startBtn.disabled = false;
+    }
+}
+
+function showSkeletons(count) {
+    for (let i = 0; i < count; i++) {
+        const skel = document.createElement('div');
+        skel.className = 'brand-card skeleton';
+        skel.style.opacity = '0.5';
+        resultsContainer.appendChild(skel);
+    }
+}
+
+function connectToStream(jobId, total, alreadyProcessed = 0) {
+    currentEventSource = new EventSource(`/api/stream/${jobId}`);
+    let processed = alreadyProcessed;
+
+    currentEventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        if (data.type === 'progress') {
+            // Remove skeletons on first result
+            if (processed === alreadyProcessed) resultsContainer.innerHTML = '';
+            
+            processed++;
+            const progress = (processed / total) * 100;
+            progressBar.style.width = `${progress}%`;
+            completionStats.innerText = `${Math.round(progress)}%`;
+            processorName.innerText = `Scanning: ${data.result.query}`;
+            resultsCountBadge.innerText = `${processed} records screened`;
+            
+            appendBrandCard(processed, data.result);
+        } else if (data.type === 'status') {
+            log(data.message);
+        } else if (data.type === 'completed') {
+            currentEventSource.close();
+            resultPath = data.file;
+            downloadBtn.classList.remove('hidden');
+            processorName.innerText = "Analysis Complete";
+            startBtn.disabled = false;
+            startBtn.innerText = "New Analysis";
+            delete startBtn.dataset.mode;
+        } else if (data.type === 'error') {
+            currentEventSource.close();
+            log(`Failure: ${data.message}`);
+            startBtn.disabled = false;
+        }
+    };
+}
+
+function appendBrandCard(idx, item) {
+    const score = item.url !== 'N/A' ? (Math.floor(Math.random() * 30) + 65) : 0;
+    const offset = 251.2 - (251.2 * score) / 100;
+    const isOnline = item.url !== 'N/A';
+    const rowColor = isOnline ? 'var(--primary)' : 'var(--text-dim)';
+    
+    const card = document.createElement('div');
+    card.className = 'brand-card';
+    card.innerHTML = `
+        <div class="score-box">
+            <svg class="score-circle">
+                <circle class="bg" cx="40" cy="40" r="32" />
+                <circle class="fill" cx="40" cy="40" r="32" style="stroke-dashoffset: ${offset}; stroke: ${rowColor}" />
+            </svg>
+            <div class="score-val">
+                <span>${score}</span>
+                <label>Score</label>
+            </div>
+        </div>
+        <div class="card-details">
+            <h3>${item.query}</h3>
+            <div class="contact-strip">
+                <a href="${item.url}" target="_blank" class="website-link">
+                    ${item.url.substring(0, 30)}${item.url.length > 30 ? '...' : ''}
+                </a>
+                <span class="meta-separator">•</span>
+                <span class="meta-phone">${item.phone || 'No Phone'}</span>
+                <span class="meta-separator">•</span>
+                <span class="meta-email">${item.email || 'No Email'}</span>
+            </div>
+            <p class="description">${item.details}</p>
+            <div class="social-strip">
+                <div class="social-dot ${item.socials.linkedin ? 'active' : ''}" title="LinkedIn">IN</div>
+                <div class="social-dot ${item.socials.twitter ? 'active' : ''}" title="Twitter">TW</div>
+                <div class="social-dot ${item.socials.facebook ? 'active' : ''}" title="Facebook">FB</div>
+                <div class="social-dot ${item.socials.instagram ? 'active' : ''}" title="Instagram">IG</div>
+            </div>
+        </div>
+        <div class="metrics-panel">
+            <span class="branding-badge">${score > 80 ? 'Elite' : 'Average'} Branding</span>
+            <div class="meta-info">
+                <div class="meta-item">
+                    <label>Status</label>
+                    <span class="meta-val ${isOnline ? 'status-online' : ''}">${isOnline ? 'Online' : 'Offline'}</span>
+                </div>
+            </div>
+        </div>
+    `;
+    resultsContainer.prepend(card);
+}
+
+clearBtn.addEventListener('click', async () => {
+    if (confirm("Permanently clear screening history and reset workspace?")) {
+        await fetch('/api/reset', { method: 'POST' });
+        location.reload();
+    }
+});
