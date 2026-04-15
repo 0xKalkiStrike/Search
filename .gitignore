@@ -1,0 +1,8 @@
+node_modules/
+dist/
+uploads/
+results/
+session.json
+stats.json
+.DS_Store
+*.xlsx
