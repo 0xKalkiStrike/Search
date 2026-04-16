@@ -15,6 +15,7 @@ let selectedFile = null;
 let resultPath = null;
 let currentJobId = null;
 let currentEventSource = null;
+let originalData = []; // Store full sheet data for local export
 
 // Initialization
 checkSession();
@@ -45,6 +46,8 @@ function restoreSession(session) {
     processorName.innerText = "Paused: Waiting to resume";
 
     if (session.jobId) currentJobId = session.jobId;
+    if (session.data) originalData = session.data;
+
     if (session.outPath) {
         resultPath = session.outPath;
         if (session.results.length > 0) downloadBtn.classList.remove('hidden');
@@ -67,8 +70,16 @@ function handleFile(file) {
     reader.onload = (e) => {
         const data = new Uint8Array(e.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
-        const rows = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { header: 1 });
-        selectedFile.rowCount = Math.max(0, rows.length - 1);
+        originalData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { header: 1 });
+        selectedFile.rowCount = Math.max(0, originalData.length - 1);
+        
+        // Ensure headers for new columns exist in local data
+        if (originalData[0]) {
+            if (!originalData[0][1]) originalData[0][1] = 'Full Details';
+            if (!originalData[0][2]) originalData[0][2] = 'Source URL';
+            if (!originalData[0][3]) originalData[0][3] = 'Phone';
+            if (!originalData[0][4]) originalData[0][4] = 'Email';
+        }
     };
     reader.readAsArrayBuffer(file);
 }
@@ -150,6 +161,15 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
             resultsCountBadge.innerText = `${processed} records screened`;
             
             appendBrandCard(processed, data.result);
+            
+            // Update local data for export
+            if (originalData[data.result.row - 1]) {
+                const rowIndex = data.result.row - 1;
+                originalData[rowIndex][1] = data.result.details;
+                originalData[rowIndex][2] = data.result.url;
+                originalData[rowIndex][3] = data.result.phone;
+                originalData[rowIndex][4] = data.result.email;
+            }
 
             // Handle intermediate milestones
             if (data.file) resultPath = data.file;
@@ -168,6 +188,7 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
             currentEventSource.close();
             resultPath = data.file;
             downloadBtn.classList.remove('hidden');
+            log(`Success: Analysis complete. ${data.count} records processed.`);
             processorName.innerText = "Analysis Complete";
             startBtn.disabled = false;
             startBtn.innerText = "New Analysis";
@@ -239,6 +260,24 @@ clearBtn.addEventListener('click', async () => {
 });
 
 downloadBtn.addEventListener('click', () => {
-    if (!resultPath && !currentJobId) return alert("Report not ready yet.");
-    window.location.href = `/api/download?path=${encodeURIComponent(resultPath)}&jobId=${currentJobId}`;
+    if (originalData.length === 0) return alert("Report data is not available.");
+    
+    try {
+        log("System: Generating local report for instant download...");
+        const ws = XLSX.utils.aoa_to_sheet(originalData);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Search Results");
+        
+        const fileName = `Analysis_Report_${Date.now()}.xlsx`;
+        XLSX.writeFile(wb, fileName);
+        log("System: Export successful.");
+    } catch (e) {
+        console.error('Local export failed:', e);
+        // Fallback to server download if local fails
+        if (resultPath || currentJobId) {
+            window.location.href = `/api/download?path=${encodeURIComponent(resultPath)}&jobId=${currentJobId}`;
+        } else {
+            alert("Export failed and no server backup found.");
+        }
+    }
 });

@@ -41,20 +41,32 @@ if (!fs.existsSync(resultsDir)) fs.mkdirSync(resultsDir, { recursive: true });
 // Job tracking for live updates
 const activeJobs = new Map();
 
-// Session Persistence
+function getSessionPath(jobId) {
+  if (!jobId) return sessionFile;
+  return isVercel ? `/tmp/session_${jobId}.json` : path.join(__dirname, `session_${jobId}.json`);
+}
+
 function saveSession(jobId, data) {
   try {
+    const sPath = getSessionPath(jobId);
+    fs.writeFileSync(sPath, JSON.stringify({ jobId, ...data }));
+    // Also save as global session for /api/session endpoint
     fs.writeFileSync(sessionFile, JSON.stringify({ jobId, ...data }));
   } catch (e) {
     console.error('Session save failed:', e);
   }
 }
 
-function loadSession() {
-  if (fs.existsSync(sessionFile)) {
+function loadSession(jobId = null) {
+  const sPath = getSessionPath(jobId);
+  if (fs.existsSync(sPath)) {
     try {
-      return JSON.parse(fs.readFileSync(sessionFile));
+      return JSON.parse(fs.readFileSync(sPath));
     } catch (e) { return null; }
+  }
+  // Fallback to general session if jobId not specified
+  if (!jobId && fs.existsSync(sessionFile)) {
+     try { return JSON.parse(fs.readFileSync(sessionFile)); } catch(e) { return null; }
   }
   return null;
 }
@@ -195,7 +207,11 @@ async function processScrape(jobId, searchItems, searchSource, data, workbook, o
     job.status = 'completed';
     job.file = outPath;
     updateStats(job.results.length);
-    fs.unlinkSync(sessionFile); // Clear session once fully done
+    
+    // Clear jobId session once fully done, but keep global one for a bit
+    const sPath = getSessionPath(jobId);
+    if (fs.existsSync(sPath)) fs.unlinkSync(sPath);
+    if (fs.existsSync(sessionFile)) fs.unlinkSync(sessionFile); 
 
     if (job.sse) {
       job.sse.write(`data: ${JSON.stringify({ type: 'completed', file: outPath, count: job.results.length })}\n\n`);
@@ -240,7 +256,7 @@ app.get('/api/stream/:jobId', (req, res) => {
 
   // Recovery logic for serverless environments (Vercel)
   if (!job) {
-    const session = loadSession();
+    const session = loadSession(jobId);
     if (session && session.jobId === jobId) {
       console.log(`[RECOVERY] Re-activating job ${jobId} from session file.`);
       job = { 
@@ -321,7 +337,7 @@ app.get('/api/download', (req, res) => {
   }
 
   // 2. Recovery Logic: If file is missing, try to regenerate from session or active job
-  const session = loadSession();
+  const session = loadSession(jobId);
   const job = activeJobs.get(jobId);
 
   // If we have data but no file, rebuild it on the fly
