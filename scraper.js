@@ -89,6 +89,17 @@ async function scrapeDirectUrl(item, userAgent) {
   const bodyText = $('body').text();
   
   let socials = { twitter: null, facebook: null, instagram: null, linkedin: null };
+  const links = $('a');
+  
+  links.each((_, el) => {
+    const href = $(el).attr('href');
+    if (!href) return;
+    const l = href.toLowerCase();
+    if (l.includes('linkedin.com/company/') || l.includes('linkedin.com/in/')) socials.linkedin = href;
+    if (l.includes('facebook.com/') && !l.includes('sharer')) socials.facebook = href;
+    if (l.includes('instagram.com/')) socials.instagram = href;
+    if (l.includes('twitter.com/') || l.includes('x.com/')) socials.twitter = href;
+  });
 
   const phoneMatches = bodyText.match(/(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g);
   const phone = phoneMatches ? [...new Set(phoneMatches)].slice(0, 3).join(', ') : "Not found";
@@ -96,26 +107,41 @@ async function scrapeDirectUrl(item, userAgent) {
   const emailMatches = bodyText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g);
   const email = emailMatches ? [...new Set(emailMatches)].map(e => e.toLowerCase()).slice(0, 3).join(', ') : "Not found";
 
-  const html = response.data.toLowerCase();
-  if (html.includes('twitter.com/')) socials.twitter = true;
-  if (html.includes('facebook.com/')) socials.facebook = true;
-  if (html.includes('instagram.com/')) socials.instagram = true;
-  if (html.includes('linkedin.com/')) socials.linkedin = true;
-
-  // Video detection
+  // Video detection (More advanced)
   let videoLink = "Not found";
-  const videoMatches = response.data.match(/https?:\/\/(www\.)?(youtube\.com|youtu\.be|vimeo\.com)\/[^\s"']+/g);
-  if (videoMatches) videoLink = [...new Set(videoMatches)][0];
+  const videoPatterns = [
+    /https?:\/\/(www\.)?(youtube\.com|youtu\.be|vimeo\.com)\/[^\s"']+/g,
+    /https?:\/\/[^\s"']+\.(mp4|webm|ogg)/g
+  ];
+  
+  for (const pattern of videoPatterns) {
+    const videoMatches = response.data.match(pattern);
+    if (videoMatches) {
+        videoLink = [...new Set(videoMatches)][0];
+        break;
+    }
+  }
+
+  // Calculate Intelligence Score (0-100)
+  let score = 20; // Base score for having a website
+  if (phone !== "Not found") score += 15;
+  if (email !== "Not found") score += 15;
+  if (socials.linkedin) score += 10;
+  if (socials.facebook) score += 10;
+  if (socials.instagram) score += 10;
+  if (socials.twitter) score += 5;
+  if (videoLink !== "Not found") score += 15;
 
   return {
     row: item.row,
     query: item.query || title,
-    details: `[${title}] ` + bodyText.substring(0, 350).replace(/\s+/g, ' ').trim() + '...',
+    details: `[${title}] ` + bodyText.substring(0, 450).replace(/\s+/g, ' ').trim() + '...',
     url: item.url,
     phone,
     email,
     socials,
-    video: videoLink
+    video: videoLink,
+    score: Math.min(score, 100)
   };
 }
 
@@ -187,8 +213,8 @@ async function fetchWithRetry(item, source, userAgent, onStatus, retries = 1) {
       const emailMatches = details.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g);
       if (emailMatches) email = [...new Set(emailMatches)].map(e => e.toLowerCase()).slice(0, 2).join(', ');
 
-      // Social detection in snippet
-      if (details.toLowerCase().includes('twitter.com/')) socials.twitter = true;
+      // Social detection in snippet (Smart mapping)
+      if (details.toLowerCase().includes('twitter.com/') || details.toLowerCase().includes('x.com/')) socials.twitter = true;
       if (details.toLowerCase().includes('facebook.com/')) socials.facebook = true;
       if (details.toLowerCase().includes('instagram.com/')) socials.instagram = true;
       if (details.toLowerCase().includes('linkedin.com/')) socials.linkedin = true;
@@ -198,15 +224,24 @@ async function fetchWithRetry(item, source, userAgent, onStatus, retries = 1) {
       const videoMatch = details.match(/https?:\/\/(www\.)?(youtube\.com|youtu\.be|vimeo\.com)\/[^\s"']+/);
       if (videoMatch) videoLink = videoMatch[0];
 
+      // Calculate Snippet Intelligence Score
+      let score = 10; // Found on web
+      if (url !== "N/A") score += 10;
+      if (phone !== "Not found") score += 15;
+      if(email !== "Not found") score += 15;
+      if(socials.linkedin || socials.facebook) score += 10;
+      if(videoLink !== "Not found") score += 10;
+
       return { 
         row: item.row, 
-        query: item.query, // FIXED: Preservation of company name
+        query: item.query, 
         details, 
         url: url.startsWith('http') ? url : 'N/A', 
         phone, 
         email, 
         socials,
-        video: videoLink
+        video: videoLink,
+        score: score
       };
     } catch (err) {
       if (i === retries) throw err;

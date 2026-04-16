@@ -28,7 +28,7 @@ function updateStats(count) {
   fs.writeFileSync(statsPath, JSON.stringify(stats));
 }
 app.use(express.static('public'));
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 // Ensure directories exist (handling Vercel read-only filesystem)
 const uploadDir = isVercel ? '/tmp/uploads' : path.join(__dirname, 'uploads');
@@ -246,29 +246,49 @@ app.get('/api/resume', (req, res) => {
 });
 
 app.post('/api/resume', (req, res) => {
-  // Try to load from server session file first
-  let session = loadSession();
-  
-  // If server lost it (Vercel /tmp wipe), try to recover from client-provided data
-  if (!session && req.body && req.body.session) {
-    session = req.body.session;
-    console.log('[RECOVERY] Resuming from client-injected session data.');
+  const { action, session, jobId: reqJobId, results: chunkResults } = req.body;
+
+  // Modern Chunked Resume Protocol
+  if (action === 'init' && session) {
+    const jobId = session.jobId || Date.now().toString();
+    activeJobs.set(jobId, { 
+      status: 'processing', 
+      results: [], // Start empty, will be filled by chunks
+      total: session.total || 0, 
+      progress: 0,
+      session: { ...session, results: [] } // Metadata only
+    });
+    return res.json({ success: true, jobId });
   }
 
-  if (!session) return res.status(404).json({ success: false, message: "No session found. Please re-upload your file." });
+  if (action === 'chunk' && reqJobId && chunkResults) {
+    const job = activeJobs.get(reqJobId);
+    if (!job) return res.status(404).json({ success: false, message: "Job expired during chunking" });
+    
+    // Append chunk to results
+    job.results.push(...chunkResults);
+    job.progress = job.total ? Math.round((job.results.length / job.total) * 100) : 0;
+    
+    // Update the session data as well
+    if (job.session) job.session.results = job.results;
+    
+    return res.json({ success: true, count: job.results.length });
+  }
 
-  const jobId = session.jobId || Date.now().toString();
-  // Initialize job but DON'T start processScrape here. 
-  // It will be started by the EventSource connection (/api/stream/:jobId)
+  // Legacy fallback (non-chunked)
+  let sessionToUse = loadSession() || session;
+  if (!sessionToUse) return res.status(404).json({ success: false, message: "No session found." });
+
+  const jobId = sessionToUse.jobId || Date.now().toString();
   activeJobs.set(jobId, { 
     status: 'processing', 
-    results: session.results || [], 
-    total: session.total || 0, 
-    progress: session.total ? Math.round((session.results.length / session.total) * 100) : 0,
-    session // Attach session for recovery in the stream
+    results: sessionToUse.results || [], 
+    total: sessionToUse.total || 0, 
+    progress: sessionToUse.total ? Math.round((sessionToUse.results.length / sessionToUse.total) * 100) : 0,
+    session: sessionToUse
   });
 
-  res.json({ success: true, jobId, total: session.total, processed: session.results.length });
+  res.json({ success: true, jobId, total: sessionToUse.total, processed: (sessionToUse.results || []).length });
 });
 
 app.get('/api/stream/:jobId', (req, res) => {

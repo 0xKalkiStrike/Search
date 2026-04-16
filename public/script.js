@@ -180,23 +180,52 @@ async function resumeSession() {
         // Recover local session for injection
         const localData = localStorage.getItem('infinity_session');
         const sessionPayload = localData ? JSON.parse(localData) : null;
+        if (!sessionPayload) throw new Error("No local session found.");
 
-        const response = await fetch('/api/resume', { 
+        const resultsToChunk = sessionPayload.results || [];
+        
+        // 1. Initialize session on server (metadata only)
+        log("System: Synchronizing session metadata...");
+        const initResponse = await fetch('/api/resume', { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ session: sessionPayload })
+            body: JSON.stringify({ 
+                action: 'init', 
+                session: { ...sessionPayload, results: [] } 
+            })
         });
-        const data = await response.json();
-        if (data.success) {
-             connectToStream(data.jobId, data.total, data.processed);
-        } else {
-            startBtn.classList.remove('processing-btn');
-            startBtn.disabled = false;
-            startBtn.innerText = "Resume Screening";
-            log("Error: " + data.message);
+        const initData = await initResponse.json();
+        if (!initData.success) throw new Error(initData.message);
+
+        const jobId = initData.jobId;
+
+        // 2. Upload results in chunks of 50
+        const chunkSize = 50;
+        log(`System: Uploading ${resultsToChunk.length} records in chunks...`);
+        
+        for (let i = 0; i < resultsToChunk.length; i += chunkSize) {
+            const chunk = resultsToChunk.slice(i, i + chunkSize);
+            const chunkResponse = await fetch('/api/resume', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'chunk',
+                    jobId: jobId,
+                    results: chunk
+                })
+            });
+            const chunkData = await chunkResponse.json();
+            if (!chunkData.success) throw new Error("Chunk upload failed at index " + i);
+            
+            const p = Math.round(((i + chunk.length) / resultsToChunk.length) * 100);
+            completionStats.innerText = `Sync: ${p}%`;
         }
+
+        log("System: Session synchronized. Resuming stream...");
+        connectToStream(jobId, sessionPayload.total, resultsToChunk.length);
+
     } catch (e) {
-        log("Error: Resume failed.");
+        log("Error: " + e.message);
         startBtn.classList.remove('processing-btn');
         startBtn.disabled = false;
         startBtn.innerText = "Resume Screening";
@@ -323,10 +352,12 @@ function appendBrandCard(idx, item) {
             </div>` : ''}
             <p class="description">${item.details}</p>
             <div class="social-strip">
-                <div class="social-dot ${(item.socials && item.socials.linkedin) ? 'active' : ''}" title="LinkedIn">IN</div>
-                <div class="social-dot ${(item.socials && item.socials.twitter) ? 'active' : ''}" title="Twitter">TW</div>
-                <div class="social-dot ${(item.socials && item.socials.facebook) ? 'active' : ''}" title="Facebook">FB</div>
-                <div class="social-dot ${(item.socials && item.socials.instagram) ? 'active' : ''}" title="Instagram">IG</div>
+                ${['linkedin', 'twitter', 'facebook', 'instagram'].map(s => {
+                    const active = item.socials && item.socials[s];
+                    const label = s === 'linkedin' ? 'IN' : s.substring(0, 2).toUpperCase();
+                    const url = typeof active === 'string' ? active : '#';
+                    return `<a href="${url}" target="_blank" class="social-dot ${active ? 'active' : ''}" title="${s.charAt(0).toUpperCase() + s.slice(1)}">${label}</a>`;
+                }).join('')}
             </div>
         </div>
         <div class="metrics-panel">
