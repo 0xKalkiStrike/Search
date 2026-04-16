@@ -12,10 +12,12 @@ const engineLog = document.getElementById('engine-log');
 const clearBtn = document.getElementById('clear-btn');
 
 let selectedFile = null;
-let resultPath = null;
 let currentJobId = null;
 let currentEventSource = null;
-let originalData = []; // Store full sheet data for local export
+let originalData = []; 
+let totalItems = 0;
+let allResults = [];
+let startCol = 0; // The column index where we start appending our data
 
 // Initialization
 loadLocalSession();
@@ -28,6 +30,7 @@ function saveLocalSession() {
         data: originalData,
         total: totalItems,
         progress: (allResults.length / totalItems) * 100,
+        startCol, // Persist column mapping
         time: Date.now()
     };
     localStorage.setItem('infinity_session', JSON.stringify(sessionData));
@@ -81,6 +84,7 @@ function restoreSession(session) {
 
     if (session.jobId) currentJobId = session.jobId;
     if (session.data) originalData = session.data;
+    if (session.startCol !== undefined) startCol = session.startCol;
 
     if (allResults.length > 0) {
         downloadBtn.classList.remove('hidden');
@@ -106,11 +110,12 @@ function handleFile(file) {
         originalData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { header: 1 });
         selectedFile.rowCount = Math.max(0, originalData.length - 1);
         
-        // Ensure headers for all screening columns exist in local data
+        // Find the first empty column to start appending data
         if (originalData[0]) {
+            startCol = originalData[0].length;
             const extraHeaders = ['Full Details', 'Source URL', 'Phone', 'Email', 'Video URL', 'Score', 'Status', 'LinkedIn', 'FB', 'TW', 'IG'];
             extraHeaders.forEach((h, i) => {
-                if (!originalData[0][i + 1]) originalData[0][i + 1] = h;
+                originalData[0][startCol + i] = h;
             });
         }
     };
@@ -203,18 +208,18 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
             if (originalData[data.result.row - 1]) {
                 const rowIndex = data.result.row - 1;
                 const r = data.result;
-                // Preserve original query/name, then append all fetched fields
-                originalData[rowIndex][1] = r.details;
-                originalData[rowIndex][2] = r.url;
-                originalData[rowIndex][3] = r.phone;
-                originalData[rowIndex][4] = r.email;
-                originalData[rowIndex][5] = r.video || 'Not found';
-                originalData[rowIndex][6] = r.score || 0;
-                originalData[rowIndex][7] = r.score > 80 ? 'Elite' : 'Average';
-                originalData[rowIndex][8] = r.socials.linkedin ? 'YES' : 'NO';
-                originalData[rowIndex][9] = r.socials.facebook ? 'YES' : 'NO';
-                originalData[rowIndex][10] = r.socials.twitter ? 'YES' : 'NO';
-                originalData[rowIndex][11] = r.socials.instagram ? 'YES' : 'NO';
+                // Append results after the original columns
+                originalData[rowIndex][startCol + 0] = r.details;
+                originalData[rowIndex][startCol + 1] = r.url;
+                originalData[rowIndex][startCol + 2] = r.phone;
+                originalData[rowIndex][startCol + 3] = r.email;
+                originalData[rowIndex][startCol + 4] = r.video || 'Not found';
+                originalData[rowIndex][startCol + 5] = r.score || 0;
+                originalData[rowIndex][startCol + 6] = r.score > 80 ? 'Elite' : 'Average';
+                originalData[rowIndex][startCol + 7] = r.socials.linkedin ? 'YES' : 'NO';
+                originalData[rowIndex][startCol + 8] = r.socials.facebook ? 'YES' : 'NO';
+                originalData[rowIndex][startCol + 9] = r.socials.twitter ? 'YES' : 'NO';
+                originalData[rowIndex][startCol + 10] = r.socials.instagram ? 'YES' : 'NO';
             }
 
             // Handle intermediate milestones
