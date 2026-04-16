@@ -121,14 +121,21 @@ app.post('/api/scrape', upload.single('file'), async (req, res) => {
     if (!data[0][3]) data[0][3] = 'Phone';
     if (!data[0][4]) data[0][4] = 'Email';
 
-    // Start background processing and return jobId immediately
+    // Save job items to a temporary file for recovery in the stream
+    const jobData = {
+      jobId,
+      searchItems,
+      searchSource,
+      data,
+      total: searchItems.length,
+      outPath
+    };
+    fs.writeFileSync(path.join(resultsDir, `job_${jobId}.json`), JSON.stringify(jobData));
+
     activeJobs.set(jobId, { status: 'processing', results: [], total: searchItems.length, progress: 0 });
     
-    // Background processing call
-    processScrape(jobId, searchItems, searchSource, data, workbook, outPath);
-
-    // Clean up uploaded file
-    if (fs.existsSync(file.path)) fs.unlinkSync(file.path);
+    // Background processing is NOT reliable on Vercel after res.json()
+    // It will be triggered by the SSE stream instead.
 
     res.json({ success: true, jobId, total: searchItems.length });
   } catch (error) {
@@ -256,18 +263,20 @@ app.get('/api/stream/:jobId', (req, res) => {
 
   // Recovery logic for serverless environments (Vercel)
   if (!job) {
-    const session = loadSession(jobId);
-    if (session && session.jobId === jobId) {
-      console.log(`[RECOVERY] Re-activating job ${jobId} from session file.`);
-      job = { 
-        status: 'processing', 
-        results: session.results, 
-        total: session.total, 
-        progress: Math.round((session.results.length / session.total) * 100) 
-      };
-      activeJobs.set(jobId, job);
-      // Resume the background process
-      processScrape(jobId, session.searchItems, session.searchSource, session.data, null, session.outPath, session.results.length);
+    const jobFile = path.join(resultsDir, `job_${jobId}.json`);
+    if (fs.existsSync(jobFile)) {
+      try {
+        const session = JSON.parse(fs.readFileSync(jobFile));
+        console.log(`[RECOVERY] Re-activating job ${jobId} from job file.`);
+        job = { 
+          status: 'processing', 
+          results: [], 
+          total: session.total, 
+          progress: 0,
+          session // Attach session data for processScrape to use
+        };
+        activeJobs.set(jobId, job);
+      } catch (e) { console.error('Job recovery failed:', e); }
     }
   }
 
@@ -282,6 +291,11 @@ app.get('/api/stream/:jobId', (req, res) => {
   res.flushHeaders();
 
   job.sse = res;
+
+  // IMPORTANT: On Vercel, we MUST run the processing loop within the active request
+  if (job.session) {
+      processScrape(jobId, job.session.searchItems, job.session.searchSource, job.session.data, null, job.session.outPath, 0);
+  }
 
   req.on('close', () => {
     job.sse = null;

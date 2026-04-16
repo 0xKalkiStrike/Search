@@ -18,9 +18,35 @@ let currentEventSource = null;
 let originalData = []; // Store full sheet data for local export
 
 // Initialization
-checkSession();
+loadLocalSession();
+checkServerSession();
 
-async function checkSession() {
+function saveLocalSession() {
+    const sessionData = {
+        jobId: currentJobId,
+        results: allResults,
+        data: originalData,
+        total: totalItems,
+        progress: (allResults.length / totalItems) * 100,
+        time: Date.now()
+    };
+    localStorage.setItem('infinity_session', JSON.stringify(sessionData));
+}
+
+function loadLocalSession() {
+    const saved = localStorage.getItem('infinity_session');
+    if (!saved) return;
+    try {
+        const session = JSON.parse(saved);
+        // Only restore if it's from the last 24 hours
+        if (Date.now() - session.time < 86400000) {
+            log(`System: Restored ${session.results.length} results from local vault.`);
+            restoreSession(session);
+        }
+    } catch (e) { localStorage.removeItem('infinity_session'); }
+}
+
+async function checkServerSession() {
     try {
         const response = await fetch('/api/session');
         const data = await response.json();
@@ -32,10 +58,18 @@ async function checkSession() {
 }
 
 function restoreSession(session) {
+    if (!session || !session.results) return;
+    
     resultsPlaceholder.classList.add('hidden');
     resultsContainer.innerHTML = '';
-    session.results.forEach((res, i) => appendBrandCard(i + 1, res));
-    resultsCountBadge.innerText = `${session.results.length} results recovered`;
+    
+    // Maintain arrays
+    allResults = session.results;
+    if (session.data) originalData = session.data;
+    if (session.total) totalItems = session.total;
+
+    allResults.forEach((res, i) => appendBrandCard(i + 1, res));
+    resultsCountBadge.innerText = `${allResults.length} records recovered`;
     
     startBtn.innerText = "Resume Screening";
     startBtn.dataset.mode = "resume";
@@ -48,9 +82,8 @@ function restoreSession(session) {
     if (session.jobId) currentJobId = session.jobId;
     if (session.data) originalData = session.data;
 
-    if (session.outPath) {
-        resultPath = session.outPath;
-        if (session.results.length > 0) downloadBtn.classList.remove('hidden');
+    if (allResults.length > 0) {
+        downloadBtn.classList.remove('hidden');
     }
 }
 
@@ -110,7 +143,12 @@ startBtn.addEventListener('click', async () => {
     try {
         const response = await fetch('/api/scrape', { method: 'POST', body: formData });
         const data = await response.json();
-        if (data.success) connectToStream(data.jobId, selectedFile.rowCount);
+        if (data.success) {
+            totalItems = data.total;
+            allResults = [];
+            localStorage.removeItem('infinity_session'); // Clear old session on new start
+            connectToStream(data.jobId, data.total);
+        }
     } catch (e) {
         log("Error: Connection failure.");
         startBtn.disabled = false;
@@ -151,16 +189,15 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
 
         if (data.type === 'progress') {
             // Remove skeletons on first result
-            if (processed === alreadyProcessed) resultsContainer.innerHTML = '';
-            
-            processed++;
-            const progress = (processed / total) * 100;
+            allResults.push(data.result);
+            const progress = (allResults.length / totalItems) * 100;
             progressBar.style.width = `${progress}%`;
             completionStats.innerText = `${Math.round(progress)}%`;
             processorName.innerText = `Scanning: ${data.result.query}`;
-            resultsCountBadge.innerText = `${processed} records screened`;
+            resultsCountBadge.innerText = `${allResults.length} records screened`;
             
-            appendBrandCard(processed, data.result);
+            appendBrandCard(allResults.length, data.result);
+            saveLocalSession(); // PERSIST TO LOCALSTORAGE
             
             // Update local data for export
             if (originalData[data.result.row - 1]) {
@@ -186,13 +223,13 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
             log(data.message);
         } else if (data.type === 'completed') {
             currentEventSource.close();
-            resultPath = data.file;
             downloadBtn.classList.remove('hidden');
-            log(`Success: Analysis complete. ${data.count} records processed.`);
+            log(`Success: Analysis complete. ${allResults.length} records processed.`);
             processorName.innerText = "Analysis Complete";
             startBtn.disabled = false;
             startBtn.innerText = "New Analysis";
             delete startBtn.dataset.mode;
+            saveLocalSession();
         } else if (data.type === 'error') {
             currentEventSource.close();
             log(`Failure: ${data.message}`);
@@ -254,6 +291,7 @@ function appendBrandCard(idx, item) {
 
 clearBtn.addEventListener('click', async () => {
     if (confirm("Permanently clear screening history and reset workspace?")) {
+        localStorage.removeItem('infinity_session');
         await fetch('/api/reset', { method: 'POST' });
         location.reload();
     }
