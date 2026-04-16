@@ -103,6 +103,11 @@ async function scrapeDirectUrl(item, userAgent) {
   if (html.includes('instagram.com/')) socials.instagram = true;
   if (html.includes('linkedin.com/')) socials.linkedin = true;
 
+  // Video detection
+  let videoLink = "Not found";
+  const videoMatches = response.data.match(/https?:\/\/(www\.)?(youtube\.com|youtu\.be|vimeo\.com)\/[^\s"']+/g);
+  if (videoMatches) videoLink = [...new Set(videoMatches)][0];
+
   return {
     row: item.row,
     query: item.query || title,
@@ -110,7 +115,8 @@ async function scrapeDirectUrl(item, userAgent) {
     url: item.url,
     phone,
     email,
-    socials
+    socials,
+    video: videoLink
   };
 }
 
@@ -188,14 +194,20 @@ async function fetchWithRetry(item, source, userAgent, onStatus, retries = 1) {
       if (details.toLowerCase().includes('instagram.com/')) socials.instagram = true;
       if (details.toLowerCase().includes('linkedin.com/')) socials.linkedin = true;
 
+      // Video detection in snippet
+      let videoLink = "Not found";
+      const videoMatch = details.match(/https?:\/\/(www\.)?(youtube\.com|youtu\.be|vimeo\.com)\/[^\s"']+/);
+      if (videoMatch) videoLink = videoMatch[0];
+
       return { 
         row: item.row, 
         query: item.query, // FIXED: Preservation of company name
         details, 
-        url, 
+        url: url.startsWith('http') ? url : 'N/A', 
         phone, 
         email, 
-        socials 
+        socials,
+        video: videoLink
       };
     } catch (err) {
       if (i === retries) throw err;

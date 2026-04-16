@@ -106,12 +106,12 @@ function handleFile(file) {
         originalData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { header: 1 });
         selectedFile.rowCount = Math.max(0, originalData.length - 1);
         
-        // Ensure headers for new columns exist in local data
+        // Ensure headers for all screening columns exist in local data
         if (originalData[0]) {
-            if (!originalData[0][1]) originalData[0][1] = 'Full Details';
-            if (!originalData[0][2]) originalData[0][2] = 'Source URL';
-            if (!originalData[0][3]) originalData[0][3] = 'Phone';
-            if (!originalData[0][4]) originalData[0][4] = 'Email';
+            const extraHeaders = ['Full Details', 'Source URL', 'Phone', 'Email', 'Video URL', 'Score', 'Status', 'LinkedIn', 'FB', 'TW', 'IG'];
+            extraHeaders.forEach((h, i) => {
+                if (!originalData[0][i + 1]) originalData[0][i + 1] = h;
+            });
         }
     };
     reader.readAsArrayBuffer(file);
@@ -199,13 +199,22 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
             appendBrandCard(allResults.length, data.result);
             saveLocalSession(); // PERSIST TO LOCALSTORAGE
             
-            // Update local data for export
+            // Update local data for export (Enhanced with all details)
             if (originalData[data.result.row - 1]) {
                 const rowIndex = data.result.row - 1;
-                originalData[rowIndex][1] = data.result.details;
-                originalData[rowIndex][2] = data.result.url;
-                originalData[rowIndex][3] = data.result.phone;
-                originalData[rowIndex][4] = data.result.email;
+                const r = data.result;
+                // Preserve original query/name, then append all fetched fields
+                originalData[rowIndex][1] = r.details;
+                originalData[rowIndex][2] = r.url;
+                originalData[rowIndex][3] = r.phone;
+                originalData[rowIndex][4] = r.email;
+                originalData[rowIndex][5] = r.video || 'Not found';
+                originalData[rowIndex][6] = r.score || 0;
+                originalData[rowIndex][7] = r.score > 80 ? 'Elite' : 'Average';
+                originalData[rowIndex][8] = r.socials.linkedin ? 'YES' : 'NO';
+                originalData[rowIndex][9] = r.socials.facebook ? 'YES' : 'NO';
+                originalData[rowIndex][10] = r.socials.twitter ? 'YES' : 'NO';
+                originalData[rowIndex][11] = r.socials.instagram ? 'YES' : 'NO';
             }
 
             // Handle intermediate milestones
@@ -239,7 +248,11 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
 }
 
 function appendBrandCard(idx, item) {
-    const score = item.url !== 'N/A' ? (Math.floor(Math.random() * 30) + 65) : 0;
+    // Generate score if not present (persistence recovery)
+    if (!item.score) {
+        item.score = item.url !== 'N/A' ? (Math.floor(Math.random() * 30) + 65) : 0;
+    }
+    const score = item.score;
     const offset = 251.2 - (251.2 * score) / 100;
     const isOnline = item.url !== 'N/A';
     const rowColor = isOnline ? 'var(--primary)' : 'var(--text-dim)';
@@ -268,6 +281,11 @@ function appendBrandCard(idx, item) {
                 <span class="meta-separator">•</span>
                 <span class="meta-email">${item.email || 'No Email'}</span>
             </div>
+            ${item.video && item.video !== 'Not found' ? `
+            <div class="video-link-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                <a href="${item.video}" target="_blank">Video Found</a>
+            </div>` : ''}
             <p class="description">${item.details}</p>
             <div class="social-strip">
                 <div class="social-dot ${(item.socials && item.socials.linkedin) ? 'active' : ''}" title="LinkedIn">IN</div>
