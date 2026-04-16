@@ -207,8 +207,30 @@ app.post('/api/resume', (req, res) => {
 });
 
 app.get('/api/stream/:jobId', (req, res) => {
-  const job = activeJobs.get(req.params.jobId);
-  if (!job) return res.status(404).end();
+  const { jobId } = req.params;
+  let job = activeJobs.get(jobId);
+
+  // Recovery logic for serverless environments (Vercel)
+  if (!job) {
+    const session = loadSession();
+    if (session && session.jobId === jobId) {
+      console.log(`[RECOVERY] Re-activating job ${jobId} from session file.`);
+      job = { 
+        status: 'processing', 
+        results: session.results, 
+        total: session.total, 
+        progress: Math.round((session.results.length / session.total) * 100) 
+      };
+      activeJobs.set(jobId, job);
+      // Resume the background process
+      processScrape(jobId, session.searchItems, session.searchSource, session.data, null, session.outPath, session.results.length);
+    }
+  }
+
+  if (!job) {
+    console.error(`[STREAM_ERROR] Job ${jobId} not found and no session recovery possible.`);
+    return res.status(404).json({ success: false, message: "Job not found or expired" });
+  }
 
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');

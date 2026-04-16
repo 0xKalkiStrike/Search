@@ -39,7 +39,15 @@ async function searchDetails(items, preferredSource, onStatus) {
 
     if (!success) {
       if (onStatus) onStatus(`[ALERT] Data bypass initiated for manual review.`);
-      results.push({ row: item.row, details: "Search engine protection active. Switching to manual check.", url: 'N/A' });
+      results.push({ 
+        row: item.row, 
+        query: item.query,
+        details: "Search engine protection active. Switching to manual check.", 
+        url: 'N/A',
+        phone: 'Not found',
+        email: 'Not found',
+        socials: { twitter: null, facebook: null, instagram: null, linkedin: null }
+      });
     }
 
     // Optimized human-like delay (4-7 seconds for faster throughput)

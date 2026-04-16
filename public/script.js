@@ -192,10 +192,10 @@ function appendBrandCard(idx, item) {
             </div>
             <p class="description">${item.details}</p>
             <div class="social-strip">
-                <div class="social-dot ${item.socials.linkedin ? 'active' : ''}" title="LinkedIn">IN</div>
-                <div class="social-dot ${item.socials.twitter ? 'active' : ''}" title="Twitter">TW</div>
-                <div class="social-dot ${item.socials.facebook ? 'active' : ''}" title="Facebook">FB</div>
-                <div class="social-dot ${item.socials.instagram ? 'active' : ''}" title="Instagram">IG</div>
+                <div class="social-dot ${(item.socials && item.socials.linkedin) ? 'active' : ''}" title="LinkedIn">IN</div>
+                <div class="social-dot ${(item.socials && item.socials.twitter) ? 'active' : ''}" title="Twitter">TW</div>
+                <div class="social-dot ${(item.socials && item.socials.facebook) ? 'active' : ''}" title="Facebook">FB</div>
+                <div class="social-dot ${(item.socials && item.socials.instagram) ? 'active' : ''}" title="Instagram">IG</div>
             </div>
         </div>
         <div class="metrics-panel">
