@@ -124,9 +124,10 @@ function handleFile(file) {
 
 function log(msg) {
     const entry = document.createElement('div');
-    entry.style.marginBottom = '4px';
+    entry.className = 'log-entry new';
     entry.innerText = `> ${msg}`;
     engineLog.prepend(entry);
+    setTimeout(() => entry.classList.remove('new'), 3000);
 }
 
 // Analysis Flow
@@ -146,6 +147,7 @@ startBtn.addEventListener('click', async () => {
     formData.append('file', selectedFile);
 
     try {
+        startBtn.classList.add('processing-btn');
         const response = await fetch('/api/scrape', { method: 'POST', body: formData });
         const data = await response.json();
         if (data.success) {
@@ -153,10 +155,17 @@ startBtn.addEventListener('click', async () => {
             allResults = [];
             localStorage.removeItem('infinity_session'); // Clear old session on new start
             connectToStream(data.jobId, data.total);
+        } else {
+            startBtn.classList.remove('processing-btn');
+            startBtn.disabled = false;
+            startBtn.innerText = "Begin Analysis";
+            alert("Error: " + data.message);
         }
     } catch (e) {
         log("Error: Connection failure.");
+        startBtn.classList.remove('processing-btn');
         startBtn.disabled = false;
+        startBtn.innerText = "Begin Analysis";
     }
 });
 
@@ -166,12 +175,22 @@ async function resumeSession() {
     log("Engine: Reconnecting to active session...");
 
     try {
+        startBtn.classList.add('processing-btn');
         const response = await fetch('/api/resume', { method: 'POST' });
         const data = await response.json();
-        if (data.success) connectToStream(data.jobId, data.total, data.processed);
+        if (data.success) {
+             connectToStream(data.jobId, data.total, data.processed);
+        } else {
+            startBtn.classList.remove('processing-btn');
+            startBtn.disabled = false;
+            startBtn.innerText = "Resume Screening";
+            log("Error: " + data.message);
+        }
     } catch (e) {
         log("Error: Resume failed.");
+        startBtn.classList.remove('processing-btn');
         startBtn.disabled = false;
+        startBtn.innerText = "Resume Screening";
     }
 }
 
@@ -241,12 +260,14 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
             log(`Success: Analysis complete. ${allResults.length} records processed.`);
             processorName.innerText = "Analysis Complete";
             startBtn.disabled = false;
+            startBtn.classList.remove('processing-btn');
             startBtn.innerText = "New Analysis";
             delete startBtn.dataset.mode;
             saveLocalSession();
         } else if (data.type === 'error') {
             currentEventSource.close();
             log(`Failure: ${data.message}`);
+            startBtn.classList.remove('processing-btn');
             startBtn.disabled = false;
         }
     };

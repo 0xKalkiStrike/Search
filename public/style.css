@@ -256,3 +256,18 @@ h1, h2, h3, .section-title { font-family: 'Outfit', sans-serif; }
 .hidden { display: none !important; }
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-thumb { background: #1e1e22; border-radius: 10px; }
+
+/* Pulse Animation for System Processing */
+@keyframes buttonPulse {
+  0% { box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); transform: scale(1); }
+  50% { box-shadow: 0 4px 25px rgba(99, 102, 241, 0.6); transform: scale(1.02); }
+  100% { box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); transform: scale(1); }
+}
+
+.processing-btn {
+  animation: buttonPulse 2s infinite ease-in-out;
+}
+
+.log-entry { margin-bottom: 4px; color: var(--text-dim); transition: 0.3s; }
+.log-entry:hover { color: var(--primary); }
+ .log-entry.new { color: var(--primary); font-weight: 500; }

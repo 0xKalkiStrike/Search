@@ -83,7 +83,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Scrape API Endpoint
+app.get('/api/scrape', (req, res) => res.status(405).json({ success: false, message: "Use POST with an Excel file to start analysis." }));
+
 app.post('/api/scrape', upload.single('file'), async (req, res) => {
   try {
     const { searchSource } = req.body;
@@ -239,6 +240,11 @@ app.get('/api/session', (req, res) => {
   res.json({ success: !!session, session });
 });
 
+app.get('/api/resume', (req, res) => {
+  const session = loadSession();
+  res.json({ success: !!session, session, message: "Use POST to trigger recovery" });
+});
+
 app.post('/api/resume', (req, res) => {
   const session = loadSession();
   if (!session) return res.status(404).json({ success: false, message: "No session found" });
@@ -313,6 +319,8 @@ app.get('/api/results', (req, res) => {
   }
 });
 
+app.get('/api/upload', (req, res) => res.status(405).json({ success: false, message: "Use POST to upload documents." }));
+
 // Separate Upload API Endpoint (to solve 500 errors)
 app.post('/api/upload', upload.single('file'), (req, res) => {
   try {
@@ -325,6 +333,8 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
     res.status(500).json({ success: false, message: 'Internal Server Error during upload' });
   }
 });
+
+app.get('/api/reset', (req, res) => res.status(405).json({ success: false, message: "Use POST to clear system history." }));
 
 // Reset API Endpoint (to solve 404 errors)
 app.post('/api/reset', (req, res) => {
