@@ -86,11 +86,18 @@ app.post('/api/scrape', upload.single('file'), async (req, res) => {
 
     // Convert to JSON for easy processing
     const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-    // Assume 1st column is the query
+    
+    // Find column indices
+    const headers = data[0] || [];
+    const urlColIndex = headers.findIndex(h => h && h.toString().toLowerCase().includes('site url'));
+    const queryColIndex = 0; // Default to first column
+
+    // Map rows to search items
     const searchItems = data.slice(1).map((row, index) => ({
       row: index + 2, // 1-based index including header
-      query: row[0] ? row[0].toString() : ''
-    })).filter(item => item.query);
+      query: row[queryColIndex] ? row[queryColIndex].toString() : '',
+      url: urlColIndex !== -1 && row[urlColIndex] ? row[urlColIndex].toString() : null
+    })).filter(item => item.query || item.url);
 
     // Set up output path
     const jobId = Date.now().toString();
@@ -99,6 +106,8 @@ app.post('/api/scrape', upload.single('file'), async (req, res) => {
     // Add headers to the original data array
     if (!data[0][1]) data[0][1] = 'Full Details';
     if (!data[0][2]) data[0][2] = 'Source URL';
+    if (!data[0][3]) data[0][3] = 'Phone';
+    if (!data[0][4]) data[0][4] = 'Email';
 
     // Start background processing and return jobId immediately
     activeJobs.set(jobId, { status: 'processing', results: [], total: searchItems.length, progress: 0 });
@@ -140,6 +149,8 @@ async function processScrape(jobId, searchItems, searchSource, data, workbook, o
       const rowIndex = result.row - 1;
       data[rowIndex][1] = result.details;
       data[rowIndex][2] = result.url;
+      data[rowIndex][3] = result.phone;
+      data[rowIndex][4] = result.email;
       
       // Persistent Save: Save workbook every 10 records to allow intermediate downloads
       if (job.results.length % 10 === 0 || job.results.length === job.total) {
@@ -300,14 +311,49 @@ app.get('/api/stats', (req, res) => {
   res.json(getStats());
 });
 
-// Download Endpoint
+// Download Endpoint (Enhanced for Vercel/Serverless Resilience)
 app.get('/api/download', (req, res) => {
-  const filePath = req.query.path;
-  if (fs.existsSync(filePath)) {
-    res.download(filePath);
-  } else {
-    res.status(404).send('File not found');
+  const { path: filePath, jobId } = req.query;
+
+  // 1. Direct file check
+  if (filePath && fs.existsSync(filePath)) {
+    return res.download(filePath);
   }
+
+  // 2. Recovery Logic: If file is missing, try to regenerate from session or active job
+  const session = loadSession();
+  const job = activeJobs.get(jobId);
+
+  // If we have data but no file, rebuild it on the fly
+  if ((job && job.results.length > 0) || (session && session.jobId === jobId)) {
+    try {
+      const resultsToUse = job ? job.results : session.results;
+      const dataToUse = job ? (session ? session.data : []) : session.data;
+      
+      // If we don't have the full sheet data, we can at least rebuild from the results we have
+      let finalData = dataToUse;
+      if (finalData.length === 0 || finalData.length === 1) {
+          finalData = [['Query', 'Full Details', 'Source URL', 'Phone', 'Email']];
+          resultsToUse.forEach(r => {
+              finalData.push([r.query, r.details, r.url, r.phone, r.email]);
+          });
+      }
+
+      const newWorksheet = XLSX.utils.aoa_to_sheet(finalData);
+      const newWorkbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, "Recovered Results");
+      
+      const buffer = XLSX.write(newWorkbook, { type: 'buffer', bookType: 'xlsx' });
+      
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.setHeader('Content-Disposition', `attachment; filename=results_${jobId || Date.now()}.xlsx`);
+      return res.send(buffer);
+    } catch (e) {
+      console.error('Download recovery failed:', e);
+    }
+  }
+
+  res.status(404).send('File expired or session lost. Please try resuming the scan.');
 });
 
 const server = app.listen(port, () => {

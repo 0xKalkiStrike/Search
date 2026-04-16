@@ -13,6 +13,7 @@ const clearBtn = document.getElementById('clear-btn');
 
 let selectedFile = null;
 let resultPath = null;
+let currentJobId = null;
 let currentEventSource = null;
 
 // Initialization
@@ -43,6 +44,7 @@ function restoreSession(session) {
     completionStats.innerText = `${Math.round(progress)}%`;
     processorName.innerText = "Paused: Waiting to resume";
 
+    if (session.jobId) currentJobId = session.jobId;
     if (session.outPath) {
         resultPath = session.outPath;
         if (session.results.length > 0) downloadBtn.classList.remove('hidden');
@@ -129,6 +131,7 @@ function showSkeletons(count) {
 }
 
 function connectToStream(jobId, total, alreadyProcessed = 0) {
+    currentJobId = jobId;
     currentEventSource = new EventSource(`/api/stream/${jobId}`);
     let processed = alreadyProcessed;
 
@@ -153,10 +156,10 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
             if (data.checkpoint) {
                 downloadBtn.classList.remove('hidden');
                 log("Milestone: High-volume data reached. Intermediate report available.");
-                // Auto-download on the first major milestone (100)
+                // Show download button at checkpoints
                 if (data.count === 100) {
-                    log("Auto-save: Downloading first 100 records...");
-                    window.location.href = `/api/download?path=${encodeURIComponent(resultPath)}`;
+                    downloadBtn.classList.remove('hidden');
+                    log("Milestone: High-volume data reached. Manual report download available.");
                 }
             }
         } else if (data.type === 'status') {
@@ -236,6 +239,6 @@ clearBtn.addEventListener('click', async () => {
 });
 
 downloadBtn.addEventListener('click', () => {
-    if (!resultPath) return alert("Report not ready yet.");
-    window.location.href = `/api/download?path=${encodeURIComponent(resultPath)}`;
+    if (!resultPath && !currentJobId) return alert("Report not ready yet.");
+    window.location.href = `/api/download?path=${encodeURIComponent(resultPath)}&jobId=${currentJobId}`;
 });

@@ -18,22 +18,39 @@ async function searchDetails(items, preferredSource, onStatus) {
   
   for (const item of items) {
     let success = false;
-    let fallbackChain = ['Google', 'Bing', 'DuckDuckGo'];
-
-    for (const source of fallbackChain) {
+    
+    // If a direct URL is provided, prioritize it and skip search engines
+    if (item.url && item.url.startsWith('http')) {
       try {
+        if (onStatus) onStatus(`[DIRECT_FETCH] Connecting to ${item.url}...`);
         const randomUA = userAgents[Math.floor(Math.random() * userAgents.length)];
-        const data = await fetchWithRetry(item, source, randomUA, onStatus);
-        
-        if (data.details !== "N/A" && data.details !== "No snippet found.") {
-            results.push(data);
-            if (onStatus) onStatus(`[DATA_ACQUIRED] Verification complete via ${source}.`);
-            success = true;
-            break; 
-        }
+        const data = await scrapeDirectUrl(item, randomUA);
+        results.push(data);
+        if (onStatus) onStatus(`[DATA_ACQUIRED] Extracted details from site direct.`);
+        success = true;
       } catch (err) {
-        if (onStatus) onStatus(`[ENGINE_BUSY] ${source} rotation triggered.`);
-        continue;
+        if (onStatus) onStatus(`[WARN] Direct fetch failed for ${item.url}.`);
+      }
+    }
+
+    if (!success) {
+      let fallbackChain = ['Google', 'Bing', 'DuckDuckGo'];
+
+      for (const source of fallbackChain) {
+        try {
+          const randomUA = userAgents[Math.floor(Math.random() * userAgents.length)];
+          const data = await fetchWithRetry(item, source, randomUA, onStatus);
+          
+          if (data.details !== "N/A" && data.details !== "No snippet found.") {
+              results.push(data);
+              if (onStatus) onStatus(`[DATA_ACQUIRED] Verification complete via ${source}.`);
+              success = true;
+              break; 
+          }
+        } catch (err) {
+          if (onStatus) onStatus(`[ENGINE_BUSY] ${source} rotation triggered.`);
+          continue;
+        }
       }
     }
 
@@ -41,9 +58,9 @@ async function searchDetails(items, preferredSource, onStatus) {
       if (onStatus) onStatus(`[ALERT] Data bypass initiated for manual review.`);
       results.push({ 
         row: item.row, 
-        query: item.query,
-        details: "Search engine protection active. Switching to manual check.", 
-        url: 'N/A',
+        query: item.query || 'N/A',
+        details: "Information could not be verified automatically.", 
+        url: item.url || 'N/A',
         phone: 'Not found',
         email: 'Not found',
         socials: { twitter: null, facebook: null, instagram: null, linkedin: null }
@@ -58,6 +75,43 @@ async function searchDetails(items, preferredSource, onStatus) {
   }
 
   return results;
+}
+
+async function scrapeDirectUrl(item, userAgent) {
+  const response = await axios.get(item.url, {
+    timeout: 30000,
+    headers: { 'User-Agent': userAgent },
+    validateStatus: (status) => status === 200
+  });
+
+  const $ = cheerio.load(response.data);
+  const title = $('title').text().trim() || "Website";
+  const bodyText = $('body').text();
+  
+  let socials = { twitter: null, facebook: null, instagram: null, linkedin: null };
+
+  // Use global flag for multiple matches and deduplicate
+  const phoneMatches = bodyText.match(/(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g);
+  const phone = phoneMatches ? [...new Set(phoneMatches)].slice(0, 2).join(', ') : "Not found";
+
+  const emailMatches = bodyText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g);
+  const email = emailMatches ? [...new Set(emailMatches)].slice(0, 2).join(', ') : "Not found";
+
+  const html = response.data.toLowerCase();
+  if (html.includes('twitter.com/')) socials.twitter = true;
+  if (html.includes('facebook.com/')) socials.facebook = true;
+  if (html.includes('instagram.com/')) socials.instagram = true;
+  if (html.includes('linkedin.com/')) socials.linkedin = true;
+
+  return {
+    row: item.row,
+    query: item.query || title,
+    details: `[${title}] ` + bodyText.substring(0, 250).replace(/\s+/g, ' ') + '...',
+    url: item.url,
+    phone,
+    email,
+    socials
+  };
 }
 
 async function fetchWithRetry(item, source, userAgent, onStatus, retries = 1) {
