@@ -246,17 +246,25 @@ app.get('/api/resume', (req, res) => {
 });
 
 app.post('/api/resume', (req, res) => {
-  const session = loadSession();
-  if (!session) return res.status(404).json({ success: false, message: "No session found" });
+  // Try to load from server session file first
+  let session = loadSession();
+  
+  // If server lost it (Vercel /tmp wipe), try to recover from client-provided data
+  if (!session && req.body && req.body.session) {
+    session = req.body.session;
+    console.log('[RECOVERY] Resuming from client-injected session data.');
+  }
+
+  if (!session) return res.status(404).json({ success: false, message: "No session found. Please re-upload your file." });
 
   const jobId = session.jobId || Date.now().toString();
   // Initialize job but DON'T start processScrape here. 
   // It will be started by the EventSource connection (/api/stream/:jobId)
   activeJobs.set(jobId, { 
     status: 'processing', 
-    results: session.results, 
-    total: session.total, 
-    progress: Math.round((session.results.length / session.total) * 100),
+    results: session.results || [], 
+    total: session.total || 0, 
+    progress: session.total ? Math.round((session.results.length / session.total) * 100) : 0,
     session // Attach session for recovery in the stream
   });
 
@@ -405,6 +413,11 @@ app.get('/api/download', (req, res) => {
   }
 
   res.status(404).send('File expired or session lost. Please try resuming the scan.');
+});
+
+// Catch-all for undefined API routes
+app.use('/api/*', (req, res) => {
+  res.status(404).json({ success: false, message: `Endpoint ${req.originalUrl} not found.` });
 });
 
 const server = app.listen(port, () => {

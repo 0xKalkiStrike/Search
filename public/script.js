@@ -176,7 +176,16 @@ async function resumeSession() {
 
     try {
         startBtn.classList.add('processing-btn');
-        const response = await fetch('/api/resume', { method: 'POST' });
+        
+        // Recover local session for injection
+        const localData = localStorage.getItem('infinity_session');
+        const sessionPayload = localData ? JSON.parse(localData) : null;
+
+        const response = await fetch('/api/resume', { 
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ session: sessionPayload })
+        });
         const data = await response.json();
         if (data.success) {
              connectToStream(data.jobId, data.total, data.processed);
