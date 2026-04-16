@@ -320,25 +320,61 @@ clearBtn.addEventListener('click', async () => {
     }
 });
 
+function flattenData(results) {
+    return results.map(item => {
+        // Attempt to find the corresponding original row to preserve user data
+        const originalRow = originalData[item.row - 1] || [];
+        const flatItem = {};
+
+        // 1. Preserve ALL original user columns
+        if (originalData[0]) {
+            originalData[0].forEach((header, i) => {
+                if (i < startCol) { // Only take columns that existed BEFORE we started appending
+                    const key = header || `Column_${i}`;
+                    flatItem[key] = originalRow[i] || "";
+                }
+            });
+        }
+
+        // 2. Map Scraped Intelligence (flattened as requested)
+        flatItem["Company Name"] = item.query || "";
+        flatItem["Full Details"] = item.details || "";
+        flatItem["Website"] = item.url || "";
+        flatItem["Phones"] = item.phone || "";
+        flatItem["Emails"] = item.email || "";
+        flatItem["Videos"] = item.video || "";
+        flatItem["Branding Score"] = item.score || 0;
+        flatItem["Branding Status"] = item.score > 80 ? 'Elite' : 'Average';
+        
+        // Social Media Mapping
+        flatItem["Instagram"] = item.socials?.instagram ? "YES" : "NO";
+        flatItem["Facebook"] = item.socials?.facebook ? "YES" : "NO";
+        flatItem["Twitter"] = item.socials?.twitter ? "YES" : "NO";
+        flatItem["LinkedIn"] = item.socials?.linkedin ? "YES" : "NO";
+
+        return flatItem;
+    });
+}
+
 downloadBtn.addEventListener('click', () => {
-    if (originalData.length === 0) return alert("Report data is not available.");
+    if (allResults.length === 0) return alert("Report data is not available yet.");
     
     try {
-        log("System: Generating local report for instant download...");
-        const ws = XLSX.utils.aoa_to_sheet(originalData);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Search Results");
+        log("System: Transforming and flattening data for report...");
         
-        const fileName = `Analysis_Report_${Date.now()}.xlsx`;
-        XLSX.writeFile(wb, fileName);
+        // Transform nested results into flat JSON structure
+        const flatData = flattenData(allResults);
+        
+        log("System: Generating local report for instant download...");
+        const worksheet = XLSX.utils.json_to_sheet(flatData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Companies");
+        
+        const fileName = `Unified_Analysis_Report_${Date.now()}.xlsx`;
+        XLSX.writeFile(workbook, fileName);
         log("System: Export successful.");
     } catch (e) {
         console.error('Local export failed:', e);
-        // Fallback to server download if local fails
-        if (resultPath || currentJobId) {
-            window.location.href = `/api/download?path=${encodeURIComponent(resultPath)}&jobId=${currentJobId}`;
-        } else {
-            alert("Export failed and no server backup found.");
-        }
+        alert("Export failed. Check console for details.");
     }
 });
