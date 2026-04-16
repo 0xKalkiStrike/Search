@@ -8,7 +8,8 @@ const { searchDetails } = require('./scraper');
 const app = express();
 const port = 3000;
 
-const statsPath = path.join(__dirname, 'stats.json');
+const isVercel = process.env.VERCEL || false;
+const statsPath = isVercel ? '/tmp/stats.json' : path.join(__dirname, 'stats.json');
 
 function getStats() {
   try {
@@ -30,7 +31,6 @@ app.use(express.static('public'));
 app.use(express.json());
 
 // Ensure directories exist (handling Vercel read-only filesystem)
-const isVercel = process.env.VERCEL || false;
 const uploadDir = isVercel ? '/tmp/uploads' : path.join(__dirname, 'uploads');
 const resultsDir = isVercel ? '/tmp/results' : path.join(__dirname, 'results');
 const sessionFile = isVercel ? '/tmp/session.json' : path.join(__dirname, 'session.json');
@@ -132,7 +132,7 @@ app.post('/api/scrape', upload.single('file'), async (req, res) => {
     };
     fs.writeFileSync(path.join(resultsDir, `job_${jobId}.json`), JSON.stringify(jobData));
 
-    activeJobs.set(jobId, { status: 'processing', results: [], total: searchItems.length, progress: 0 });
+    activeJobs.set(jobId, { status: 'processing', results: [], total: searchItems.length, progress: 0, session: jobData });
     
     // Background processing is NOT reliable on Vercel after res.json()
     // It will be triggered by the SSE stream instead.
@@ -244,15 +244,15 @@ app.post('/api/resume', (req, res) => {
   if (!session) return res.status(404).json({ success: false, message: "No session found" });
 
   const jobId = session.jobId || Date.now().toString();
+  // Initialize job but DON'T start processScrape here. 
+  // It will be started by the EventSource connection (/api/stream/:jobId)
   activeJobs.set(jobId, { 
     status: 'processing', 
     results: session.results, 
     total: session.total, 
-    progress: Math.round((session.results.length / session.total) * 100) 
+    progress: Math.round((session.results.length / session.total) * 100),
+    session // Attach session for recovery in the stream
   });
-
-  // Start from where we left off
-  processScrape(jobId, session.searchItems, session.searchSource, session.data, null, session.outPath, session.results.length);
 
   res.json({ success: true, jobId, total: session.total, processed: session.results.length });
 });
@@ -294,12 +294,23 @@ app.get('/api/stream/:jobId', (req, res) => {
 
   // IMPORTANT: On Vercel, we MUST run the processing loop within the active request
   if (job.session) {
-      processScrape(jobId, job.session.searchItems, job.session.searchSource, job.session.data, null, job.session.outPath, 0);
+      const startIndex = job.results.length || 0;
+      processScrape(jobId, job.session.searchItems, job.session.searchSource, job.session.data, null, job.session.outPath, startIndex);
   }
 
   req.on('close', () => {
     job.sse = null;
   });
+});
+
+// Results API Endpoint (to solve 404 errors)
+app.get('/api/results', (req, res) => {
+  const session = loadSession();
+  if (session) {
+    res.json({ success: true, results: session.results });
+  } else {
+    res.status(404).json({ success: false, message: "No results found" });
+  }
 });
 
 // Separate Upload API Endpoint (to solve 500 errors)

@@ -90,12 +90,11 @@ async function scrapeDirectUrl(item, userAgent) {
   
   let socials = { twitter: null, facebook: null, instagram: null, linkedin: null };
 
-  // Use global flag for multiple matches and deduplicate
   const phoneMatches = bodyText.match(/(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g);
-  const phone = phoneMatches ? [...new Set(phoneMatches)].slice(0, 2).join(', ') : "Not found";
+  const phone = phoneMatches ? [...new Set(phoneMatches)].slice(0, 3).join(', ') : "Not found";
 
   const emailMatches = bodyText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g);
-  const email = emailMatches ? [...new Set(emailMatches)].slice(0, 2).join(', ') : "Not found";
+  const email = emailMatches ? [...new Set(emailMatches)].map(e => e.toLowerCase()).slice(0, 3).join(', ') : "Not found";
 
   const html = response.data.toLowerCase();
   if (html.includes('twitter.com/')) socials.twitter = true;
@@ -111,7 +110,7 @@ async function scrapeDirectUrl(item, userAgent) {
   return {
     row: item.row,
     query: item.query || title,
-    details: `[${title}] ` + bodyText.substring(0, 250).replace(/\s+/g, ' ') + '...',
+    details: `[${title}] ` + bodyText.substring(0, 350).replace(/\s+/g, ' ').trim() + '...',
     url: item.url,
     phone,
     email,
@@ -182,11 +181,11 @@ async function fetchWithRetry(item, source, userAgent, onStatus, retries = 1) {
       }
 
       // Extract metadata using regex from the snippet
-      const phoneMatch = details.match(/(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/);
-      if (phoneMatch) phone = phoneMatch[0];
+      const phoneMatches = details.match(/(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g);
+      if (phoneMatches) phone = [...new Set(phoneMatches)].slice(0, 2).join(', ');
 
-      const emailMatch = details.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
-      if (emailMatch) email = emailMatch[0];
+      const emailMatches = details.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g);
+      if (emailMatches) email = [...new Set(emailMatches)].map(e => e.toLowerCase()).slice(0, 2).join(', ');
 
       // Social detection in snippet
       if (details.toLowerCase().includes('twitter.com/')) socials.twitter = true;
