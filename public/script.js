@@ -42,6 +42,11 @@ function restoreSession(session) {
     progressBar.style.width = `${progress}%`;
     completionStats.innerText = `${Math.round(progress)}%`;
     processorName.innerText = "Paused: Waiting to resume";
+
+    if (session.outPath) {
+        resultPath = session.outPath;
+        if (session.results.length > 0) downloadBtn.classList.remove('hidden');
+    }
 }
 
 // File Operations
@@ -142,6 +147,18 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
             resultsCountBadge.innerText = `${processed} records screened`;
             
             appendBrandCard(processed, data.result);
+
+            // Handle intermediate milestones
+            if (data.file) resultPath = data.file;
+            if (data.checkpoint) {
+                downloadBtn.classList.remove('hidden');
+                log("Milestone: High-volume data reached. Intermediate report available.");
+                // Auto-download on the first major milestone (100)
+                if (data.count === 100) {
+                    log("Auto-save: Downloading first 100 records...");
+                    window.location.href = `/api/download?path=${encodeURIComponent(resultPath)}`;
+                }
+            }
         } else if (data.type === 'status') {
             log(data.message);
         } else if (data.type === 'completed') {
@@ -216,4 +233,9 @@ clearBtn.addEventListener('click', async () => {
         await fetch('/api/reset', { method: 'POST' });
         location.reload();
     }
+});
+
+downloadBtn.addEventListener('click', () => {
+    if (!resultPath) return alert("Report not ready yet.");
+    window.location.href = `/api/download?path=${encodeURIComponent(resultPath)}`;
 });

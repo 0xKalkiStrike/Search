@@ -141,6 +141,16 @@ async function processScrape(jobId, searchItems, searchSource, data, workbook, o
       data[rowIndex][1] = result.details;
       data[rowIndex][2] = result.url;
       
+      // Persistent Save: Save workbook every 10 records to allow intermediate downloads
+      if (job.results.length % 10 === 0 || job.results.length === job.total) {
+        try {
+          const cpWorksheet = XLSX.utils.aoa_to_sheet(data);
+          const cpWorkbook = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(cpWorkbook, cpWorksheet, "Search Results");
+          XLSX.writeFile(cpWorkbook, outPath);
+        } catch (e) { console.error('Checkpoint save failed:', e); }
+      }
+
       // Persist session state
       saveSession(jobId, { 
         status: 'processing', 
@@ -154,7 +164,14 @@ async function processScrape(jobId, searchItems, searchSource, data, workbook, o
       });
 
       if (job.sse) {
-        job.sse.write(`data: ${JSON.stringify({ type: 'progress', result, progress: job.progress, count: job.results.length })}\n\n`);
+        job.sse.write(`data: ${JSON.stringify({ 
+          type: 'progress', 
+          result, 
+          progress: job.progress, 
+          count: job.results.length,
+          checkpoint: job.results.length >= 100 && job.results.length % 100 === 0,
+          file: outPath
+        })}\n\n`);
       }
     }
 
