@@ -34,7 +34,7 @@ async function searchDetails(items, preferredSource, onStatus) {
     }
 
     if (!success) {
-      let fallbackChain = ['Google', 'Bing', 'DuckDuckGo'];
+      let fallbackChain = ['DuckDuckGo', 'Google', 'Bing'];
 
       for (const source of fallbackChain) {
         try {
@@ -149,6 +149,11 @@ async function fetchWithRetry(item, source, userAgent, onStatus, retries = 1) {
   for (let i = 0; i <= retries; i++) {
     try {
       if (onStatus) onStatus(`Initializing ${source} query for "${item.query}"...`);
+
+      if (source === 'DuckDuckGo') {
+        return await searchViaDuckDuckGoBrowser(item, userAgent, onStatus);
+      }
+
       const query = encodeURIComponent(item.query);
       let searchUrl = '';
       let headers = {
@@ -166,10 +171,7 @@ async function fetchWithRetry(item, source, userAgent, onStatus, retries = 1) {
         'Cache-Control': 'max-age=0'
       };
 
-      if (source === 'DuckDuckGo') {
-        searchUrl = `https://html.duckduckgo.com/html/?q=${query}`;
-        headers['Referer'] = 'https://duckduckgo.com/';
-      } else if (source === 'Google') {
+      if (source === 'Google') {
         searchUrl = `https://www.google.com/search?q=${query}&gl=us&hl=en&num=3`;
         headers['Referer'] = 'https://www.google.com/';
       } else if (source === 'Bing') {
@@ -190,11 +192,7 @@ async function fetchWithRetry(item, source, userAgent, onStatus, retries = 1) {
       let email = "Not found";
       let socials = { twitter: null, facebook: null, instagram: null, linkedin: null };
 
-      if (source === 'DuckDuckGo') {
-        const first = $('.result').first();
-        details = first.find('.result__snippet').text().trim() || "N/A";
-        url = first.find('.result__url').text().trim() || "N/A";
-      } else if (source === 'Google') {
+      if (source === 'Google') {
         details = $('.VwiC3b').first().text() || $('.hgKElc').first().text() || $('.BNeawe').first().text() || "No snippet found.";
         url = $('.yuRUbf a').first().attr('href') || $('.kCrYT a').first().attr('href') || "N/A";
         if (url.startsWith('/url?q=')) url = decodeURIComponent(url.split('=')[1].split('&')[0]);
@@ -249,6 +247,119 @@ async function fetchWithRetry(item, source, userAgent, onStatus, retries = 1) {
       await new Promise(r => setTimeout(r, wait));
     }
   }
+}
+
+function normalizeDuckDuckGoResultUrl(rawUrl) {
+  if (!rawUrl) return null;
+
+  // Typical DDG redirect format: /l/?uddg=<encoded_target>
+  if (rawUrl.startsWith('/l/?')) {
+    const params = new URLSearchParams(rawUrl.split('?')[1] || '');
+    const encoded = params.get('uddg');
+    if (encoded) {
+      try {
+        return decodeURIComponent(encoded);
+      } catch (e) {
+        return encoded;
+      }
+    }
+  }
+
+  if (rawUrl.startsWith('//')) return `https:${rawUrl}`;
+  if (rawUrl.startsWith('http')) return rawUrl;
+  return null;
+}
+
+function scoreScrapedSignals(result) {
+  let signalScore = 0;
+  if (result.phone && result.phone !== 'Not found') signalScore += 30;
+  if (result.email && result.email !== 'Not found') signalScore += 30;
+  if (result.socials?.linkedin) signalScore += 10;
+  if (result.socials?.facebook) signalScore += 10;
+  if (result.socials?.instagram) signalScore += 10;
+  if (result.socials?.twitter) signalScore += 10;
+  return signalScore;
+}
+
+async function searchViaDuckDuckGoBrowser(item, userAgent, onStatus) {
+  const query = encodeURIComponent(item.query);
+  const response = await axios.get(`https://html.duckduckgo.com/html/?q=${query}`, {
+    timeout: 15000,
+    headers: {
+      'User-Agent': userAgent,
+      'Referer': 'https://duckduckgo.com/',
+      'Accept-Language': 'en-US,en;q=0.9'
+    },
+    validateStatus: (status) => status === 200
+  });
+
+  const $ = cheerio.load(response.data);
+  const candidates = [];
+
+  $('.result').slice(0, 7).each((_, el) => {
+    const title = $(el).find('.result__title').text().trim();
+    const snippet = $(el).find('.result__snippet').text().trim();
+    const href = $(el).find('.result__a').attr('href') || $(el).find('.result__url').attr('href');
+    const normalizedUrl = normalizeDuckDuckGoResultUrl(href);
+    if (normalizedUrl && normalizedUrl.startsWith('http')) {
+      candidates.push({ title, snippet, url: normalizedUrl });
+    }
+  });
+
+  if (!candidates.length) {
+    return {
+      row: item.row,
+      query: item.query,
+      details: 'No DuckDuckGo results found.',
+      url: 'N/A',
+      phone: 'Not found',
+      email: 'Not found',
+      socials: { twitter: null, facebook: null, instagram: null, linkedin: null },
+      video: 'Not found',
+      score: 0
+    };
+  }
+
+  let best = null;
+
+  for (const candidate of candidates) {
+    try {
+      if (onStatus) onStatus(`[DDG_BROWSER] Visiting ${candidate.url}`);
+      const scraped = await scrapeDirectUrl({ ...item, url: candidate.url }, userAgent);
+      const combinedDetails = candidate.snippet
+        ? `[DDG] ${candidate.snippet} | ${scraped.details}`
+        : scraped.details;
+      const merged = { ...scraped, details: combinedDetails, query: item.query };
+      const signalScore = scoreScrapedSignals(merged);
+
+      if (!best || signalScore > best.signalScore) {
+        best = { ...merged, signalScore };
+      }
+
+      if (signalScore >= 60) break; // strong match, stop early
+    } catch (err) {
+      if (onStatus) onStatus(`[DDG_BROWSER] Skipped blocked result ${candidate.url}`);
+    }
+  }
+
+  if (best) {
+    const { signalScore, ...result } = best;
+    result.score = Math.max(result.score || 0, Math.min(100, 25 + signalScore));
+    return result;
+  }
+
+  const fallback = candidates[0];
+  return {
+    row: item.row,
+    query: item.query,
+    details: fallback.snippet || 'Snippet-only result from DuckDuckGo.',
+    url: fallback.url,
+    phone: 'Not found',
+    email: 'Not found',
+    socials: { twitter: null, facebook: null, instagram: null, linkedin: null },
+    video: 'Not found',
+    score: 20
+  };
 }
 
 module.exports = { searchDetails };
