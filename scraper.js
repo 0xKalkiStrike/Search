@@ -84,9 +84,12 @@ async function scrapeDirectUrl(item, userAgent) {
     validateStatus: (status) => status === 200
   });
 
+  const baseUrl = item.url;
   const $ = cheerio.load(response.data);
   const title = $('title').text().trim() || "Website";
   const bodyText = $('body').text();
+  const extraPageText = await fetchImportantInfoPages($, baseUrl, userAgent);
+  const combinedBodyText = `${bodyText}\n${extraPageText}`;
   
   let socials = { twitter: null, facebook: null, instagram: null, linkedin: null };
   const links = $('a');
@@ -101,10 +104,10 @@ async function scrapeDirectUrl(item, userAgent) {
     if (l.includes('twitter.com/') || l.includes('x.com/')) socials.twitter = href;
   });
 
-  const phoneMatches = bodyText.match(/(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g);
+  const phoneMatches = combinedBodyText.match(/(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g);
   const phone = phoneMatches ? [...new Set(phoneMatches)].slice(0, 3).join(', ') : "Not found";
 
-  const emailMatches = bodyText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g);
+  const emailMatches = combinedBodyText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g);
   const email = emailMatches ? [...new Set(emailMatches)].map(e => e.toLowerCase()).slice(0, 3).join(', ') : "Not found";
 
   // Video detection (More advanced)
@@ -135,7 +138,7 @@ async function scrapeDirectUrl(item, userAgent) {
   return {
     row: item.row,
     query: item.query || title,
-    details: `[${title}] ` + bodyText.substring(0, 450).replace(/\s+/g, ' ').trim() + '...',
+    details: `[${title}] ` + combinedBodyText.substring(0, 450).replace(/\s+/g, ' ').trim() + '...',
     url: item.url,
     phone,
     email,
@@ -143,6 +146,60 @@ async function scrapeDirectUrl(item, userAgent) {
     video: videoLink,
     score: Math.min(score, 100)
   };
+}
+
+function resolveInternalUrl(baseUrl, href) {
+  if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) {
+    return null;
+  }
+
+  try {
+    const full = new URL(href, baseUrl);
+    const root = new URL(baseUrl);
+    if (full.hostname !== root.hostname) return null;
+    return full.toString();
+  } catch (e) {
+    return null;
+  }
+}
+
+async function fetchImportantInfoPages($, baseUrl, userAgent) {
+  const keywords = ['contact', 'about', 'privacy', 'policy', 'support', 'impressum'];
+  const candidates = [];
+  const seen = new Set();
+
+  $('a').each((_, el) => {
+    const href = $(el).attr('href');
+    const text = $(el).text().toLowerCase().trim();
+    const normalizedHref = (href || '').toLowerCase();
+    const isImportant = keywords.some(k => text.includes(k) || normalizedHref.includes(k));
+    if (!isImportant) return;
+
+    const url = resolveInternalUrl(baseUrl, href);
+    if (!url || seen.has(url)) return;
+    seen.add(url);
+    candidates.push(url);
+  });
+
+  // hard cap to avoid slowdowns / bans
+  const pagesToFetch = candidates.slice(0, 3);
+  let aggregate = '';
+
+  for (const pageUrl of pagesToFetch) {
+    try {
+      const pageResponse = await axios.get(pageUrl, {
+        timeout: 15000,
+        headers: { 'User-Agent': userAgent },
+        validateStatus: (status) => status === 200
+      });
+      const $$ = cheerio.load(pageResponse.data);
+      aggregate += '\n' + $$('body').text();
+    } catch (e) {
+      continue;
+    }
+  }
+
+  return aggregate;
 }
 
 async function fetchWithRetry(item, source, userAgent, onStatus, retries = 1) {
