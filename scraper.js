@@ -1,3 +1,6 @@
+if (process.env.RENDER) {
+  process.env.PLAYWRIGHT_BROWSERS_PATH = '/opt/render/project/src/.cache/ms-playwright';
+}
 const { chromium } = require('playwright');
 const { ValidationEngine } = require('./validationEngine');
 const { ConfidenceEngine } = require('./confidenceEngine');
