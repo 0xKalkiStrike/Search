@@ -13,7 +13,7 @@ export interface ConfidenceInput {
 
 export interface ConfidenceResult {
   score: number;
-  status: 'Auto Approve' | 'Needs Review' | 'Reject';
+  status: 'Auto Approve' | 'Reject';
   reasons: string[];
 }
 
@@ -67,11 +67,9 @@ export class ConfidenceEngine {
     // Clamp score
     score = Math.min(100, Math.max(0, score));
 
-    let status: 'Auto Approve' | 'Needs Review' | 'Reject';
-    if (score > 85) {
+    let status: 'Auto Approve' | 'Reject';
+    if (score >= 70) {
       status = 'Auto Approve';
-    } else if (score >= 60) {
-      status = 'Needs Review';
     } else {
       status = 'Reject';
     }

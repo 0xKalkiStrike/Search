@@ -106,20 +106,32 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
       const bodyText = await p.innerText('body');
       const html = await p.content();
       
-      // 1. Text-based extraction (Improved Regex)
+      // 1. Text & HTML-based extraction (Enhanced Regex)
+      // Robust Email Regex including obfuscated patterns
       const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
-      const phoneRegex = /(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g;
+      const obfuscatedEmailRegex = /[a-zA-Z0-9._%+-]+\s?(?:\[at\]|@|\(at\))\s?[a-zA-Z0-9.-]+\s?(?:\.|\[dot\]|\(dot\))\s?[a-zA-Z]{2,}/gi;
       
-      const emails = bodyText.match(emailRegex) || [];
-      const phones = bodyText.match(phoneRegex) || [];
+      // Broad Phone Regex for international formats
+      const phoneRegex = /(?:\+?\d{1,3}[-.\s]?)?\(?\d{2,4}?\)?[-.\s]?\d{3,4}[-.\s]?\d{4,6}/g;
+      
+      const emails = [
+        ...(bodyText.match(emailRegex) || []),
+        ...(html.match(emailRegex) || []),
+        ...(bodyText.match(obfuscatedEmailRegex) || []).map(e => e.replace(/\[at\]|\(at\)/gi, '@').replace(/\[dot\]|\(dot\)/gi, '.').replace(/\s/g, ''))
+      ];
+      
+      const phones = [
+        ...(bodyText.match(phoneRegex) || []),
+        ...(html.match(phoneRegex) || [])
+      ];
       
       // 2. Attribute-based extraction (mailto/tel)
       const mailtos = await p.$$eval('a[href^="mailto:"]', els => els.map(el => el.getAttribute('href')?.replace('mailto:', '').split('?')[0] || ''));
       const tels = await p.$$eval('a[href^="tel:"]', els => els.map(el => el.getAttribute('href')?.replace('tel:', '') || ''));
       
       return { 
-        emails: [...new Set([...emails, ...mailtos])].filter(e => e.includes('@')), 
-        phones: [...new Set([...phones, ...tels])].filter(p => p.length > 7)
+        emails: [...new Set([...emails, ...mailtos])].filter(e => e.includes('@') && e.length > 5), 
+        phones: [...new Set([...phones, ...tels])].filter(p => p.replace(/\D/g, '').length >= 8)
       };
     };
 
@@ -127,26 +139,40 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
     allEmails.push(...firstPass.emails);
     allPhones.push(...firstPass.phones);
 
-    // 3. Auto-Navigation to Contact Page if needed
+    // 3. Auto-Navigation to Contact Page if needed (Multiple attempts)
     if (allEmails.length === 0 && allPhones.length === 0) {
-      if (onStatus) onStatus(`[DEEP SCAN] No info on home. Searching for Contact page...`);
-      const contactLink = await page.evaluate(() => {
-        const links = Array.from(document.querySelectorAll('a'));
-        const target = links.find(l => {
-          const text = l.innerText.toLowerCase();
-          return text.includes('contact') || text.includes('about') || text.includes('support') || text.includes('reach');
-        });
-        return target ? target.href : null;
+      if (onStatus) onStatus(`[DEEP SCAN] No info on home. Searching for Contact/About pages...`);
+      const links = await page.evaluate(() => {
+        const anchors = Array.from(document.querySelectorAll('a'));
+        return anchors
+          .map(a => ({ href: a.href, text: a.innerText.toLowerCase() }))
+          .filter(a => 
+            a.text.includes('contact') || 
+            a.text.includes('about') || 
+            a.text.includes('support') || 
+            a.text.includes('reach') ||
+            a.text.includes('help')
+          )
+          .map(a => a.href);
       });
 
-      if (contactLink && contactLink !== url && contactLink.startsWith('http')) {
-        if (onStatus) onStatus(`[DEEP SCAN] Navigating to ${contactLink}...`);
-        await page.goto(contactLink, { waitUntil: 'domcontentloaded', timeout: 20000 });
-        await page.waitForTimeout(2000);
-        const secondPass = await extract(page);
-        allEmails.push(...secondPass.emails);
-        allPhones.push(...secondPass.phones);
-        finalUrl = contactLink;
+      const uniqueLinks = [...new Set(links)].slice(0, 3); // Try up to 3 likely pages
+
+      for (const link of uniqueLinks) {
+        if (link && link !== url && link.startsWith('http')) {
+          try {
+            if (onStatus) onStatus(`[DEEP SCAN] Checking ${link}...`);
+            await page.goto(link, { waitUntil: 'domcontentloaded', timeout: 15000 });
+            await page.waitForTimeout(2000);
+            const pass = await extract(page);
+            allEmails.push(...pass.emails);
+            allPhones.push(...pass.phones);
+            if (allEmails.length > 0 || allPhones.length > 0) {
+              finalUrl = link;
+              break; 
+            }
+          } catch (e) {}
+        }
       }
     }
 
@@ -166,6 +192,8 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
 
     for (const phone of uniquePhones) {
       const validation = ValidationEngine.validatePhone(phone);
+      // Clean phone for proof finding
+      const cleanPhone = phone.replace(/[()\-.\s]/g, '');
       const proofPath = await captureProof(page, phone, `phone_${item.row}_${Date.now()}.png`);
       if (proofPath) proofs.push(proofPath);
       validatedPhones.push({ value: phone, ...validation, proof: proofPath });
@@ -180,8 +208,8 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
     const bestPhone = validatedPhones.find(p => p.isValid) || validatedPhones[0];
 
     const socials: any = { twitter: null, facebook: null, instagram: null, linkedin: null, whatsapp: null };
-    const links = await page.$$eval('a', (els) => els.map(a => a.href));
-    links.forEach(l => {
+    const allLinks = await page.$$eval('a', (els) => els.map(a => a.href));
+    allLinks.forEach(l => {
         const low = l.toLowerCase();
         if (low.includes('linkedin.com/company/') || low.includes('linkedin.com/in/')) socials.linkedin = l;
         if (low.includes('facebook.com/')) socials.facebook = l;
@@ -209,7 +237,7 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
       query: item.query || title,
       details: bodyText.substring(0, 300).replace(/\s+/g, ' ').trim() + '...',
       url: finalUrl,
-      phone: validatedPhones.map(p => p.formatted).join(', ') || 'Not found',
+      phone: validatedPhones.map(p => p.formatted || p.value).join(', ') || 'Not found',
       email: validatedEmails.map(e => e.value).join(', ') || 'Not found',
       validatedEmails,
       validatedPhones,
@@ -228,14 +256,15 @@ async function enrichWithSearch(browser: Browser, item: any, onStatus: (msg: str
   const context = await browser.newContext();
   const page = await context.newPage();
   try {
-    const query = encodeURIComponent(`"${item.query}" contact email phone`);
+    const query = encodeURIComponent(`"${item.query}" contact email phone number`);
     const searchUrl = `https://www.google.com/search?q=${query}`;
     
+    if (onStatus) onStatus(`[ENRICH] Searching Google for ${item.query}...`);
     await page.goto(searchUrl, { waitUntil: 'domcontentloaded' });
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(3000);
 
     // Extract potential links and snippets
-    const searchResults = await page.$$eval('div.g', els => els.slice(0, 3).map(el => {
+    const searchResults = await page.$$eval('div.g', els => els.slice(0, 5).map(el => {
       const link = el.querySelector('a')?.href;
       const snippet = (el as HTMLElement).innerText;
       return { link, snippet };
@@ -244,36 +273,48 @@ async function enrichWithSearch(browser: Browser, item: any, onStatus: (msg: str
     let foundEmails: string[] = [];
     let foundPhones: string[] = [];
 
+    const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+    const phoneRegex = /(?:\+?\d{1,3}[-.\s]?)?\(?\d{2,4}?\)?[-.\s]?\d{3,4}[-.\s]?\d{4,6}/g;
+
     for (const res of searchResults) {
-      if (!res.link) continue;
-      
-      // Extract from snippet first
-      const emails = res.snippet.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
-      const phones = res.snippet.match(/(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g) || [];
+      // 1. Extract from snippet
+      const emails = res.snippet.match(emailRegex) || [];
+      const phones = res.snippet.match(phoneRegex) || [];
       foundEmails.push(...emails);
       foundPhones.push(...phones);
 
-      // Deep scrape the result link if it's not a common social site (to avoid auth walls)
-      if (!res.link.includes('facebook.com') && !res.link.includes('youtube.com') && !res.link.includes('instagram.com')) {
+      // 2. Deep scrape the result link if it looks promising and is not a major platform
+      if (res.link && 
+          !res.link.includes('facebook.com') && 
+          !res.link.includes('youtube.com') && 
+          !res.link.includes('instagram.com') &&
+          !res.link.includes('linkedin.com') &&
+          (foundEmails.length < 2 || foundPhones.length < 2)) {
          try {
+           if (onStatus) onStatus(`[ENRICH] Checking external source: ${res.link.substring(0, 40)}...`);
            const tempPage = await context.newPage();
-           await tempPage.goto(res.link, { waitUntil: 'domcontentloaded', timeout: 15000 });
+           await tempPage.goto(res.link, { waitUntil: 'domcontentloaded', timeout: 12000 });
            const body = await tempPage.innerText('body');
-           foundEmails.push(...(body.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || []));
-           foundPhones.push(...(body.match(/(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g) || []));
+           const html = await tempPage.content();
+           
+           foundEmails.push(...(body.match(emailRegex) || []));
+           foundEmails.push(...(html.match(emailRegex) || []));
+           foundPhones.push(...(body.match(phoneRegex) || []));
+           foundPhones.push(...(html.match(phoneRegex) || []));
+           
            await tempPage.close();
          } catch(e) {}
       }
     }
 
-    const uniqueEmails = [...new Set(foundEmails.map(e => e.toLowerCase()))];
-    const uniquePhones = [...new Set(foundPhones)];
+    const uniqueEmails = [...new Set(foundEmails.map(e => e.toLowerCase()))].filter(e => e.length > 5);
+    const uniquePhones = [...new Set(foundPhones)].filter(p => p.replace(/\D/g, '').length >= 8);
 
     return {
       email: uniqueEmails.join(', ') || 'Not found',
       phone: uniquePhones.join(', ') || 'Not found',
       details: `Enriched via Search Results: ${searchResults.length} sources analyzed.`,
-      confidence: { score: 75, status: 'Needs Review', reasons: ['Enriched via external search'] }
+      confidence: { score: uniqueEmails.length > 0 || uniquePhones.length > 0 ? 80 : 40, status: (uniqueEmails.length > 0 || uniquePhones.length > 0 ? 'Auto Approve' : 'Reject'), reasons: ['Enriched via external search'] }
     };
   } finally {
     await page.close();

@@ -11,10 +11,9 @@ const downloadBtn = document.getElementById('download-btn');
 const engineLog = document.getElementById('engine-log');
 const clearBtn = document.getElementById('clear-btn');
 const tabDashboard = document.getElementById('tab-dashboard');
-const tabReview = document.getElementById('tab-review');
+
 const resultsView = document.getElementById('results-container');
-const reviewView = document.getElementById('review-container');
-const reviewCountBadge = document.getElementById('review-count');
+
 const viewTitle = document.getElementById('view-title');
 
 let selectedFile = null;
@@ -98,21 +97,7 @@ function restoreSession(session) {
 }
 
 // Tab Switching
-tabDashboard.addEventListener('click', () => {
-    tabDashboard.classList.add('active');
-    tabReview.classList.remove('active');
-    resultsView.classList.remove('hidden');
-    reviewView.classList.add('hidden');
-    viewTitle.innerText = "Analysis Workspace";
-});
 
-tabReview.addEventListener('click', () => {
-    tabReview.classList.add('active');
-    tabDashboard.classList.remove('active');
-    resultsView.classList.add('hidden');
-    reviewView.classList.remove('hidden');
-    viewTitle.innerText = "Review Queue";
-});
 dropZone.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', (e) => {
     if (e.target.files.length > 0) handleFile(e.target.files[0]);
@@ -333,8 +318,8 @@ function appendBrandCard(idx, item) {
     const offset = 251.2 - (251.2 * score) / 100;
     const isOnline = item.url !== 'N/A';
     const rowColor = isOnline ? 'var(--primary)' : 'var(--text-dim)';
-    const status = item.confidence?.status || (score > 80 ? 'Auto Approve' : 'Needs Review');
-    const statusClass = status === 'Auto Approve' ? 'tag-approved' : (status === 'Needs Review' ? 'tag-review' : 'tag-reject');
+    const status = item.confidence?.status || (score >= 70 ? 'Auto Approve' : 'Reject');
+    const statusClass = status === 'Auto Approve' ? 'tag-approved' : 'tag-reject';
     
     const card = document.createElement('div');
     card.className = 'brand-card';
@@ -389,13 +374,7 @@ function appendBrandCard(idx, item) {
         </div>
     `;
     
-    if (status === 'Needs Review') {
-        const reviewClone = card.cloneNode(true);
-        reviewView.prepend(reviewClone);
-        const count = parseInt(reviewCountBadge.innerText) || 0;
-        reviewCountBadge.innerText = count + 1;
-        reviewCountBadge.classList.remove('hidden');
-    }
+
     
     resultsContainer.prepend(card);
 }

@@ -87,6 +87,7 @@ async function scrapeDirectUrl(item, userAgent) {
   const $ = cheerio.load(response.data);
   const title = $('title').text().trim() || "Website";
   const bodyText = $('body').text();
+  const html = response.data;
   
   let socials = { twitter: null, facebook: null, instagram: null, linkedin: null };
   const links = $('a');
@@ -101,11 +102,20 @@ async function scrapeDirectUrl(item, userAgent) {
     if (l.includes('twitter.com/') || l.includes('x.com/')) socials.twitter = href;
   });
 
-  const phoneMatches = bodyText.match(/(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g);
-  const phone = phoneMatches ? [...new Set(phoneMatches)].slice(0, 3).join(', ') : "Not found";
+  const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+  const phoneRegex = /(?:\+?\d{1,3}[-.\s]?)?\(?\d{2,4}?\)?[-.\s]?\d{3,4}[-.\s]?\d{4,6}/g;
 
-  const emailMatches = bodyText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g);
-  const email = emailMatches ? [...new Set(emailMatches)].map(e => e.toLowerCase()).slice(0, 3).join(', ') : "Not found";
+  const phoneMatches = [
+    ...(bodyText.match(phoneRegex) || []),
+    ...(html.match(phoneRegex) || [])
+  ];
+  const phone = phoneMatches.length > 0 ? [...new Set(phoneMatches)].slice(0, 3).join(', ') : "Not found";
+
+  const emailMatches = [
+    ...(bodyText.match(emailRegex) || []),
+    ...(html.match(emailRegex) || [])
+  ];
+  const email = emailMatches.length > 0 ? [...new Set(emailMatches)].map(e => e.toLowerCase()).slice(0, 3).join(', ') : "Not found";
 
   // Video detection (More advanced)
   let videoLink = "Not found";
