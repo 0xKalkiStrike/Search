@@ -210,13 +210,6 @@ h1, h2, h3, .section-title { font-family: 'Outfit', sans-serif; }
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    --glass: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --warning: #ff9800;
-    --danger: #f44336;
-    --success: #4caf50;
-    --gradient-warning: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
-}
     padding: 2px 8px;
     border-radius: 4px;
     margin-bottom: 0.8rem;

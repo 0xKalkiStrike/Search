@@ -1,6 +1,6 @@
 import { chromium, Browser, Page, ElementHandle } from 'playwright';
 import { ValidationEngine, EmailValidationResult, PhoneValidationResult } from './validationEngine';
-import { ConfidenceEngine, ConfidenceResult } from './confidenceEngine';
+import { ConfidenceEngine, ConfidenceResult, ConfidenceInput } from './confidenceEngine';
 import * as path from 'path';
 import * as fs from 'fs';
 
