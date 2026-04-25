@@ -6,7 +6,7 @@ import * as XLSX from 'xlsx';
 import { searchDetails } from './scraper';
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const isVercel = process.env.VERCEL || false;
 const statsPath = isVercel ? '/tmp/stats.json' : path.join(__dirname, 'stats.json');
