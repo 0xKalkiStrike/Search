@@ -1,6 +1,3 @@
-if (process.env.RENDER) {
-  process.env.PLAYWRIGHT_BROWSERS_PATH = '/opt/render/project/src/.cache/ms-playwright';
-}
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
