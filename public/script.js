@@ -10,6 +10,12 @@ const processorName = document.getElementById('processor-name');
 const downloadBtn = document.getElementById('download-btn');
 const engineLog = document.getElementById('engine-log');
 const clearBtn = document.getElementById('clear-btn');
+const tabDashboard = document.getElementById('tab-dashboard');
+const tabReview = document.getElementById('tab-review');
+const resultsView = document.getElementById('results-container');
+const reviewView = document.getElementById('review-container');
+const reviewCountBadge = document.getElementById('review-count');
+const viewTitle = document.getElementById('view-title');
 
 let selectedFile = null;
 let currentJobId = null;
@@ -91,7 +97,22 @@ function restoreSession(session) {
     }
 }
 
-// File Operations
+// Tab Switching
+tabDashboard.addEventListener('click', () => {
+    tabDashboard.classList.add('active');
+    tabReview.classList.remove('active');
+    resultsView.classList.remove('hidden');
+    reviewView.classList.add('hidden');
+    viewTitle.innerText = "Analysis Workspace";
+});
+
+tabReview.addEventListener('click', () => {
+    tabReview.classList.add('active');
+    tabDashboard.classList.remove('active');
+    resultsView.classList.add('hidden');
+    reviewView.classList.remove('hidden');
+    viewTitle.innerText = "Review Queue";
+});
 dropZone.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', (e) => {
     if (e.target.files.length > 0) handleFile(e.target.files[0]);
@@ -265,30 +286,26 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
             if (originalData[data.result.row - 1]) {
                 const rowIndex = data.result.row - 1;
                 const r = data.result;
-                // Append results after the original columns
                 originalData[rowIndex][startCol + 0] = r.details;
                 originalData[rowIndex][startCol + 1] = r.url;
                 originalData[rowIndex][startCol + 2] = r.phone;
                 originalData[rowIndex][startCol + 3] = r.email;
-                originalData[rowIndex][startCol + 4] = r.video || 'Not found';
-                originalData[rowIndex][startCol + 5] = r.score || 0;
-                originalData[rowIndex][startCol + 6] = r.score > 80 ? 'Elite' : 'Average';
-                originalData[rowIndex][startCol + 7] = r.socials.linkedin ? 'YES' : 'NO';
-                originalData[rowIndex][startCol + 8] = r.socials.facebook ? 'YES' : 'NO';
-                originalData[rowIndex][startCol + 9] = r.socials.twitter ? 'YES' : 'NO';
-                originalData[rowIndex][startCol + 10] = r.socials.instagram ? 'YES' : 'NO';
+                originalData[rowIndex][startCol + 4] = r.confidence.score;
+                originalData[rowIndex][startCol + 5] = r.confidence.status;
+                originalData[rowIndex][startCol + 6] = r.confidence.reasons.join(', ');
+                originalData[rowIndex][startCol + 7] = r.proofs.join(' | ');
             }
 
             // Handle intermediate milestones
-            if (data.file) resultPath = data.file;
             if (data.checkpoint) {
                 downloadBtn.classList.remove('hidden');
-                log("Milestone: High-volume data reached. Intermediate report available.");
-                // Show download button at checkpoints
-                if (data.count === 100) {
-                    downloadBtn.classList.remove('hidden');
-                    log("Milestone: High-volume data reached. Manual report download available.");
-                }
+                log("Milestone: High-volume data reached (100 records). Triggering automated report...");
+                
+                // AUTOMATIC DOWNLOAD AT 100 DATA MILESTONE
+                setTimeout(() => {
+                    const downloadEvent = new Event('click');
+                    downloadBtn.dispatchEvent(downloadEvent);
+                }, 1000);
             }
         } else if (data.type === 'status') {
             log(data.message);
@@ -312,14 +329,12 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
 }
 
 function appendBrandCard(idx, item) {
-    // Generate score if not present (persistence recovery)
-    if (!item.score) {
-        item.score = item.url !== 'N/A' ? (Math.floor(Math.random() * 30) + 65) : 0;
-    }
-    const score = item.score;
+    const score = item.confidence?.score || 0;
     const offset = 251.2 - (251.2 * score) / 100;
     const isOnline = item.url !== 'N/A';
     const rowColor = isOnline ? 'var(--primary)' : 'var(--text-dim)';
+    const status = item.confidence?.status || (score > 80 ? 'Auto Approve' : 'Needs Review');
+    const statusClass = status === 'Auto Approve' ? 'tag-approved' : (status === 'Needs Review' ? 'tag-review' : 'tag-reject');
     
     const card = document.createElement('div');
     card.className = 'brand-card';
@@ -331,11 +346,14 @@ function appendBrandCard(idx, item) {
             </svg>
             <div class="score-val">
                 <span>${score}</span>
-                <label>Score</label>
+                <label>Confidence</label>
             </div>
         </div>
         <div class="card-details">
-            <h3>${item.query}</h3>
+            <div class="card-header-row">
+                <h3>${item.query}</h3>
+                <span class="validation-tag ${statusClass}">${status}</span>
+            </div>
             <div class="contact-strip">
                 <a href="${item.url}" target="_blank" class="website-link">
                     ${item.url.substring(0, 30)}${item.url.length > 30 ? '...' : ''}
@@ -345,31 +363,40 @@ function appendBrandCard(idx, item) {
                 <span class="meta-separator">•</span>
                 <span class="meta-email">${item.email || 'No Email'}</span>
             </div>
-            ${item.video && item.video !== 'Not found' ? `
-            <div class="video-link-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-                <a href="${item.video}" target="_blank">Video Found</a>
-            </div>` : ''}
+            
+            <div class="proof-gallery">
+                ${(item.proofs || []).map(p => `
+                    <div class="proof-item" onclick="window.open('${p}', '_blank')">
+                        <img src="${p}" alt="Proof">
+                    </div>
+                `).join('')}
+            </div>
+
             <p class="description">${item.details}</p>
-            <div class="social-strip">
-                ${['linkedin', 'twitter', 'facebook', 'instagram'].map(s => {
-                    const active = item.socials && item.socials[s];
-                    const label = s === 'linkedin' ? 'IN' : s.substring(0, 2).toUpperCase();
-                    const url = typeof active === 'string' ? active : '#';
-                    return `<a href="${url}" target="_blank" class="social-dot ${active ? 'active' : ''}" title="${s.charAt(0).toUpperCase() + s.slice(1)}">${label}</a>`;
-                }).join('')}
+            
+            <div class="reason-list">
+                ${(item.confidence?.reasons || []).map(r => `<span>${r}</span>`).join('')}
             </div>
         </div>
         <div class="metrics-panel">
-            <span class="branding-badge">${score > 80 ? 'Elite' : 'Average'} Branding</span>
+            <span class="branding-badge">${score > 85 ? 'High Trust' : (score >= 60 ? 'Suspicious' : 'Unreliable')}</span>
             <div class="meta-info">
                 <div class="meta-item">
-                    <label>Status</label>
-                    <span class="meta-val ${isOnline ? 'status-online' : ''}">${isOnline ? 'Online' : 'Offline'}</span>
+                    <label>Source</label>
+                    <span class="meta-val status-online">Verified</span>
                 </div>
             </div>
         </div>
     `;
+    
+    if (status === 'Needs Review') {
+        const reviewClone = card.cloneNode(true);
+        reviewView.prepend(reviewClone);
+        const count = parseInt(reviewCountBadge.innerText) || 0;
+        reviewCountBadge.innerText = count + 1;
+        reviewCountBadge.classList.remove('hidden');
+    }
+    
     resultsContainer.prepend(card);
 }
 
@@ -403,15 +430,10 @@ function flattenData(results) {
         flatItem["Website"] = item.url || "";
         flatItem["Phones"] = item.phone || "";
         flatItem["Emails"] = item.email || "";
-        flatItem["Videos"] = item.video || "";
-        flatItem["Branding Score"] = item.score || 0;
-        flatItem["Branding Status"] = item.score > 80 ? 'Elite' : 'Average';
-        
-        // Social Media Mapping
-        flatItem["Instagram"] = item.socials?.instagram ? "YES" : "NO";
-        flatItem["Facebook"] = item.socials?.facebook ? "YES" : "NO";
-        flatItem["Twitter"] = item.socials?.twitter ? "YES" : "NO";
-        flatItem["LinkedIn"] = item.socials?.linkedin ? "YES" : "NO";
+        flatItem["Confidence Score"] = item.confidence?.score || 0;
+        flatItem["Validation Status"] = item.confidence?.status || "Reject";
+        flatItem["Validation Reasons"] = (item.confidence?.reasons || []).join('; ');
+        flatItem["Proof References"] = (item.proofs || []).join('; ');
 
         return flatItem;
     });

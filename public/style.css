@@ -210,8 +210,13 @@ h1, h2, h3, .section-title { font-family: 'Outfit', sans-serif; }
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(255, 0, 0, 0.05);
-    border: 1px solid rgba(255, 0, 0, 0.2);
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --warning: #ff9800;
+    --danger: #f44336;
+    --success: #4caf50;
+    --gradient-warning: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
+}
     padding: 2px 8px;
     border-radius: 4px;
     margin-bottom: 0.8rem;
@@ -253,7 +258,72 @@ h1, h2, h3, .section-title { font-family: 'Outfit', sans-serif; }
   pointer-events: none; opacity: 0.5; z-index: 100;
 }
 
+.badge-warning {
+    background: var(--gradient-warning);
+    color: white;
+}
+
 .hidden { display: none !important; }
+
+/* Proofs & Validation Styles */
+.validation-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 5px;
+}
+
+.tag-approved { background: rgba(76, 175, 80, 0.2); color: #4caf50; border: 1px solid rgba(76, 175, 80, 0.3); }
+.tag-review { background: rgba(255, 152, 0, 0.2); color: #ff9800; border: 1px solid rgba(255, 152, 0, 0.3); }
+.tag-reject { background: rgba(244, 67, 54, 0.2); color: #f44336; border: 1px solid rgba(244, 67, 54, 0.3); }
+
+.proof-gallery {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.proof-item {
+    width: 60px;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    cursor: zoom-in;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+}
+
+.proof-item:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.proof-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reason-list {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.reason-list span {
+    display: block;
+}
+
+.reason-list span::before {
+    content: "• ";
+}
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-thumb { background: #1e1e22; border-radius: 10px; }
 

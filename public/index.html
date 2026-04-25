@@ -22,9 +22,14 @@
             </div>
 
             <nav class="nav-links">
-                <div class="nav-item active">
+                <div class="nav-item active" id="tab-dashboard">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                     <span>Dashboard</span>
+                </div>
+                <div class="nav-item" id="tab-review">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <span>Needs Review</span>
+                    <span class="badge badge-warning hidden" id="review-count">0</span>
                 </div>
             </nav>
 
@@ -41,8 +46,8 @@
 
             <div class="sidebar-footer">
                 <div class="global-stat">
-                    <label>Network Performance</label>
-                    <div class="stat-bar"><div class="stat-fill" style="width: 94%"></div></div>
+                    <label>Enterprise Validation</label>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 100%; background: var(--gradient-primary)"></div></div>
                 </div>
                 <button id="clear-btn" class="ghost-btn">Clear History</button>
             </div>
@@ -51,7 +56,7 @@
         <main class="app-main">
             <header class="main-top">
                 <div class="header-left">
-                    <h2 class="section-title">Analysis Workspace</h2>
+                    <h2 class="section-title" id="view-title">Analysis Workspace</h2>
                     <span class="badge" id="results-count">0 items found</span>
                 </div>
                 
@@ -73,11 +78,12 @@
 
             <div class="workspace-viewport">
                 <div class="analysis-grid" id="results-container"></div>
+                <div class="analysis-grid hidden" id="review-container"></div>
                 
                 <div id="results-placeholder" class="welcome-screen">
-                    <div class="hero-icon">💎</div>
-                    <h2>Welcome to Infinity AI</h2>
-                    <p>Load your business dataset to begin high-speed screening and brand analysis.</p>
+                    <div class="hero-icon">🛡️</div>
+                    <h2>Enterprise Data Validation</h2>
+                    <p>Automated verification with proof capture and confidence scoring.</p>
                 </div>
             </div>
         </main>
