@@ -1,4 +1,4 @@
-import { chromium, Browser, Page, ElementHandle } from 'playwright';
+import { chromium, Browser, Page, ElementHandle } from 'playwright-chromium';
 import { ValidationEngine, EmailValidationResult, PhoneValidationResult } from './validationEngine';
 import { ConfidenceEngine, ConfidenceResult, ConfidenceInput } from './confidenceEngine';
 import * as path from 'path';
