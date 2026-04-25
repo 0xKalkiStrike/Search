@@ -9,7 +9,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const isVercel = process.env.VERCEL || false;
-const statsPath = isVercel ? '/tmp/stats.json' : path.join(__dirname, 'stats.json');
+const isRender = process.env.RENDER || false;
+const isCloud = isVercel || isRender;
+const statsPath = isCloud ? '/tmp/stats.json' : path.join(__dirname, 'stats.json');
 
 function getStats() {
   try {
@@ -29,11 +31,16 @@ function updateStats(count: number) {
 }
 
 app.use(express.static('public'));
+if (isCloud) {
+  const cloudProofsDir = '/tmp/proofs';
+  if (!fs.existsSync(cloudProofsDir)) fs.mkdirSync(cloudProofsDir, { recursive: true });
+  app.use('/proofs', express.static(cloudProofsDir));
+}
 app.use(express.json({ limit: '10mb' }));
 
-const uploadDir = isVercel ? '/tmp/uploads' : path.join(__dirname, 'uploads');
-const resultsDir = isVercel ? '/tmp/results' : path.join(__dirname, 'results');
-const sessionFile = isVercel ? '/tmp/session.json' : path.join(__dirname, 'session.json');
+const uploadDir = isCloud ? '/tmp/uploads' : path.join(__dirname, 'uploads');
+const resultsDir = isCloud ? '/tmp/results' : path.join(__dirname, 'results');
+const sessionFile = isCloud ? '/tmp/session.json' : path.join(__dirname, 'session.json');
 
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 if (!fs.existsSync(resultsDir)) fs.mkdirSync(resultsDir, { recursive: true });
@@ -42,7 +49,7 @@ const activeJobs = new Map<string, any>();
 
 function getSessionPath(jobId: string) {
   if (!jobId) return sessionFile;
-  return isVercel ? `/tmp/session_${jobId}.json` : path.join(__dirname, `session_${jobId}.json`);
+  return isCloud ? `/tmp/session_${jobId}.json` : path.join(__dirname, `session_${jobId}.json`);
 }
 
 function saveSession(jobId: string, data: any) {
