@@ -131,6 +131,12 @@ async function processScrape(jobId: string, searchItems: any[], searchSource: st
     const itemsToProcess = searchItems.slice(startIndex);
 
     for (const item of itemsToProcess) {
+      // Stop processing if job was removed (e.g. via reset)
+      if (!activeJobs.has(jobId)) {
+        console.log(`Job ${jobId} stopped by user reset.`);
+        return;
+      }
+
       const onStatus = (msg: string) => {
         if (job.sse) {
           job.sse.write(`data: ${JSON.stringify({ type: 'status', message: msg })}\n\n`);
@@ -244,20 +250,116 @@ app.get('/api/download', (req, res) => {
   res.status(404).send('File not found');
 });
 
+app.get('/api/session', (req, res) => {
+  const session = loadSession();
+  res.json({ success: !!session, session });
+});
+
+app.get('/api/resume', (req, res) => {
+  const session = loadSession();
+  res.json({ success: !!session, session, message: "Use POST to trigger recovery" });
+});
+
+app.post('/api/resume', (req, res) => {
+  const { action, session, jobId: reqJobId, results: chunkResults } = req.body;
+
+  if (action === 'init' && session) {
+    const jobId = session.jobId || Date.now().toString();
+    activeJobs.set(jobId, { 
+      status: 'processing', 
+      results: [], 
+      total: session.total || 0, 
+      progress: 0,
+      session: { ...session, results: [] } 
+    });
+    return res.json({ success: true, jobId });
+  }
+
+  if (action === 'chunk' && reqJobId && chunkResults) {
+    const job = activeJobs.get(reqJobId);
+    if (!job) return res.status(404).json({ success: false, message: "Job expired during chunking" });
+    job.results.push(...chunkResults);
+    job.progress = job.total ? Math.round((job.results.length / job.total) * 100) : 0;
+    if (job.session) job.session.results = job.results;
+    return res.json({ success: true, count: job.results.length });
+  }
+
+  let sessionToUse = loadSession() || session;
+  if (!sessionToUse) return res.status(404).json({ success: false, message: "No session found." });
+
+  const jobId = sessionToUse.jobId || Date.now().toString();
+  activeJobs.set(jobId, { 
+    status: 'processing', 
+    results: sessionToUse.results || [], 
+    total: sessionToUse.total || 0, 
+    progress: sessionToUse.total ? Math.round((sessionToUse.results.length / sessionToUse.total) * 100) : 0,
+    session: sessionToUse
+  });
+
+  res.json({ success: true, jobId, total: sessionToUse.total, processed: (sessionToUse.results || []).length });
+});
+
+app.get('/api/results', (req, res) => {
+  const session = loadSession();
+  if (session) {
+    res.json({ success: true, results: session.results });
+  } else {
+    res.status(404).json({ success: false, message: "No results found" });
+  }
+});
+
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ success: false, message: 'No file uploaded' });
+    res.json({ success: true, file: req.file.path });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Internal Server Error during upload' });
+  }
+});
+
 app.get('/api/stats', (req, res) => res.json(getStats()));
 
 app.post('/api/reset', (req, res) => {
   try {
-    [uploadDir, resultsDir, path.join(__dirname, 'public/proofs')].forEach(dir => {
+    // 1. Clear memory state
+    activeJobs.clear();
+
+    // 2. Clear filesystem
+    const dirsToClear = [
+      uploadDir, 
+      resultsDir, 
+      path.join(__dirname, 'public/proofs')
+    ];
+
+    dirsToClear.forEach(dir => {
       if (fs.existsSync(dir)) {
         fs.readdirSync(dir).forEach(file => {
           const fp = path.join(dir, file);
-          if (fs.lstatSync(fp).isFile()) fs.unlinkSync(fp);
+          if (fs.lstatSync(fp).isFile()) {
+            try { fs.unlinkSync(fp); } catch(e) {}
+          }
         });
       }
     });
+
+    // 3. Specifically clear session files in root
+    const rootFiles = fs.readdirSync(__dirname);
+    rootFiles.forEach(file => {
+      if (file.startsWith('session_') && file.endsWith('.json')) {
+        try { fs.unlinkSync(path.join(__dirname, file)); } catch(e) {}
+      }
+    });
+    if (fs.existsSync(sessionFile)) fs.unlinkSync(sessionFile);
+
     res.json({ success: true });
-  } catch (e: any) { res.status(500).json({ success: false, message: e.message }); }
+  } catch (e: any) { 
+    console.error('Reset error:', e);
+    res.status(500).json({ success: false, message: e.message }); 
+  }
+});
+
+app.use('/api/*', (req, res) => {
+  res.status(404).json({ success: false, message: `Endpoint ${req.originalUrl} not found.` });
 });
 
 app.listen(port, () => {
