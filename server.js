@@ -223,17 +223,31 @@ app.get('/api/stream/:jobId', (req, res) => {
   let job = activeJobs.get(jobId);
 
   if (!job) {
+    if (!fs.existsSync(resultsDir)) fs.mkdirSync(resultsDir, { recursive: true });
     const jobFile = path.join(resultsDir, `job_${jobId}.json`);
+    console.log(`Stream request for Job ${jobId}. Checking fallback file: ${jobFile}`);
+    
     if (fs.existsSync(jobFile)) {
       try {
         const session = JSON.parse(fs.readFileSync(jobFile));
         job = { status: 'processing', results: [], total: session.total, progress: 0, session };
         activeJobs.set(jobId, job);
-      } catch (e) { }
+        console.log(`Successfully recovered Job ${jobId} from disk.`);
+      } catch (e) { 
+        console.error(`Failed to parse job file for ${jobId}:`, e);
+      }
+    } else {
+      console.warn(`Job ${jobId} not found in memory or on disk at ${jobFile}`);
     }
   }
 
-  if (!job) return res.status(404).json({ success: false, message: "Job not found" });
+  if (!job) {
+    return res.status(404).json({ 
+      success: false, 
+      message: "Job not found. The server may have restarted and lost the temporary job data. Please try starting a new analysis or use 'Resume' if available.",
+      jobId 
+    });
+  }
 
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');

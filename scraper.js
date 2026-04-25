@@ -17,19 +17,25 @@ async function searchDetails(items, preferredSource, onStatus) {
   const isCloud = process.env.VERCEL || process.env.RENDER || false;
   if (onStatus) onStatus(`[SYSTEM] Initializing browser engine...`);
   
-  const browser = await chromium.launch({ 
-    headless: true,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--no-first-run',
-      '--no-zygote',
-      '--single-process',
-      '--disable-gpu'
-    ]
-  });
+  let browser;
+  try {
+    browser = await chromium.launch({ 
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-gpu'
+      ]
+    });
+  } catch (launchError) {
+    if (onStatus) onStatus(`[CRITICAL] Browser engine failed to start: ${launchError.message}`);
+    throw new Error(`Browser launch failed: ${launchError.message}`);
+  }
   
   const results = [];
 
