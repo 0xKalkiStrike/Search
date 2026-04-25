@@ -1,5 +1,8 @@
-if (process.env.RENDER) {
-  process.env.PLAYWRIGHT_BROWSERS_PATH = '/opt/render/project/src/.cache/ms-playwright';
+const path = require('path');
+const fs = require('fs');
+
+if (process.env.RENDER || process.env.VERCEL) {
+  process.env.PLAYWRIGHT_BROWSERS_PATH = path.join(process.cwd(), '.cache', 'ms-playwright');
 }
 const express = require('express');
 const multer = require('multer');
