@@ -4,7 +4,7 @@
   "description": "An Excel-based product and company details scraper",
   "main": "server.js",
   "scripts": {
-    "start": "tsx server.ts"
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^1.4.0",
