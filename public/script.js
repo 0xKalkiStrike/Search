@@ -96,7 +96,49 @@ function restoreSession(session) {
     }
 }
 
-// Tab Switching
+    // Tab Switching
+let currentFilter = 'all';
+
+window.updateStatus = function(idx, newStatus, event) {
+    if(event) event.stopPropagation();
+    const result = allResults[idx - 1];
+    if(result && result.confidence) {
+        result.confidence.status = newStatus;
+        const card = event.target.closest('.brand-card');
+        if(card) {
+            card.dataset.status = newStatus;
+            const tag = card.querySelector('.validation-tag');
+            if(tag) {
+                tag.className = 'validation-tag ' + (newStatus === 'Auto Approve' ? 'tag-approved' : 'tag-reject');
+                tag.innerText = newStatus;
+            }
+            setFilter(currentFilter);
+        }
+    }
+}
+
+function setFilter(filterType) {
+    currentFilter = filterType;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    
+    if (filterType === 'all') document.getElementById('tab-dashboard').classList.add('active');
+    else if (filterType === 'review') document.getElementById('tab-review').classList.add('active');
+    else if (filterType === 'approved') document.getElementById('tab-approved').classList.add('active');
+
+    const cards = document.querySelectorAll('.brand-card:not(.skeleton)');
+    cards.forEach(card => {
+        const status = card.dataset.status;
+        if (filterType === 'all') {
+            card.style.display = '';
+        } else if (filterType === 'review' && status === 'Needs Review') {
+            card.style.display = '';
+        } else if (filterType === 'approved' && status === 'Auto Approve') {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
 
 dropZone.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', (e) => {
@@ -323,6 +365,14 @@ function appendBrandCard(idx, item) {
     
     const card = document.createElement('div');
     card.className = 'brand-card';
+    card.dataset.status = status;
+    
+    if (currentFilter !== 'all' && 
+        ((currentFilter === 'review' && status !== 'Needs Review') || 
+         (currentFilter === 'approved' && status !== 'Auto Approve'))) {
+        card.style.display = 'none';
+    }
+
     card.innerHTML = `
         <div class="score-box">
             <svg class="score-circle">
@@ -364,12 +414,16 @@ function appendBrandCard(idx, item) {
             </div>
         </div>
         <div class="metrics-panel">
-            <span class="branding-badge">${score > 85 ? 'High Trust' : (score >= 60 ? 'Suspicious' : 'Unreliable')}</span>
+            <span class="branding-badge">${score >= 85 ? 'High Trust' : (score >= 60 ? 'Suspicious' : 'Unreliable')}</span>
             <div class="meta-info">
                 <div class="meta-item">
                     <label>Source</label>
                     <span class="meta-val status-online">Verified</span>
                 </div>
+            </div>
+            <div class="quick-actions" style="display:flex; gap:5px; margin-top:10px;">
+                <button class="ghost-btn" onclick="updateStatus(${idx}, 'Auto Approve', event)" style="background:transparent; color:#4caf50; border:1px solid #4caf50; padding:4px 8px; border-radius:4px; font-size:11px; cursor:pointer; width:100%;">Approve</button>
+                <button class="ghost-btn" onclick="updateStatus(${idx}, 'Reject', event)" style="background:transparent; color:#f44336; border:1px solid #f44336; padding:4px 8px; border-radius:4px; font-size:11px; cursor:pointer; width:100%;">Reject</button>
             </div>
         </div>
     `;
@@ -414,6 +468,15 @@ function flattenData(results) {
         flatItem["Validation Reasons"] = (item.confidence?.reasons || []).join('; ');
         flatItem["Proof References"] = (item.proofs || []).join('; ');
 
+        let category = "Generic";
+        const emailLower = (item.email || "").toLowerCase();
+        if (emailLower.includes("sales") || emailLower.includes("marketing")) category = "Sales";
+        else if (emailLower.includes("support") || emailLower.includes("help")) category = "Support";
+        else if (emailLower.includes("hr") || emailLower.includes("career")) category = "HR";
+        else if (emailLower.includes("ceo") || emailLower.includes("founder")) category = "Founder";
+        else if (emailLower && !emailLower.includes("info") && !emailLower.includes("admin")) category = "Personal";
+        flatItem["Category"] = category;
+
         return flatItem;
     });
 }
@@ -424,10 +487,13 @@ downloadBtn.addEventListener('click', () => {
     try {
         log("System: Transforming and flattening data for report...");
         
-        // Transform nested results into flat JSON structure
-        const flatData = flattenData(allResults);
+        // Export should include Validated records only
+        const validatedResults = allResults.filter(r => r.confidence?.status !== 'Reject');
         
-        log("System: Generating local report for instant download...");
+        // Transform nested results into flat JSON structure
+        const flatData = flattenData(validatedResults);
+        
+        log(`System: Generating local report for ${validatedResults.length} validated records...`);
         const worksheet = XLSX.utils.json_to_sheet(flatData);
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, "Companies");

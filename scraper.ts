@@ -231,9 +231,12 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
         if (low.includes('wa.me/') || low.includes('whatsapp.com/send')) socials.whatsapp = l;
     });
 
+    const footerHeaderText = await page.$$eval('header, footer', els => els.map(e => (e as HTMLElement).innerText || e.textContent || '').join(' ')).catch(() => "");
+    const foundInFooterHeader = (bestEmail && footerHeaderText.includes(bestEmail.value)) || (bestPhone && footerHeaderText.includes(bestPhone.value));
+
     const confidenceInput: ConfidenceInput = {
       foundOnContactPage: isContactPage,
-      foundInFooterHeader: true,
+      foundInFooterHeader: !!foundInFooterHeader,
       frequency: allEmails.length + allPhones.length,
       mxValid: bestEmail ? bestEmail.hasMx : false,
       socialMatch: !!(socials.linkedin || socials.facebook || socials.instagram),

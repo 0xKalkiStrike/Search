@@ -22,11 +22,18 @@
             </div>
 
             <nav class="nav-links">
-                <div class="nav-item active" id="tab-dashboard">
+                <div class="nav-item active" id="tab-dashboard" onclick="setFilter('all')">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                    <span>Dashboard</span>
+                    <span>All Records</span>
                 </div>
-
+                <div class="nav-item" id="tab-review" onclick="setFilter('review')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>Needs Review</span>
+                </div>
+                <div class="nav-item" id="tab-approved" onclick="setFilter('approved')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span>Auto Approved</span>
+                </div>
             </nav>
 
             <div class="card glass entry-card">
