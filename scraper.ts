@@ -13,21 +13,40 @@ const userAgents = [
 export async function searchDetails(items: any[], preferredSource: string, onStatus: (msg: string) => void) {
   const isCloud = process.env.VERCEL || process.env.RENDER || false;
   
-  if (onStatus) onStatus(`[SYSTEM] Initializing browser engine...`);
+  if (onStatus) onStatus(`[SYSTEM] Initializing Playwright browser engine (Chromium)...`);
   
-  const browser = await chromium.launch({ 
-    headless: true,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--no-first-run',
-      '--no-zygote',
-      '--single-process',
-      '--disable-gpu'
-    ]
-  });
+  let browser: Browser;
+  try {
+    browser = await chromium.launch({ 
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-gpu'
+      ]
+    });
+  } catch (err: any) {
+    if (onStatus) onStatus(`[FATAL] Browser launch failed: ${err.message}`);
+    console.error(`[FATAL ERROR] Playwright Browser launch failed. Path/Executable missing. Details:`, err.message);
+    
+    // Auto-return clear error logs instead of crashing silently
+    return items.map(item => ({
+        row: item.row,
+        query: item.query || 'N/A',
+        url: item.url || 'N/A',
+        details: `CRITICAL SYSTEM ERROR: Browser executable not found on server. Playwright failed to launch Chromium. \nDetails: ${err.message}`,
+        phone: 'Not found',
+        email: 'Not found',
+        validation: null,
+        confidence: { score: 0, status: 'Reject', reasons: ['Browser launch failed in deployment environment'] },
+        proofs: []
+    }));
+  }
   
   const results: any[] = [];
 

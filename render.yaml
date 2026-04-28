@@ -3,10 +3,10 @@ services:
     name: brand-analysis-suite
     env: node
     plan: free
-    buildCommand: PLAYWRIGHT_BROWSERS_PATH=/opt/render/project/src/.cache/ms-playwright npm install && PLAYWRIGHT_BROWSERS_PATH=/opt/render/project/src/.cache/ms-playwright npx playwright install
+    buildCommand: npm install && npx playwright install --with-deps chromium
     startCommand: node server.js
     envVars:
       - key: NODE_VERSION
         value: 20
       - key: PLAYWRIGHT_BROWSERS_PATH
-        value: /opt/render/project/src/.cache/ms-playwright
+        value: 0
