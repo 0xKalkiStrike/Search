@@ -115,10 +115,7 @@ app.post('/api/scrape', upload.single('file'), async (req, res) => {
     if (!data[0][2]) data[0][2] = 'Source URL';
     if (!data[0][3]) data[0][3] = 'Phone';
     if (!data[0][4]) data[0][4] = 'Email';
-    if (!data[0][5]) data[0][5] = 'Confidence Score';
-    if (!data[0][6]) data[0][6] = 'Status';
-    if (!data[0][7]) data[0][7] = 'Validation Reasons';
-    if (!data[0][8]) data[0][8] = 'Proof Reference';
+    if (!data[0][5]) data[0][5] = 'Proof Reference';
 
     const jobData = { jobId, searchItems, searchSource, data, total: searchItems.length, outPath };
     fs.writeFileSync(path.join(resultsDir, `job_${jobId}.json`), JSON.stringify(jobData));
@@ -161,10 +158,7 @@ async function processScrape(jobId: string, searchItems: any[], searchSource: st
       data[rowIndex][2] = result.url;
       data[rowIndex][3] = result.phone;
       data[rowIndex][4] = result.email;
-      data[rowIndex][5] = result.confidence.score;
-      data[rowIndex][6] = result.confidence.status;
-      data[rowIndex][7] = result.confidence.reasons.join(', ');
-      data[rowIndex][8] = result.proofs.join(' | ');
+      data[rowIndex][5] = result.proofs ? result.proofs.join(' | ') : '';
       
       if (job.results.length % 5 === 0 || job.results.length === job.total) {
         try {
@@ -272,12 +266,34 @@ app.post('/api/resume', (req, res) => {
 
   if (action === 'init' && session) {
     const jobId = session.jobId || Date.now().toString();
+    let diskSession = loadSession(jobId) || loadSession();
+    
+    if (!diskSession) {
+        const jobFile = path.join(resultsDir, `job_${jobId}.json`);
+        if (fs.existsSync(jobFile)) {
+            try { diskSession = JSON.parse(fs.readFileSync(jobFile) as any); } catch(e) {}
+        }
+    }
+    diskSession = diskSession || {};
+
+    // Reconstruct searchItems if absolutely necessary
+    let searchItems = diskSession.searchItems;
+    if (!searchItems && session.data) {
+        const headers = session.data[0] || [];
+        const urlColIndex = headers.findIndex((h: any) => h && h.toString().toLowerCase().includes('site url'));
+        searchItems = session.data.slice(1).map((row: any, index: number) => ({
+            row: index + 2,
+            query: row[0] ? row[0].toString() : '',
+            url: urlColIndex !== -1 && row[urlColIndex] ? row[urlColIndex].toString() : null
+        })).filter((item: any) => item.query || item.url);
+    }
+    
     activeJobs.set(jobId, { 
       status: 'processing', 
       results: [], 
-      total: session.total || 0, 
+      total: session.total || diskSession.total || searchItems?.length || 0, 
       progress: 0,
-      session: { ...session, results: [] } 
+      session: { ...diskSession, ...session, searchItems, results: [] } 
     });
     return res.json({ success: true, jobId });
   }

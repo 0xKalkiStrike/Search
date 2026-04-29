@@ -96,48 +96,8 @@ function restoreSession(session) {
     }
 }
 
-    // Tab Switching
-let currentFilter = 'all';
-
-window.updateStatus = function(idx, newStatus, event) {
-    if(event) event.stopPropagation();
-    const result = allResults[idx - 1];
-    if(result && result.confidence) {
-        result.confidence.status = newStatus;
-        const card = event.target.closest('.brand-card');
-        if(card) {
-            card.dataset.status = newStatus;
-            const tag = card.querySelector('.validation-tag');
-            if(tag) {
-                tag.className = 'validation-tag ' + (newStatus === 'Auto Approve' ? 'tag-approved' : 'tag-reject');
-                tag.innerText = newStatus;
-            }
-            setFilter(currentFilter);
-        }
-    }
-}
-
 function setFilter(filterType) {
-    currentFilter = filterType;
-    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    
-    if (filterType === 'all') document.getElementById('tab-dashboard').classList.add('active');
-    else if (filterType === 'review') document.getElementById('tab-review').classList.add('active');
-    else if (filterType === 'approved') document.getElementById('tab-approved').classList.add('active');
-
-    const cards = document.querySelectorAll('.brand-card:not(.skeleton)');
-    cards.forEach(card => {
-        const status = card.dataset.status;
-        if (filterType === 'all') {
-            card.style.display = '';
-        } else if (filterType === 'review' && status === 'Needs Review') {
-            card.style.display = '';
-        } else if (filterType === 'approved' && status === 'Auto Approve') {
-            card.style.display = '';
-        } else {
-            card.style.display = 'none';
-        }
-    });
+    // UI Filters Removed
 }
 
 dropZone.addEventListener('click', () => fileInput.click());
@@ -161,7 +121,7 @@ function handleFile(file) {
         // Find the first empty column to start appending data
         if (originalData[0]) {
             startCol = originalData[0].length;
-            const extraHeaders = ['Full Details', 'Source URL', 'Phone', 'Email', 'Video URL', 'Score', 'Status', 'LinkedIn', 'FB', 'TW', 'IG'];
+            const extraHeaders = ['Full Details', 'Source URL', 'Phone', 'Email', 'Proof Reference'];
             extraHeaders.forEach((h, i) => {
                 originalData[0][startCol + i] = h;
             });
@@ -317,10 +277,7 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
                 originalData[rowIndex][startCol + 1] = r.url;
                 originalData[rowIndex][startCol + 2] = r.phone;
                 originalData[rowIndex][startCol + 3] = r.email;
-                originalData[rowIndex][startCol + 4] = r.confidence.score;
-                originalData[rowIndex][startCol + 5] = r.confidence.status;
-                originalData[rowIndex][startCol + 6] = r.confidence.reasons.join(', ');
-                originalData[rowIndex][startCol + 7] = r.proofs.join(' | ');
+                originalData[rowIndex][startCol + 4] = r.proofs ? r.proofs.join(' | ') : '';
             }
 
             // Handle intermediate milestones
@@ -357,78 +314,63 @@ function connectToStream(jobId, total, alreadyProcessed = 0) {
 
 function appendBrandCard(idx, item) {
     const score = item.confidence?.score || 0;
-    const offset = 251.2 - (251.2 * score) / 100;
-    const isOnline = item.url !== 'N/A';
-    const rowColor = isOnline ? 'var(--primary)' : 'var(--text-dim)';
-    const status = item.confidence?.status || (score >= 70 ? 'Auto Approve' : 'Reject');
-    const statusClass = status === 'Auto Approve' ? 'tag-approved' : 'tag-reject';
     
+    let ratingColor = "#f87171";
+    let ratingText = "Unreliable";
+    if (score >= 80) { ratingColor = "#4ade80"; ratingText = "Good"; }
+    else if (score >= 50) { ratingColor = "#fbbf24"; ratingText = "Average"; }
+
+    const s = item.socials || {};
+    const socialsHTML = `
+        ${s.linkedin ? `<a href="${s.linkedin}" target="_blank" style="color: #0ea5e9; text-decoration: none; margin-right: 12px; font-weight: 500;">LinkedIn</a>` : ''}
+        ${s.facebook ? `<a href="${s.facebook}" target="_blank" style="color: #3b82f6; text-decoration: none; margin-right: 12px; font-weight: 500;">Facebook</a>` : ''}
+        ${s.twitter ? `<a href="${s.twitter}" target="_blank" style="color: #38bdf8; text-decoration: none; margin-right: 12px; font-weight: 500;">Twitter</a>` : ''}
+        ${s.instagram ? `<a href="${s.instagram}" target="_blank" style="color: #ec4899; text-decoration: none; margin-right: 12px; font-weight: 500;">Instagram</a>` : ''}
+        ${s.whatsapp ? `<a href="${s.whatsapp}" target="_blank" style="color: #22c55e; text-decoration: none; margin-right: 12px; font-weight: 500;">WhatsApp</a>` : ''}
+    `.trim();
+
     const card = document.createElement('div');
     card.className = 'brand-card';
-    card.dataset.status = status;
-    
-    if (currentFilter !== 'all' && 
-        ((currentFilter === 'review' && status !== 'Needs Review') || 
-         (currentFilter === 'approved' && status !== 'Auto Approve'))) {
-        card.style.display = 'none';
-    }
+    card.style.padding = '20px';
+    card.style.marginBottom = '15px';
+    card.style.background = '#1e1e24';
+    card.style.borderRadius = '10px';
+    card.style.border = '1px solid #333';
+    card.style.display = 'flex';
+    card.style.flexDirection = 'column';
+    card.style.gap = '10px';
+    card.style.position = 'relative';
 
     card.innerHTML = `
-        <div class="score-box">
-            <svg class="score-circle">
-                <circle class="bg" cx="40" cy="40" r="32" />
-                <circle class="fill" cx="40" cy="40" r="32" style="stroke-dashoffset: ${offset}; stroke: ${rowColor}" />
-            </svg>
-            <div class="score-val">
-                <span>${score}</span>
-                <label>Confidence</label>
-            </div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <h3 style="margin: 0; font-size: 20px; color: #f8fafc;">${item.query}</h3>
+            <span style="color: ${ratingColor}; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: bold; background: rgba(255,255,255,0.05); border: 1px solid ${ratingColor};">
+                Rating: ${ratingText} (${score}%)
+            </span>
         </div>
-        <div class="card-details">
-            <div class="card-header-row">
-                <h3>${item.query}</h3>
-                <span class="validation-tag ${statusClass}">${status}</span>
-            </div>
-            <div class="contact-strip">
-                <a href="${item.url}" target="_blank" class="website-link">
-                    ${item.url.substring(0, 30)}${item.url.length > 30 ? '...' : ''}
-                </a>
-                <span class="meta-separator">•</span>
-                <span class="meta-phone">${item.phone || 'No Phone'}</span>
-                <span class="meta-separator">•</span>
-                <span class="meta-email">${item.email || 'No Email'}</span>
-            </div>
-            
-            <div class="proof-gallery">
-                ${(item.proofs || []).map(p => `
-                    <div class="proof-item" onclick="window.open('${p}', '_blank')">
-                        <img src="${p}" alt="Proof">
-                    </div>
-                `).join('')}
-            </div>
-
-            <p class="description">${item.details}</p>
-            
-            <div class="reason-list">
-                ${(item.confidence?.reasons || []).map(r => `<span>${r}</span>`).join('')}
-            </div>
+        
+        <div style="font-size: 15px; color: #a5b4fc; margin-top: 5px;">
+            <strong style="color: #94a3b8;">Site URL:</strong> <a href="${item.url}" target="_blank" style="color: #818cf8; text-decoration: none;">${item.url}</a>
         </div>
-        <div class="metrics-panel">
-            <span class="branding-badge">${score >= 85 ? 'High Trust' : (score >= 60 ? 'Suspicious' : 'Unreliable')}</span>
-            <div class="meta-info">
-                <div class="meta-item">
-                    <label>Source</label>
-                    <span class="meta-val status-online">Verified</span>
-                </div>
-            </div>
-            <div class="quick-actions" style="display:flex; gap:5px; margin-top:10px;">
-                <button class="ghost-btn" onclick="updateStatus(${idx}, 'Auto Approve', event)" style="background:transparent; color:#4caf50; border:1px solid #4caf50; padding:4px 8px; border-radius:4px; font-size:11px; cursor:pointer; width:100%;">Approve</button>
-                <button class="ghost-btn" onclick="updateStatus(${idx}, 'Reject', event)" style="background:transparent; color:#f44336; border:1px solid #f44336; padding:4px 8px; border-radius:4px; font-size:11px; cursor:pointer; width:100%;">Reject</button>
-            </div>
+        
+        <div style="font-size: 15px; color: #f1f5f9;">
+            <strong style="color: #94a3b8;">Contact Numbers:</strong> ${item.phone || 'Not found'}
+        </div>
+        
+        <div style="font-size: 15px; color: #f1f5f9;">
+            <strong style="color: #94a3b8;">Email Ids:</strong> ${item.email || 'Not found'}
+        </div>
+        
+        ${socialsHTML ? `
+        <div style="font-size: 15px; color: #f1f5f9; margin-top: 5px; padding-top: 10px; border-top: 1px dashed #333;">
+            <strong style="color: #94a3b8; display: block; margin-bottom: 6px;">Social Media Links:</strong> ${socialsHTML}
+        </div>
+        ` : ''}
+        
+        <div style="font-size: 13px; color: #9ca3af; margin-top: 10px; padding-top: 10px; border-top: 1px solid #333;">
+            <em>${item.details}</em>
         </div>
     `;
-    
-
     
     resultsContainer.prepend(card);
 }
@@ -463,10 +405,7 @@ function flattenData(results) {
         flatItem["Website"] = item.url || "";
         flatItem["Phones"] = item.phone || "";
         flatItem["Emails"] = item.email || "";
-        flatItem["Confidence Score"] = item.confidence?.score || 0;
-        flatItem["Validation Status"] = item.confidence?.status || "Reject";
-        flatItem["Validation Reasons"] = (item.confidence?.reasons || []).join('; ');
-        flatItem["Proof References"] = (item.proofs || []).join('; ');
+        flatItem["Proof Reference"] = (item.proofs || []).join('; ');
 
         let category = "Generic";
         const emailLower = (item.email || "").toLowerCase();
@@ -488,7 +427,7 @@ downloadBtn.addEventListener('click', () => {
         log("System: Transforming and flattening data for report...");
         
         // Export should include Validated records only
-        const validatedResults = allResults.filter(r => r.confidence?.status !== 'Reject');
+        const validatedResults = allResults;
         
         // Transform nested results into flat JSON structure
         const flatData = flattenData(validatedResults);

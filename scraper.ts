@@ -3,6 +3,7 @@ import { ValidationEngine, EmailValidationResult, PhoneValidationResult } from '
 import { ConfidenceEngine, ConfidenceResult, ConfidenceInput } from './confidenceEngine';
 import * as path from 'path';
 import * as fs from 'fs';
+import { execSync } from 'child_process';
 
 const userAgents = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
@@ -76,7 +77,7 @@ export async function searchDetails(items: any[], preferredSource: string, onSta
             data = {
               row: item.row,
               query: item.query,
-              url: item.url || 'Search Result',
+              url: enrichedData.url !== 'Not found' ? enrichedData.url : (item.url || 'Not found'),
               ...enrichedData,
               validatedEmails: [],
               validatedPhones: [],
@@ -104,6 +105,7 @@ export async function searchDetails(items: any[], preferredSource: string, onSta
             email: 'Not found',
             validation: null,
             confidence: { score: 0, status: 'Reject', reasons: ['Failed to reach source or block detected'] },
+            socials: { twitter: null, facebook: null, instagram: null, linkedin: null, whatsapp: null },
             proofs: []
         };
     }
@@ -125,6 +127,10 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
     userAgent: userAgents[Math.floor(Math.random() * userAgents.length)],
     viewport: { width: 1280, height: 800 }
   });
+  
+  // Auto-dismiss dialogs to prevent hanging
+  context.on('dialog', dialog => dialog.dismiss().catch(() => {}));
+  
   const page = await context.newPage();
   
   try {
@@ -150,7 +156,7 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
       const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
       const obfuscatedEmailRegex = /[a-zA-Z0-9._%+-]+\s?(?:\[at\]|@|\(at\))\s?[a-zA-Z0-9.-]+\s?(?:\.|\[dot\]|\(dot\))\s?[a-zA-Z]{2,}/gi;
       
-      const phoneRegex = /(?:\+?\d{1,3}[-.\s]?)?\(?\d{2,4}?\)?[-.\s]?\d{3,4}[-.\s]?\d{4,6}/g;
+      const phoneRegex = /(?:\+?\d{1,3}[-.\s]?)?\(?\d{3,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{4}/g;
       
       const emails = [
         ...(bodyText.match(emailRegex) || []),
@@ -166,9 +172,26 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
       const mailtos = await p.$$eval('a[href^="mailto:"]', els => els.map(el => el.getAttribute('href')?.replace('mailto:', '').split('?')[0] || '')).catch(() => []);
       const tels = await p.$$eval('a[href^="tel:"]', els => els.map(el => el.getAttribute('href')?.replace('tel:', '') || '')).catch(() => []);
       
+      const phoneMap = new Map();
+      [...phones, ...tels].forEach(p => {
+          const digits = p.replace(/\D/g, '');
+          const hasSeparator = /[-.()+ \/]/.test(p);
+          const isFromTel = tels.includes(p);
+          
+          if (digits.length >= 10 && digits.length <= 13) {
+              if (!hasSeparator && !isFromTel && !p.startsWith('+')) return; // Ignore unformatted 10-digit strings (like IDs/timestamps)
+              if (p.includes('.') && p.split('.').length === 2 && !p.includes('-') && !p.includes('(') && !p.includes(' ')) return; // Ignore decimals
+              
+              if (!phoneMap.has(digits) || (p.includes('-') || p.includes('('))) {
+                  phoneMap.set(digits, p);
+              }
+          }
+      });
+      const validPhones = Array.from(phoneMap.values());
+
       return { 
-        emails: [...new Set([...emails, ...mailtos])].filter(e => e.includes('@') && e.length > 5), 
-        phones: [...new Set([...phones, ...tels])].filter(p => p.replace(/\D/g, '').length >= 8)
+        emails: [...new Set([...emails, ...mailtos])].filter(e => e.includes('@') && e.length > 5 && !e.match(/\.(png|jpe?g|gif|svg|webp|css|js)$/i)), 
+        phones: validPhones
       };
     };
 
@@ -276,6 +299,7 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
       email: validatedEmails.map(e => e.value).join(', ') || 'Not found',
       validatedEmails,
       validatedPhones,
+      socials,
       confidence,
       proofs: [...new Set(proofs)],
       score: confidence.score
@@ -290,26 +314,32 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
 async function enrichWithSearch(browser: Browser, item: any, onStatus: (msg: string) => void) {
   const isCloud = process.env.VERCEL || process.env.RENDER || false;
   const context = await browser.newContext();
+  context.on('dialog', dialog => dialog.dismiss().catch(() => {}));
   const page = await context.newPage();
   try {
-    const query = encodeURIComponent(`"${item.query}" contact email phone number`);
-    const searchUrl = `https://www.google.com/search?q=${query}`;
+    const queryText = `"${item.query}" contact email phone number`;
     
-    if (onStatus) onStatus(`[ENRICH] Searching Google for ${item.query}...`);
-    await page.goto(searchUrl, { waitUntil: 'domcontentloaded', timeout: isCloud ? 30000 : 20000 });
-    await page.waitForTimeout(3000);
-
-    const searchResults = await page.$$eval('div.g', els => els.slice(0, 5).map(el => {
-      const link = el.querySelector('a')?.href;
-      const snippet = (el as HTMLElement).innerText;
-      return { link, snippet };
-    })).catch(() => []);
+    if (onStatus) onStatus(`[ENRICH] Searching DuckDuckGo via DDGS for ${item.query}...`);
+    
+    let searchResults: any[] = [];
+    try {
+        const safeQuery = queryText.replace(/"/g, '\\"').replace(/'/g, "\\'");
+        const pythonCommand = `python -c "import json; from ddgs import DDGS; results = DDGS().text('${safeQuery}', max_results=5); print(json.dumps(list(results)))"`;
+        const output = execSync(pythonCommand, { encoding: 'utf-8', timeout: 20000 });
+        const ddgsResults = JSON.parse(output.trim());
+        searchResults = ddgsResults.map((r: any) => ({
+             link: r.href,
+             snippet: r.body
+        }));
+    } catch (e: any) {
+        if (onStatus) onStatus(`[WARN] DDGS search failed: ${e.message}`);
+    }
 
     let foundEmails: string[] = [];
     let foundPhones: string[] = [];
 
     const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
-    const phoneRegex = /(?:\+?\d{1,3}[-.\s]?)?\(?\d{2,4}?\)?[-.\s]?\d{3,4}[-.\s]?\d{4,6}/g;
+    const phoneRegex = /(?:\+?\d{1,3}[-.\s]?)?\(?\d{3,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{4}/g;
 
     for (const res of searchResults) {
       const emails = res.snippet.match(emailRegex) || [];
@@ -323,9 +353,10 @@ async function enrichWithSearch(browser: Browser, item: any, onStatus: (msg: str
           !res.link.includes('instagram.com') &&
           !res.link.includes('linkedin.com') &&
           (foundEmails.length < 2 || foundPhones.length < 2)) {
+         let tempPage;
          try {
            if (onStatus) onStatus(`[ENRICH] Checking external source: ${res.link.substring(0, 40)}...`);
-           const tempPage = await context.newPage();
+           tempPage = await context.newPage();
            await tempPage.goto(res.link, { waitUntil: 'domcontentloaded', timeout: 15000 });
            const body = await tempPage.innerText('body').catch(() => "");
            const html = await tempPage.content().catch(() => "");
@@ -334,20 +365,39 @@ async function enrichWithSearch(browser: Browser, item: any, onStatus: (msg: str
            foundEmails.push(...(html.match(emailRegex) || []));
            foundPhones.push(...(body.match(phoneRegex) || []));
            foundPhones.push(...(html.match(phoneRegex) || []));
-           
-           await tempPage.close();
-         } catch(e) {}
+         } catch(e) {} finally {
+           if (tempPage) await tempPage.close().catch(() => {});
+         }
       }
     }
 
-    const uniqueEmails = [...new Set(foundEmails.map(e => e.toLowerCase()))].filter(e => e.length > 5);
-    const uniquePhones = [...new Set(foundPhones)].filter(p => p.replace(/\D/g, '').length >= 8);
+    const uniqueEmails = [...new Set(foundEmails.map(e => e.toLowerCase()))]
+        .filter(e => e.length > 5 && !e.match(/\.(png|jpe?g|gif|svg|webp|css|js)$/i))
+        .slice(0, 5);
+        
+    const phoneMap = new Map();
+    foundPhones.forEach(p => {
+        const digits = p.replace(/\D/g, '');
+        const hasSeparator = /[-.()+ \/]/.test(p);
+        
+        if (digits.length >= 10 && digits.length <= 13) {
+            if (!hasSeparator && !p.startsWith('+')) return; // Ignore unformatted 10-digit strings (like IDs/timestamps)
+            if (p.includes('.') && p.split('.').length === 2 && !p.includes('-') && !p.includes('(') && !p.includes(' ')) return; // Ignore decimals
+            
+            if (!phoneMap.has(digits) || (p.includes('-') || p.includes('('))) {
+                phoneMap.set(digits, p);
+            }
+        }
+    });
+    const uniquePhones = Array.from(phoneMap.values()).slice(0, 5);
 
     const score = uniqueEmails.length > 0 || uniquePhones.length > 0 ? 80 : 40;
     return {
       email: uniqueEmails.join(', ') || 'Not found',
       phone: uniquePhones.join(', ') || 'Not found',
+      url: searchResults.length > 0 ? searchResults[0].link : 'Not found',
       details: `Enriched via Search Results: ${searchResults.length} sources analyzed.`,
+      socials: { twitter: null, facebook: null, instagram: null, linkedin: null, whatsapp: null },
       confidence: { score: score, status: (score >= 70 ? 'Auto Approve' : 'Reject'), reasons: ['Enriched via external search'] }
     };
   } finally {
