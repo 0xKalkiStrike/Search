@@ -1,12 +1,8 @@
 services:
   - type: web
     name: brand-analysis-suite
-    env: node
+    env: docker
     plan: free
-    buildCommand: npm install && PLAYWRIGHT_BROWSERS_PATH=/opt/render/project/src/pw-browsers npm run playwright-install
-    startCommand: node server.js
     envVars:
       - key: NODE_VERSION
         value: 20
-      - key: PLAYWRIGHT_BROWSERS_PATH
-        value: /opt/render/project/src/pw-browsers
