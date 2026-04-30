@@ -18,7 +18,6 @@
     "mailchecker": "^6.0.20",
     "multer": "^1.4.5-lts.1",
     "playwright": "^1.40.0",
-    "playwright-chromium": "^1.40.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "validator": "^13.15.35",

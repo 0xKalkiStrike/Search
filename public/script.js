@@ -151,8 +151,10 @@ startBtn.addEventListener('click', async () => {
     resultsContainer.innerHTML = '';
     showSkeletons(6);
 
+    const visibleMode = document.getElementById('visible-browser-toggle').checked;
     const formData = new FormData();
     formData.append('file', selectedFile);
+    formData.append('visibleMode', visibleMode);
 
     try {
         startBtn.classList.add('processing-btn');
@@ -194,11 +196,13 @@ async function resumeSession() {
         
         // 1. Initialize session on server (metadata only)
         log("System: Synchronizing session metadata...");
+        const visibleMode = document.getElementById('visible-browser-toggle').checked;
         const initResponse = await fetch('/api/resume', { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
                 action: 'init', 
+                visibleMode: visibleMode,
                 session: { ...sessionPayload, results: [] } 
             })
         });
@@ -350,15 +354,19 @@ function appendBrandCard(idx, item) {
         </div>
         
         <div style="font-size: 15px; color: #a5b4fc; margin-top: 5px;">
-            <strong style="color: #94a3b8;">Site URL:</strong> <a href="${item.url}" target="_blank" style="color: #818cf8; text-decoration: none;">${item.url}</a>
+            <strong style="color: #94a3b8;">Site URL:</strong> ${
+                (!item.url || item.url === 'Not found' || item.url === 'N/A') 
+                ? '<span style="color: #64748b; font-style: italic;">Not found</span>' 
+                : `<a href="${item.url}" target="_blank" style="color: #818cf8; text-decoration: none;">${item.url}</a>`
+            }
         </div>
         
         <div style="font-size: 15px; color: #f1f5f9;">
-            <strong style="color: #94a3b8;">Contact Numbers:</strong> ${item.phone || 'Not found'}
+            <strong style="color: #94a3b8;">Contact Numbers:</strong> ${(!item.phone || item.phone === 'Not found') ? '<span style="color: #64748b; font-style: italic;">Not found</span>' : item.phone}
         </div>
         
         <div style="font-size: 15px; color: #f1f5f9;">
-            <strong style="color: #94a3b8;">Email Ids:</strong> ${item.email || 'Not found'}
+            <strong style="color: #94a3b8;">Email Ids:</strong> ${(!item.email || item.email === 'Not found') ? '<span style="color: #64748b; font-style: italic;">Not found</span>' : item.email}
         </div>
         
         ${socialsHTML ? `

@@ -6,7 +6,7 @@ if (process.env.RENDER || process.env.VERCEL) {
   process.env.PLAYWRIGHT_BROWSERS_PATH = localCache;
   console.log(`[SYSTEM] Setting Playwright path to: ${localCache}`);
 }
-const { chromium } = require('playwright-chromium');
+const { chromium } = require('playwright');
 const { ValidationEngine } = require('./validationEngine');
 const { ConfidenceEngine } = require('./confidenceEngine');
 

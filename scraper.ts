@@ -1,9 +1,16 @@
+import { execSync } from 'child_process';
+import * as path from 'path';
+import * as fs from 'fs';
+
+if (process.env.RENDER || process.env.VERCEL) {
+  const localCache = path.join(process.cwd(), '.cache', 'ms-playwright');
+  process.env.PLAYWRIGHT_BROWSERS_PATH = localCache;
+  console.log(`[SYSTEM] Setting Playwright path to: ${localCache}`);
+}
+
 import { chromium, Browser, Page, ElementHandle } from 'playwright';
 import { ValidationEngine, EmailValidationResult, PhoneValidationResult } from './validationEngine';
 import { ConfidenceEngine, ConfidenceResult, ConfidenceInput } from './confidenceEngine';
-import * as path from 'path';
-import * as fs from 'fs';
-import { execSync } from 'child_process';
 
 const userAgents = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
@@ -11,7 +18,7 @@ const userAgents = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:125.0) Gecko/20100101 Firefox/125.0'
 ];
 
-export async function searchDetails(items: any[], preferredSource: string, onStatus: (msg: string) => void) {
+export async function searchDetails(items: any[], preferredSource: string, onStatus: (msg: string) => void, visibleMode = false) {
   const isCloud = process.env.VERCEL || process.env.RENDER || false;
   
   if (onStatus) onStatus(`[SYSTEM] Initializing Playwright browser engine (Chromium)...`);
@@ -19,7 +26,7 @@ export async function searchDetails(items: any[], preferredSource: string, onSta
   let browser: Browser;
   try {
     browser = await chromium.launch({ 
-      headless: true,
+      headless: !visibleMode,
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
@@ -58,7 +65,7 @@ export async function searchDetails(items: any[], preferredSource: string, onSta
     if (item.url && item.url.startsWith('http')) {
       try {
         if (onStatus) onStatus(`[PLAYWRIGHT] Connecting to ${item.url}...`);
-        data = await scrapeWithPlaywright(browser, item.url, item, onStatus);
+        data = await scrapeWithPlaywright(browser, item.url, item, onStatus, visibleMode);
         success = true;
       } catch (err: any) {
         if (onStatus) onStatus(`[WARN] Playwright fetch failed for ${item.url}: ${err.message}`);
@@ -121,7 +128,7 @@ export async function searchDetails(items: any[], preferredSource: string, onSta
   return results;
 }
 
-async function scrapeWithPlaywright(browser: Browser, url: string, item: any, onStatus: (msg: string) => void) {
+async function scrapeWithPlaywright(browser: Browser, url: string, item: any, onStatus: (msg: string) => void, visibleMode = false) {
   const isCloud = process.env.VERCEL || process.env.RENDER || false;
   const context = await browser.newContext({
     userAgent: userAgents[Math.floor(Math.random() * userAgents.length)],
@@ -243,14 +250,14 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
 
     for (const email of uniqueEmails) {
       const validation = await ValidationEngine.validateEmail(email);
-      const proofPath = await captureProof(page, email, `email_${item.row}_${Date.now()}.png`);
+      const proofPath = await captureProof(page, email, `email_${item.row}_${Date.now()}.png`, visibleMode);
       if (proofPath) proofs.push(proofPath);
       validatedEmails.push({ value: email, ...validation, proof: proofPath });
     }
 
     for (const phone of uniquePhones) {
       const validation = ValidationEngine.validatePhone(phone);
-      const proofPath = await captureProof(page, phone, `phone_${item.row}_${Date.now()}.png`);
+      const proofPath = await captureProof(page, phone, `phone_${item.row}_${Date.now()}.png`, visibleMode);
       if (proofPath) proofs.push(proofPath);
       validatedPhones.push({ value: phone, ...validation, proof: proofPath });
     }
@@ -263,6 +270,23 @@ async function scrapeWithPlaywright(browser: Browser, url: string, item: any, on
     const bestPhone = validatedPhones.find(p => p.isValid) || validatedPhones[0];
 
     const socials: any = { twitter: null, facebook: null, instagram: null, linkedin: null, whatsapp: null };
+    
+    if (visibleMode) {
+      await page.evaluate(() => {
+          const targets = ['facebook.com', 'twitter.com', 'x.com', 'instagram.com', 'linkedin.com', 'wa.me', 'whatsapp.com'];
+          document.querySelectorAll('a').forEach(a => {
+              if (targets.some(t => a.href.includes(t))) {
+                  a.style.outline = '4px solid #3b82f6';
+                  a.style.backgroundColor = '#dbeafe';
+                  a.style.boxShadow = '0 0 20px #3b82f6';
+                  a.style.transition = 'all 0.3s ease-in-out';
+                  a.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+          });
+      }).catch(() => {});
+      await page.waitForTimeout(800);
+    }
+    
     const allLinks = await page.$$eval('a', (els) => els.map(a => a.href)).catch(() => []);
     allLinks.forEach(l => {
         const low = l.toLowerCase();
@@ -323,8 +347,8 @@ async function enrichWithSearch(browser: Browser, item: any, onStatus: (msg: str
     
     let searchResults: any[] = [];
     try {
-        const safeQuery = queryText.replace(/"/g, '\\"').replace(/'/g, "\\'");
-        const pythonCommand = `python -c "import json; from ddgs import DDGS; results = DDGS().text('${safeQuery}', max_results=5); print(json.dumps(list(results)))"`;
+        const b64Query = Buffer.from(queryText).toString('base64');
+        const pythonCommand = `python -c "import json, base64; from ddgs import DDGS; q=base64.b64decode('${b64Query}').decode('utf-8'); results = DDGS().text(q, max_results=5); print(json.dumps(list(results)))"`;
         const output = execSync(pythonCommand, { encoding: 'utf-8', timeout: 20000 });
         const ddgsResults = JSON.parse(output.trim());
         searchResults = ddgsResults.map((r: any) => ({
@@ -406,7 +430,7 @@ async function enrichWithSearch(browser: Browser, item: any, onStatus: (msg: str
   }
 }
 
-async function captureProof(page: Page, text: string, filename: string): Promise<string | null> {
+async function captureProof(page: Page, text: string, filename: string, visibleMode = false): Promise<string | null> {
   const isCloud = process.env.VERCEL || process.env.RENDER || false;
   try {
     const element = await page.evaluateHandle((searchText) => {
@@ -425,6 +449,18 @@ async function captureProof(page: Page, text: string, filename: string): Promise
       const proofDir = isCloud ? '/tmp/proofs' : path.join(process.cwd(), 'public', 'proofs');
       if (!fs.existsSync(proofDir)) fs.mkdirSync(proofDir, { recursive: true });
       
+      if (visibleMode) {
+          await el?.evaluate((node) => {
+              const htmlNode = node as HTMLElement;
+              htmlNode.style.outline = '4px solid #f43f5e';
+              htmlNode.style.backgroundColor = '#fef08a';
+              htmlNode.style.boxShadow = '0 0 20px #f43f5e';
+              htmlNode.style.transition = 'all 0.3s ease-in-out';
+              htmlNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }).catch(() => {});
+          await page.waitForTimeout(1000); // Wait 1 second to show the user!
+      }
+
       const filePath = path.join(proofDir, filename);
       await el?.screenshot({ path: filePath });
       return `/proofs/${filename}`;

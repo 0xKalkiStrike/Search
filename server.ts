@@ -117,7 +117,8 @@ app.post('/api/scrape', upload.single('file'), async (req, res) => {
     if (!data[0][4]) data[0][4] = 'Email';
     if (!data[0][5]) data[0][5] = 'Proof Reference';
 
-    const jobData = { jobId, searchItems, searchSource, data, total: searchItems.length, outPath };
+    const visibleMode = req.body.visibleMode === 'true';
+    const jobData = { jobId, searchItems, searchSource, data, total: searchItems.length, outPath, visibleMode };
     fs.writeFileSync(path.join(resultsDir, `job_${jobId}.json`), JSON.stringify(jobData));
 
     activeJobs.set(jobId, { status: 'processing', results: [], total: searchItems.length, progress: 0, session: jobData });
@@ -129,7 +130,7 @@ app.post('/api/scrape', upload.single('file'), async (req, res) => {
   }
 });
 
-async function processScrape(jobId: string, searchItems: any[], searchSource: string, data: any[][], workbook: any, outPath: string, startIndex = 0) {
+async function processScrape(jobId: string, searchItems: any[], searchSource: string, data: any[][], workbook: any, outPath: string, startIndex = 0, visibleMode = false) {
   const job = activeJobs.get(jobId);
   try {
     const itemsToProcess = searchItems.slice(startIndex);
@@ -147,7 +148,7 @@ async function processScrape(jobId: string, searchItems: any[], searchSource: st
         }
       };
 
-      const results = await searchDetails([item], searchSource, onStatus);
+      const results = await searchDetails([item], searchSource, onStatus, visibleMode);
       const result = results[0];
       
       job.results.push(result);
@@ -177,7 +178,8 @@ async function processScrape(jobId: string, searchItems: any[], searchSource: st
         searchSource, 
         data, 
         outPath,
-        time: Date.now()
+        time: Date.now(),
+        visibleMode
       });
 
       if (job.sse) {
@@ -239,7 +241,7 @@ app.get('/api/stream/:jobId', (req, res) => {
 
   if (job.session) {
       const startIndex = job.results.length || 0;
-      processScrape(jobId, job.session.searchItems, job.session.searchSource, job.session.data, null, job.session.outPath, startIndex);
+      processScrape(jobId, job.session.searchItems, job.session.searchSource, job.session.data, null, job.session.outPath, startIndex, job.session.visibleMode);
   }
 
   req.on('close', () => { job.sse = null; });
@@ -262,7 +264,7 @@ app.get('/api/resume', (req, res) => {
 });
 
 app.post('/api/resume', (req, res) => {
-  const { action, session, jobId: reqJobId, results: chunkResults } = req.body;
+  const { action, session, jobId: reqJobId, results: chunkResults, visibleMode } = req.body;
 
   if (action === 'init' && session) {
     const jobId = session.jobId || Date.now().toString();
@@ -293,7 +295,7 @@ app.post('/api/resume', (req, res) => {
       results: [], 
       total: session.total || diskSession.total || searchItems?.length || 0, 
       progress: 0,
-      session: { ...diskSession, ...session, searchItems, results: [] } 
+      session: { ...diskSession, ...session, searchItems, results: [], visibleMode } 
     });
     return res.json({ success: true, jobId });
   }
