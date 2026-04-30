@@ -1,7 +1,14 @@
 const path = require('path');
 const fs = require('fs');
 
-const { chromium } = require('playwright');
+// Use playwright-extra with stealth to avoid being blocked
+const { chromium } = require('playwright-extra');
+const stealth = require('puppeteer-extra-plugin-stealth')();
+chromium.use(stealth);
+
+// Use duck-duck-scrape for reliable enrichment search
+const { search: ddgSearch } = require('duck-duck-scrape');
+
 const { ValidationEngine } = require('./validationEngine');
 const { ConfidenceEngine } = require('./confidenceEngine');
 
@@ -13,7 +20,7 @@ const userAgents = [
 
 async function searchDetails(items, preferredSource, onStatus) {
   const isCloud = process.env.VERCEL || process.env.RENDER || false;
-  if (onStatus) onStatus(`[SYSTEM] Initializing browser engine...`);
+  if (onStatus) onStatus(`[SYSTEM] Initializing enterprise-grade browser engine (Stealth Mode)...`);
   
   let browser;
   try {
@@ -53,7 +60,7 @@ async function searchDetails(items, preferredSource, onStatus) {
 
     if (!data || (data.email === 'Not found' && data.phone === 'Not found')) {
       try {
-        if (onStatus) onStatus(`[ENRICH] Initiating Search-Based Intelligence for ${item.query}...`);
+        if (onStatus) onStatus(`[ENRICH] Initiating Intelligence Search for ${item.query}...`);
         const enrichedData = await enrichWithSearch(browser, item, onStatus);
         
         if (enrichedData.email !== 'Not found' || enrichedData.phone !== 'Not found') {
@@ -61,7 +68,7 @@ async function searchDetails(items, preferredSource, onStatus) {
             data = {
               row: item.row,
               query: item.query,
-              url: item.url || 'Search Result',
+              url: enrichedData.url !== 'Not found' ? enrichedData.url : (item.url || 'Search Result'),
               ...enrichedData,
               validatedEmails: [],
               validatedPhones: [],
@@ -235,6 +242,7 @@ async function scrapeWithPlaywright(browser, url, item, onStatus) {
       email: validatedEmails.map(e => e.value).join(', ') || 'Not found',
       validatedEmails,
       validatedPhones,
+      socials,
       confidence,
       proofs: [...new Set(proofs)],
       score: confidence.score
@@ -248,33 +256,30 @@ async function scrapeWithPlaywright(browser, url, item, onStatus) {
 
 async function enrichWithSearch(browser, item, onStatus) {
   const isCloud = process.env.VERCEL || process.env.RENDER || false;
-  const context = await browser.newContext();
-  const page = await context.newPage();
+  
   try {
-    const query = encodeURIComponent(`"${item.query}" contact email phone number`);
-    const searchUrl = `https://www.google.com/search?q=${query}`;
-    if (onStatus) onStatus(`[ENRICH] Searching Google for ${item.query}...`);
-    await page.goto(searchUrl, { waitUntil: 'domcontentloaded', timeout: isCloud ? 30000 : 20000 });
-    await page.waitForTimeout(3000);
-
-    const searchResults = await page.$$eval('div.g', els => els.slice(0, 5).map(el => {
-      const link = el.querySelector('a')?.href;
-      const snippet = el.innerText;
-      return { link, snippet };
-    })).catch(() => []);
+    const query = `"${item.query}" contact email phone number`;
+    if (onStatus) onStatus(`[ENRICH] Searching DuckDuckGo for ${item.query}...`);
+    
+    const searchResults = await ddgSearch(query, { safeSearch: 0 }).catch(() => ({ results: [] }));
+    const links = (searchResults.results || []).slice(0, 5).map(r => ({
+        link: r.url,
+        snippet: r.description
+    }));
 
     let foundEmails = [];
     let foundPhones = [];
     const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
     const phoneRegex = /(?:\+?\d{1,3}[-.\s]?)?\(?\d{2,4}?\)?[-.\s]?\d{3,4}[-.\s]?\d{4,6}/g;
 
-    for (const res of searchResults) {
+    const context = await browser.newContext();
+    for (const res of links) {
       const emails = res.snippet.match(emailRegex) || [];
       const phones = res.snippet.match(phoneRegex) || [];
       foundEmails.push(...emails);
       foundPhones.push(...phones);
 
-      if (res.link && !res.link.includes('facebook.com') && !res.link.includes('youtube.com') && !res.link.includes('instagram.com') && !res.link.includes('linkedin.com') && (foundEmails.length < 2 || foundPhones.length < 2)) {
+      if (res.link && !res.link.includes('facebook.com') && !res.link.includes('youtube.com') && (foundEmails.length < 2 || foundPhones.length < 2)) {
          try {
            const tempPage = await context.newPage();
            await tempPage.goto(res.link, { waitUntil: 'domcontentloaded', timeout: 15000 });
@@ -288,19 +293,23 @@ async function enrichWithSearch(browser, item, onStatus) {
          } catch(e) {}
       }
     }
+    await context.close();
 
-    const uniqueEmails = [...new Set(foundEmails.map(e => e.toLowerCase()))].filter(e => e.length > 5);
+    const uniqueEmails = [...new Set(foundEmails.map(e => e.toLowerCase()))].filter(e => e.length > 5 && !e.match(/\.(png|jpg|jpeg|gif|svg|css|js)$/i));
     const uniquePhones = [...new Set(foundPhones)].filter(p => p.replace(/\D/g, '').length >= 8);
+    
     const score = uniqueEmails.length > 0 || uniquePhones.length > 0 ? 80 : 40;
     return {
       email: uniqueEmails.join(', ') || 'Not found',
       phone: uniquePhones.join(', ') || 'Not found',
-      details: `Enriched via Search Results: ${searchResults.length} sources analyzed.`,
+      details: `Enriched via DuckDuckGo: ${links.length} sources analyzed.`,
+      url: links.length > 0 ? links[0].link : 'Not found',
+      socials: { twitter: null, facebook: null, instagram: null, linkedin: null, whatsapp: null },
       confidence: { score: score, status: (score >= 70 ? 'Auto Approve' : 'Reject'), reasons: ['Enriched via external search'] }
     };
-  } finally {
-    await page.close();
-    await context.close();
+  } catch (err) {
+    if (onStatus) onStatus(`[WARN] Enrichment failed: ${err.message}`);
+    return { email: 'Not found', phone: 'Not found', url: 'Not found', details: 'Enrichment failed', socials: { twitter: null, facebook: null, instagram: null, linkedin: null, whatsapp: null }, confidence: { score: 0, status: 'Reject', reasons: [err.message] } };
   }
 }
 
