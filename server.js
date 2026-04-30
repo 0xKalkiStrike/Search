@@ -10,6 +10,12 @@ const { searchDetails } = require('./scraper');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Request Logging Middleware
+app.use((req, res, next) => {
+  console.log(`[REQUEST] ${req.method} ${req.url}`);
+  next();
+});
+
 const isVercel = process.env.VERCEL || false;
 const isRender = process.env.RENDER || false;
 const isCloud = isVercel || isRender;
