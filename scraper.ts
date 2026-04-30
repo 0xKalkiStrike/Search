@@ -2,12 +2,6 @@ import { execSync } from 'child_process';
 import * as path from 'path';
 import * as fs from 'fs';
 
-if (process.env.RENDER || process.env.VERCEL) {
-  const localCache = path.join(process.cwd(), '.cache', 'ms-playwright');
-  process.env.PLAYWRIGHT_BROWSERS_PATH = localCache;
-  console.log(`[SYSTEM] Setting Playwright path to: ${localCache}`);
-}
-
 import { chromium, Browser, Page, ElementHandle } from 'playwright';
 import { ValidationEngine, EmailValidationResult, PhoneValidationResult } from './validationEngine';
 import { ConfidenceEngine, ConfidenceResult, ConfidenceInput } from './confidenceEngine';

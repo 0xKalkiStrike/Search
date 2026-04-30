@@ -1,9 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-if (process.env.RENDER || process.env.VERCEL) {
-  process.env.PLAYWRIGHT_BROWSERS_PATH = path.join(process.cwd(), '.cache', 'ms-playwright');
-}
+// Browser engine path is managed via environment variables (PLAYWRIGHT_BROWSERS_PATH)
 const express = require('express');
 const multer = require('multer');
 const XLSX = require('xlsx');
